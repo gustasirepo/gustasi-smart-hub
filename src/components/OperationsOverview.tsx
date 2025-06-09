@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { t } from "@/utils/localization";
-import { ShoppingCart, Menu, QrCode, MessageSquare, Calendar, Package } from "lucide-react";
+import { ShoppingCart, Code, Database, MessageCircle, Calendar, Truck } from "lucide-react";
 
 const OperationsOverview = () => {
   const operationModules = [
@@ -13,38 +12,38 @@ const OperationsOverview = () => {
       color: "from-amber-500 to-orange-500"
     },
     {
-      icon: Menu,
+      icon: Code,
       title: t("features.menu"),
       description: "Dynamic menu management and pricing control",
-      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop&crop=center",
       color: "from-orange-500 to-amber-600"
     },
     {
-      icon: QrCode,
+      icon: Database,
       title: t("features.qr"),
       description: "Contactless dining with smart QR menus",
-      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
       color: "from-amber-600 to-orange-600"
     },
     {
-      icon: MessageSquare,
+      icon: MessageCircle,
       title: t("features.feedback"),
       description: "Real-time reviews and rating management",
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop&crop=center",
       color: "from-orange-600 to-amber-500"
     },
     {
       icon: Calendar,
       title: t("features.table"),
       description: "Seamless booking and table management",
-      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
       color: "from-amber-500 to-orange-500"
     },
     {
-      icon: Package,
+      icon: Truck,
       title: t("features.supplier"),
       description: "Smart inventory tracking and supplier management",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
+      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop&crop=center",
       color: "from-orange-500 to-amber-600"
     }
   ];
