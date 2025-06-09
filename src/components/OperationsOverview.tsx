@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { t } from "@/utils/localization";
 import { ShoppingCart, Code, Database, MessageCircle, Calendar, Truck } from "lucide-react";
@@ -8,42 +9,36 @@ const OperationsOverview = () => {
       icon: ShoppingCart,
       title: t("features.order"),
       description: "Real-time order tracking and kitchen operations",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
       color: "from-amber-500 to-orange-500"
     },
     {
       icon: Code,
       title: t("features.menu"),
       description: "Dynamic menu management and pricing control",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop&crop=center",
       color: "from-orange-500 to-amber-600"
     },
     {
       icon: Database,
       title: t("features.qr"),
       description: "Contactless dining with smart QR menus",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
       color: "from-amber-600 to-orange-600"
     },
     {
       icon: MessageCircle,
       title: t("features.feedback"),
       description: "Real-time reviews and rating management",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop&crop=center",
       color: "from-orange-600 to-amber-500"
     },
     {
       icon: Calendar,
       title: t("features.table"),
       description: "Seamless booking and table management",
-      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
       color: "from-amber-500 to-orange-500"
     },
     {
       icon: Truck,
       title: t("features.supplier"),
       description: "Smart inventory tracking and supplier management",
-      image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?w=400&h=200&fit=crop&crop=center",
       color: "from-orange-500 to-amber-600"
     }
   ];
@@ -83,30 +78,20 @@ const OperationsOverview = () => {
                       <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
                       
                       {/* Icon */}
-                      <div className="relative mb-6">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${module.color} p-4 shadow-lg shadow-amber-400/20 hover:shadow-2xl hover:shadow-amber-400/40 group-hover:scale-110 transition-transform duration-300`}>
+                      <div className="relative mb-6 text-center">
+                        <div className={`w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br ${module.color} p-5 shadow-lg shadow-amber-400/20 hover:shadow-2xl hover:shadow-amber-400/40 group-hover:scale-110 transition-transform duration-300`}>
                           <IconComponent className="w-full h-full text-white" />
                         </div>
                       </div>
                       
                       {/* Content */}
-                      <div className="relative">
+                      <div className="relative text-center">
                         <h3 className="text-xl lg:text-2xl font-bold mb-4 text-slate-800 group-hover:text-amber-700 transition-colors duration-300">
                           {module.title}
                         </h3>
-                        <p className="text-slate-600 mb-6 leading-relaxed">
+                        <p className="text-slate-600 leading-relaxed">
                           {module.description}
                         </p>
-                        
-                        {/* Screenshot Preview */}
-                        <div className="relative rounded-xl overflow-hidden group-hover:scale-105 transition-transform duration-500">
-                          <img 
-                            src={module.image} 
-                            alt={`${module.title} Interface`}
-                            className="w-full h-32 object-cover"
-                          />
-                          <div className={`absolute inset-0 bg-gradient-to-t ${module.color} opacity-20`}></div>
-                        </div>
                       </div>
                       
                       {/* Hover Effect */}
