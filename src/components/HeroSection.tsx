@@ -29,7 +29,9 @@ const HeroSection = () => {
       </div>
       
       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Ccircle cx="30" cy="30" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-50"></div>
+      <div className="absolute inset-0 opacity-50" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-7xl mx-auto">
@@ -156,7 +158,7 @@ const HeroSection = () => {
                     {/* Dashboard Image */}
                     <div className="relative overflow-hidden rounded-2xl">
                       <img 
-                        src="/lovable-uploads/3e29469b-faef-4245-8a1a-9d015faab115.png" 
+                        src="/lovable-uploads/d85a1c3d-1470-4a9a-9d86-74815713038e.png" 
                         alt="Gustasi Live Orders Dashboard showing real-time order management with Swiggy, Zomato integration" 
                         className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
                         style={{
