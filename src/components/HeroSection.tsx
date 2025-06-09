@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { t } from "@/utils/localization";
-import { ArrowRight, Play, CheckCircle, Zap, Shield, Users } from "lucide-react";
+import { Play, CheckCircle, TrendingUp, Shield, Users } from "lucide-react";
 
 const HeroSection = () => {
   const [currentText, setCurrentText] = useState("");
@@ -21,163 +21,152 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Modern Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-amber-900/20 via-transparent to-transparent"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-orange-900/10 via-transparent to-transparent"></div>
+    <section className="relative pt-20 lg:pt-32 pb-16 lg:pb-24 overflow-hidden gradient-bg">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95"></div>
+      <div className="absolute top-20 left-10 w-32 h-32 bg-amber-400/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-10 w-40 h-40 bg-orange-400/8 rounded-full blur-3xl"></div>
       
-      {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMzAiIGN5PSIzMCIgcj0iMSIvPjwvZz48L2c+PC9zdmc+')] bg-repeat"></div>
-      </div>
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center min-h-[80vh]">
-            {/* Left Content - Modern Typography */}
-            <div className="lg:col-span-6 text-center lg:text-left space-y-8">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/20 rounded-full px-4 py-2 text-amber-300 text-sm font-medium animate-fade-up">
-                <Zap className="w-4 h-4" />
-                <span>Trusted by 50,000+ restaurants</span>
-              </div>
-
-              {/* Main Heading */}
-              <div className="space-y-4 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight">
-                  <span className="text-white block">{t("hero.tagline")}</span>
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Left Column - Enhanced Text Content */}
+            <div className="text-center lg:text-left">
+              <div className="mb-8">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6 animate-fade-up">
+                  <span className="text-white">{t("hero.tagline")}</span>
                 </h1>
-                <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed max-w-2xl">
+                <p className="text-xl lg:text-2xl text-amber-100/90 mb-8 leading-relaxed animate-fade-up max-w-2xl" style={{ animationDelay: '0.2s' }}>
                   {t("hero.subtext")}
                 </p>
               </div>
 
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                <div className="text-center lg:text-left">
-                  <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">35%</div>
-                  <div className="text-slate-400 text-sm">Order Increase</div>
-                </div>
-                <div className="text-center lg:text-left">
-                  <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">25%</div>
-                  <div className="text-slate-400 text-sm">Fraud Savings</div>
-                </div>
-                <div className="text-center lg:text-left col-span-2 sm:col-span-1">
-                  <div className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent">4.9★</div>
-                  <div className="text-slate-400 text-sm">User Rating</div>
-                </div>
-              </div>
-
-              {/* Features List */}
-              <div className="grid sm:grid-cols-2 gap-3 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                  <span>Real-time Analytics</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Shield className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                  <span>Fraud Protection</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Users className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                  <span>Multi-location Support</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Zap className="w-5 h-5 text-amber-400 flex-shrink-0" />
-                  <span>Instant Setup</span>
+              {/* Value Propositions */}
+              <div className="mb-8 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+                <div className="grid sm:grid-cols-2 gap-4 text-left">
+                  <div className="flex items-center gap-3 text-amber-100/90">
+                    <CheckCircle className="w-5 h-5 text-amber-400" />
+                    <span>35% Average Order Increase</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-amber-100/90">
+                    <Shield className="w-5 h-5 text-amber-400" />
+                    <span>20-25% Fraud Savings</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-amber-100/90">
+                    <TrendingUp className="w-5 h-5 text-amber-400" />
+                    <span>Real-time Analytics</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-amber-100/90">
+                    <Users className="w-5 h-5 text-amber-400" />
+                    <span>Multi-location Support</span>
+                  </div>
                 </div>
               </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-                <Button className="group bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 hover:scale-105 shadow-2xl hover:shadow-amber-500/25">
+              
+              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start animate-fade-up" style={{ animationDelay: '0.4s' }}>
+                <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-10 py-5 text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-amber-500/20">
                   {t("hero.cta")}
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
                 </Button>
-                <Button variant="outline" className="group bg-white/5 backdrop-blur-sm hover:bg-white/10 text-white font-semibold px-8 py-6 text-lg rounded-2xl border border-white/10 hover:border-white/20 transition-all duration-300 shadow-lg">
-                  <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
+                <Button variant="outline" className="bg-white/5 backdrop-blur-sm hover:bg-white/10 text-amber-100 font-semibold px-8 py-5 text-xl rounded-xl border border-amber-300/20 transition-all duration-300 hover:border-amber-200/40 shadow-lg hover:shadow-xl">
+                  <Play className="w-5 h-5 mr-2" />
                   Watch Demo
                 </Button>
               </div>
+              
+              {/* Trust Indicators */}
+              <div className="mt-12 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-8 text-sm text-amber-200/80 animate-fade-up" style={{ animationDelay: '0.6s' }}>
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-amber-400 rounded-full animate-pulse-slow"></div>
+                  <span className="text-lg">Trusted by 50,000+ restaurants</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse-slow"></div>
+                  <span className="text-lg">4.9★ rating</span>
+                </div>
+              </div>
 
-              {/* Integration Partners */}
-              <div className="space-y-4 animate-fade-up" style={{ animationDelay: '0.5s' }}>
-                <p className="text-slate-400 text-sm">Integrates seamlessly with:</p>
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/10">
+              {/* Integration Badges */}
+              <div className="mt-8 animate-fade-up" style={{ animationDelay: '0.7s' }}>
+                <p className="text-amber-200/60 text-sm mb-4">Built with Java & HTML5, integrates with:</p>
+                <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-amber-300/20">
                     <span className="text-2xl">🍽️</span>
-                    <span className="text-white font-medium">Zomato</span>
+                    <span className="text-amber-100 font-medium">Zomato</span>
                   </div>
-                  <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/10">
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-amber-300/20">
                     <span className="text-2xl">🛵</span>
-                    <span className="text-white font-medium">Swiggy</span>
+                    <span className="text-amber-100 font-medium">Swiggy</span>
                   </div>
-                  <div className="flex items-center gap-2 bg-white/5 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/10">
-                    <span className="text-2xl">💬</span>
-                    <span className="text-white font-medium">WhatsApp</span>
+                  <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-amber-300/20">
+                    <span className="text-2xl">🎯</span>
+                    <span className="text-amber-100 font-medium">Magicpin</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Right Content - Modern Screenshots Layout */}
-            <div className="lg:col-span-6 relative animate-fade-up" style={{ animationDelay: '0.3s' }}>
+            {/* Right Column - Real Gustasi Screenshots */}
+            <div className="relative animate-fade-up" style={{ animationDelay: '0.3s' }}>
               <div className="relative">
-                {/* Main Dashboard Screenshot */}
+                {/* Main Live Orders Dashboard */}
                 <div className="relative group">
-                  <div className="absolute inset-0 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-3xl blur-3xl group-hover:blur-2xl transition-all duration-500"></div>
-                  <div className="relative bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/10 shadow-2xl hover:shadow-amber-500/20 transition-all duration-500 hover:-translate-y-2">
+                  <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-3xl blur-xl animate-glow"></div>
+                  <div className="relative bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl p-3 transform rotate-1 hover:rotate-0 transition-transform duration-700 shadow-amber-500/20 hover:shadow-amber-500/40">
                     <img 
                       src="/lovable-uploads/f9e8d43c-d15b-47d7-8b89-9f24ba7bbfb8.png" 
-                      alt="Gustasi Live Orders Dashboard" 
+                      alt="Gustasi Live Orders Dashboard - Real-time order management interface" 
                       className="w-full h-auto rounded-2xl shadow-lg"
+                      style={{
+                        filter: 'drop-shadow(0 20px 40px rgba(0,0,0,0.3))'
+                      }}
                     />
-                    <div className="absolute -top-2 -left-2 bg-green-500 text-white text-xs px-3 py-1 rounded-full font-medium">
-                      Live Dashboard
-                    </div>
                   </div>
                 </div>
 
-                {/* Secondary KDS Screenshot */}
-                <div className="absolute -bottom-6 -right-6 w-64 group">
-                  <div className="relative bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/10 shadow-xl hover:shadow-orange-500/20 transition-all duration-500 hover:-translate-y-1">
+                {/* KDS Screenshot as Secondary Element */}
+                <div className="absolute -bottom-4 -right-4 w-48 lg:w-56 group">
+                  <div className="relative bg-white/75 backdrop-blur-md rounded-2xl shadow-xl p-2 border border-amber-200/30">
                     <img 
                       src="/lovable-uploads/57b44f31-6e79-49f3-a72a-cfd19fae5b6c.png" 
-                      alt="Gustasi Kitchen Display System" 
+                      alt="Gustasi Kitchen Display System - Order tracking interface" 
                       className="w-full h-auto rounded-xl"
                     />
-                    <div className="absolute -top-1 -left-1 bg-blue-500 text-white text-xs px-2 py-1 rounded-full font-medium">
+                    <div className="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full">
                       KDS Live
                     </div>
                   </div>
                 </div>
                 
-                {/* Floating Data Cards - Modern Design */}
-                <div className="absolute -top-8 -right-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-xl animate-bounce-gentle">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                {/* Real Order Data Floating Elements */}
+                <div className="absolute -top-6 -right-6 bg-white/85 backdrop-blur-md border border-amber-200/30 rounded-2xl px-4 py-3 animate-bounce-gentle shadow-lg">
+                  <div className="flex items-center gap-2 text-amber-700">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse-slow"></div>
                     <div>
-                      <div className="font-semibold text-white text-sm">New Order</div>
-                      <div className="text-xs text-slate-300">₹683 - Swiggy</div>
+                      <div className="font-semibold text-sm">Swiggy Order #SWG-2649845</div>
+                      <div className="text-xs text-amber-600">₹683 - Hazelnut Praline Tart</div>
                     </div>
                   </div>
                 </div>
                 
-                <div className="absolute -bottom-12 -left-8 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-4 shadow-xl animate-bounce-gentle" style={{ animationDelay: '1s' }}>
-                  <div className="text-xs text-slate-300 mb-1">Today&apos;s Revenue</div>
-                  <div className="font-bold text-xl text-white">₹3,68,450</div>
-                  <div className="text-xs text-green-400">+23% growth</div>
+                <div className="absolute -bottom-8 -left-6 bg-white/85 backdrop-blur-md border border-amber-200/30 rounded-2xl p-4 animate-bounce-gentle shadow-lg" style={{ animationDelay: '1s' }}>
+                  <div className="text-xs text-amber-600 mb-1">Today's Revenue</div>
+                  <div className="font-bold text-lg text-amber-800">₹3,68,450</div>
+                  <div className="text-xs text-green-600">+23% from yesterday</div>
                 </div>
                 
-                <div className="absolute top-1/2 -right-12 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-3 shadow-xl animate-bounce-gentle" style={{ animationDelay: '1.5s' }}>
-                  <div className="text-xs text-slate-300">Order #0003</div>
-                  <div className="font-semibold text-sm text-white">₹735 - Ready</div>
+                <div className="absolute top-1/2 -right-8 bg-white/85 backdrop-blur-md border border-orange-200/30 rounded-2xl px-3 py-2 animate-bounce-gentle shadow-lg" style={{ animationDelay: '1.5s' }}>
+                  <div className="text-xs text-orange-600">Order #0003</div>
+                  <div className="font-semibold text-sm text-orange-800">₹735 - Ready</div>
                 </div>
 
-                <div className="absolute top-1/4 -left-6 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-3 shadow-xl animate-bounce-gentle" style={{ animationDelay: '2s' }}>
-                  <div className="text-xs text-slate-300">Zomato</div>
-                  <div className="font-semibold text-sm text-white">₹368 - Cooking</div>
+                <div className="absolute top-1/4 -left-4 bg-white/85 backdrop-blur-md border border-green-200/30 rounded-2xl px-3 py-2 animate-bounce-gentle shadow-lg" style={{ animationDelay: '2s' }}>
+                  <div className="text-xs text-green-600">Zomato Order</div>
+                  <div className="font-semibold text-sm text-green-800">₹368 - Cooking</div>
+                </div>
+
+                <div className="absolute top-3/4 left-4 bg-white/85 backdrop-blur-md border border-blue-200/30 rounded-2xl px-3 py-2 animate-bounce-gentle shadow-lg" style={{ animationDelay: '2.5s' }}>
+                  <div className="text-xs text-blue-600">Order #0001</div>
+                  <div className="font-semibold text-sm text-blue-800">Caramel Matcha Latte</div>
                 </div>
               </div>
             </div>
