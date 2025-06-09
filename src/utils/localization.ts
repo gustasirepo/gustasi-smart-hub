@@ -44,6 +44,9 @@ export const translations: Translations = {
   "features.kot": { en: "Multi-KOT Support", fr: "Support Multi-KOT" },
   "features.billing": { en: "One-Bill Settlement", fr: "Règlement Une Facture" },
   "features.access": { en: "Staff Access Control", fr: "Contrôle Accès Personnel" },
+  "features.order": { en: "Order Management", fr: "Gestion des Commandes" },
+  "features.menu": { en: "Menu Setup", fr: "Configuration Menu" },
+  "features.feedback": { en: "Customer Feedback", fr: "Commentaires Clients" },
   
   // Operations
   "operations.title": { en: "360° Operations Overview", fr: "Vue d'Ensemble Opérations 360°" },

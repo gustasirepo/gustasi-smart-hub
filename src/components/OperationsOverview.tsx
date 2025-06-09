@@ -7,62 +7,62 @@ const OperationsOverview = () => {
   const operationModules = [
     {
       icon: ShoppingCart,
-      title: "Order Management",
+      title: t("features.order"),
       description: "Real-time order tracking and kitchen operations",
-      image: "/placeholder.svg",
-      color: "from-luxury-500 to-copper-500"
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
+      color: "from-amber-500 to-orange-500"
     },
     {
       icon: Menu,
-      title: "Menu Setup",
+      title: t("features.menu"),
       description: "Dynamic menu management and pricing control",
-      image: "/placeholder.svg",
-      color: "from-copper-500 to-luxury-600"
+      image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=400&h=200&fit=crop&crop=center",
+      color: "from-orange-500 to-amber-600"
     },
     {
       icon: QrCode,
-      title: "QR Menu",
+      title: t("features.qr"),
       description: "Contactless dining with smart QR menus",
-      image: "/placeholder.svg",
-      color: "from-luxury-600 to-copper-600"
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=400&h=200&fit=crop&crop=center",
+      color: "from-amber-600 to-orange-600"
     },
     {
       icon: MessageSquare,
-      title: "Customer Feedback",
+      title: t("features.feedback"),
       description: "Real-time reviews and rating management",
-      image: "/placeholder.svg",
-      color: "from-copper-600 to-luxury-500"
+      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=200&fit=crop&crop=center",
+      color: "from-orange-600 to-amber-500"
     },
     {
       icon: Calendar,
-      title: "Table Reservations",
+      title: t("features.table"),
       description: "Seamless booking and table management",
-      image: "/placeholder.svg",
-      color: "from-luxury-500 to-copper-500"
+      image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=400&h=200&fit=crop&crop=center",
+      color: "from-amber-500 to-orange-500"
     },
     {
       icon: Package,
-      title: "Inventory & Supplier Ledger",
+      title: t("features.supplier"),
       description: "Smart inventory tracking and supplier management",
-      image: "/placeholder.svg",
-      color: "from-copper-500 to-luxury-600"
+      image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=400&h=200&fit=crop&crop=center",
+      color: "from-orange-500 to-amber-600"
     }
   ];
 
   return (
     <section className="py-24 lg:py-32 relative overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 luxury-gradient-bg"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-amber-50/30"></div>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/50 to-transparent"></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 gradient-text animate-fade-up">
+            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent animate-fade-up">
               {t("operations.title")}
             </h2>
-            <p className="text-xl lg:text-2xl text-charcoal-600 max-w-4xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <p className="text-xl lg:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: '0.2s' }}>
               {t("operations.description")}
             </p>
           </div>
@@ -79,23 +79,23 @@ const OperationsOverview = () => {
                 >
                   <div className="relative h-full">
                     {/* Main Card */}
-                    <div className="glass-card p-8 h-full relative overflow-hidden">
+                    <div className="bg-white/80 backdrop-blur-md border border-amber-200/30 rounded-2xl shadow-xl p-8 h-full relative overflow-hidden transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:shadow-amber-400/20">
                       {/* Background Gradient */}
                       <div className={`absolute inset-0 bg-gradient-to-br ${module.color} opacity-5 group-hover:opacity-10 transition-opacity duration-500`}></div>
                       
                       {/* Icon */}
                       <div className="relative mb-6">
-                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${module.color} p-4 luxury-glow group-hover:scale-110 transition-transform duration-300`}>
+                        <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${module.color} p-4 shadow-lg shadow-amber-400/20 hover:shadow-2xl hover:shadow-amber-400/40 group-hover:scale-110 transition-transform duration-300`}>
                           <IconComponent className="w-full h-full text-white" />
                         </div>
                       </div>
                       
                       {/* Content */}
                       <div className="relative">
-                        <h3 className="text-xl lg:text-2xl font-bold mb-4 text-charcoal-800 group-hover:text-luxury-700 transition-colors duration-300">
+                        <h3 className="text-xl lg:text-2xl font-bold mb-4 text-slate-800 group-hover:text-amber-700 transition-colors duration-300">
                           {module.title}
                         </h3>
-                        <p className="text-charcoal-600 mb-6 leading-relaxed">
+                        <p className="text-slate-600 mb-6 leading-relaxed">
                           {module.description}
                         </p>
                         
@@ -121,7 +121,7 @@ const OperationsOverview = () => {
 
           {/* Bottom CTA */}
           <div className="text-center mt-16 animate-fade-up" style={{ animationDelay: '1s' }}>
-            <Button className="btn-primary text-xl px-12 py-6">
+            <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-12 py-6 text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-amber-500/20">
               {t("cta.schedule")}
             </Button>
           </div>
