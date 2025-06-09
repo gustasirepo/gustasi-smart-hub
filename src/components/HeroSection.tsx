@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { t } from "@/utils/localization";
@@ -113,7 +112,7 @@ const HeroSection = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-amber-400/20 to-orange-400/20 rounded-3xl blur-xl animate-glow"></div>
                   <div className="relative bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl p-3 transform rotate-1 hover:rotate-0 transition-transform duration-700 shadow-amber-500/20 hover:shadow-amber-500/40">
                     <img 
-                      src="/lovable-uploads/f9e8d43c-d15b-47d7-8b89-9f24ba7bbfb8.png" 
+                      src="./lovable-uploads/f9e8d43c-d15b-47d7-8b89-9f24ba7bbfb8.png" 
                       alt="Gustasi Live Orders Dashboard - Real-time order management interface" 
                       className="w-full h-auto rounded-2xl shadow-lg"
                       style={{
@@ -127,7 +126,7 @@ const HeroSection = () => {
                 <div className="absolute -bottom-4 -right-4 w-48 lg:w-56 group">
                   <div className="relative bg-white/75 backdrop-blur-md rounded-2xl shadow-xl p-2 border border-amber-200/30">
                     <img 
-                      src="/lovable-uploads/57b44f31-6e79-49f3-a72a-cfd19fae5b6c.png" 
+                      src="./lovable-uploads/57b44f31-6e79-49f3-a72a-cfd19fae5b6c.png" 
                       alt="Gustasi Kitchen Display System - Order tracking interface" 
                       className="w-full h-auto rounded-xl"
                     />
