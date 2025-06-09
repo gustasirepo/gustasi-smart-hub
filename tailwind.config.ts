@@ -21,6 +21,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'inter': ['Inter', 'system-ui', 'sans-serif'],
+				'playfair': ['Playfair Display', 'serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -67,21 +68,52 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				brand: {
-					50: '#f0f9ff',
-					100: '#e0f2fe',
-					200: '#bae6fd',
-					300: '#7dd3fc',
-					400: '#38bdf8',
-					500: '#0ea5e9',
-					600: '#0284c7',
-					700: '#0369a1',
-					800: '#075985',
-					900: '#0c4a6e',
+					50: '#f8fafc',
+					100: '#f1f5f9',
+					200: '#e2e8f0',
+					300: '#cbd5e1',
+					400: '#94a3b8',
+					500: '#64748b',
+					600: '#475569',
+					700: '#334155',
+					800: '#1e293b',
+					900: '#0f172a',
 				},
-				success: {
-					50: '#f0fdf4',
-					500: '#22c55e',
-					600: '#16a34a',
+				luxury: {
+					50: '#fdfcf8',
+					100: '#faf7ef',
+					200: '#f3ecda',
+					300: '#e8dcc0',
+					400: '#d4c19f',
+					500: '#c4a876',
+					600: '#b8975d',
+					700: '#a0824f',
+					800: '#826944',
+					900: '#6b5538',
+				},
+				copper: {
+					50: '#fef9f6',
+					100: '#fdf2ed',
+					200: '#fae2d2',
+					300: '#f5ccb0',
+					400: '#eeac83',
+					500: '#e58c55',
+					600: '#d4762f',
+					700: '#b8601f',
+					800: '#94501c',
+					900: '#77441b',
+				},
+				charcoal: {
+					50: '#f6f6f7',
+					100: '#e1e2e4',
+					200: '#c3c6cb',
+					300: '#9ea3ab',
+					400: '#777e88',
+					500: '#5d636e',
+					600: '#4a4f57',
+					700: '#3f4248',
+					800: '#36393e',
+					900: '#2d2f33',
 				}
 			},
 			borderRadius: {
@@ -147,6 +179,14 @@ export default {
 					'50%': {
 						opacity: '0.5'
 					}
+				},
+				'glow': {
+					'0%, 100%': {
+						boxShadow: '0 0 20px rgba(212, 193, 159, 0.3)'
+					},
+					'50%': {
+						boxShadow: '0 0 40px rgba(212, 193, 159, 0.6)'
+					}
 				}
 			},
 			animation: {
@@ -156,7 +196,8 @@ export default {
 				'fade-in': 'fade-in 0.3s ease-out',
 				'slide-in-right': 'slide-in-right 0.3s ease-out',
 				'bounce-gentle': 'bounce-gentle 2s ease-in-out infinite',
-				'pulse-slow': 'pulse-slow 3s ease-in-out infinite'
+				'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
+				'glow': 'glow 3s ease-in-out infinite'
 			}
 		}
 	},

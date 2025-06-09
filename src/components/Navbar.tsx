@@ -33,44 +33,52 @@ const Navbar = () => {
   };
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      isScrolled ? 'bg-charcoal-900/95 backdrop-blur-xl shadow-2xl border-b border-luxury-400/20' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <div className="text-2xl lg:text-3xl font-bold gradient-text">
-                Gustasi
+              <div className="text-3xl lg:text-4xl font-bold font-playfair">
+                <span className="gradient-text">Gustasi</span>
               </div>
             </div>
           </div>
 
           {/* Right side - Login, Sign Up, Language */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             {/* Language Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                className="flex items-center space-x-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-600 transition-colors"
+                className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-luxury-100 hover:text-luxury-300 transition-colors duration-300 rounded-lg hover:bg-white/10"
               >
                 <span>{t("nav.language")}</span>
                 <ChevronDown className="w-4 h-4" />
               </button>
               
               {showLanguageDropdown && (
-                <div className="absolute right-0 mt-2 w-20 bg-white rounded-md shadow-lg border border-gray-200 z-50">
-                  <div className="py-1">
+                <div className="absolute right-0 mt-2 w-24 glass-card border border-luxury-300/30 rounded-xl shadow-2xl z-50">
+                  <div className="py-2">
                     <button
                       onClick={() => handleLanguageChange('en')}
-                      className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${language === 'en' ? 'bg-brand-50 text-brand-600' : 'text-gray-700'}`}
+                      className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-200 ${
+                        language === 'en' 
+                          ? 'bg-luxury-500/20 text-luxury-200' 
+                          : 'text-luxury-100 hover:bg-white/10'
+                      }`}
                     >
                       EN
                     </button>
                     <button
                       onClick={() => handleLanguageChange('fr')}
-                      className={`block w-full text-left px-4 py-2 text-sm hover:bg-gray-100 ${language === 'fr' ? 'bg-brand-50 text-brand-600' : 'text-gray-700'}`}
+                      className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-200 ${
+                        language === 'fr' 
+                          ? 'bg-luxury-500/20 text-luxury-200' 
+                          : 'text-luxury-100 hover:bg-white/10'
+                      }`}
                     >
                       FR
                     </button>
@@ -80,7 +88,7 @@ const Navbar = () => {
             </div>
 
             {/* Login Button */}
-            <Button variant="ghost" className="text-gray-700 hover:text-brand-600 font-medium">
+            <Button variant="ghost" className="text-luxury-100 hover:text-luxury-300 font-medium px-6 py-3 hover:bg-white/10 transition-all duration-300">
               {t("nav.login")}
             </Button>
 

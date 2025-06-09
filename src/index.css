@@ -7,7 +7,7 @@
 
 @layer base {
   :root {
-    --background: 255 255 255;
+    --background: 248 250 252;
     --foreground: 15 23 42;
 
     --card: 255 255 255;
@@ -16,7 +16,7 @@
     --popover: 255 255 255;
     --popover-foreground: 15 23 42;
 
-    --primary: 14 165 233;
+    --primary: 196 168 118;
     --primary-foreground: 255 255 255;
 
     --secondary: 241 245 249;
@@ -33,18 +33,18 @@
 
     --border: 226 232 240;
     --input: 226 232 240;
-    --ring: 14 165 233;
+    --ring: 196 168 118;
 
     --radius: 0.75rem;
 
     --sidebar-background: 255 255 255;
     --sidebar-foreground: 15 23 42;
-    --sidebar-primary: 14 165 233;
+    --sidebar-primary: 196 168 118;
     --sidebar-primary-foreground: 255 255 255;
     --sidebar-accent: 241 245 249;
     --sidebar-accent-foreground: 15 23 42;
     --sidebar-border: 226 232 240;
-    --sidebar-ring: 14 165 233;
+    --sidebar-ring: 196 168 118;
   }
 
   .dark {
@@ -57,7 +57,7 @@
     --popover: 30 41 59;
     --popover-foreground: 241 245 249;
 
-    --primary: 56 189 248;
+    --primary: 212 193 159;
     --primary-foreground: 15 23 42;
 
     --secondary: 51 65 85;
@@ -74,16 +74,16 @@
 
     --border: 51 65 85;
     --input: 51 65 85;
-    --ring: 56 189 248;
+    --ring: 212 193 159;
 
     --sidebar-background: 15 23 42;
     --sidebar-foreground: 241 245 249;
-    --sidebar-primary: 56 189 248;
+    --sidebar-primary: 212 193 159;
     --sidebar-primary-foreground: 15 23 42;
     --sidebar-accent: 51 65 85;
     --sidebar-accent-foreground: 241 245 249;
     --sidebar-border: 51 65 85;
-    --sidebar-ring: 56 189 248;
+    --sidebar-ring: 212 193 159;
   }
 }
 
@@ -99,22 +99,34 @@
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-luxury-600 to-copper-600 bg-clip-text text-transparent;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-brand-50 via-white to-brand-50;
+    @apply bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-brand-900;
+  }
+  
+  .luxury-gradient-bg {
+    @apply bg-gradient-to-br from-luxury-50 via-white to-copper-50;
   }
   
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:shadow-luxury-400/20;
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-gradient-to-r from-luxury-600 to-copper-600 hover:from-luxury-700 hover:to-copper-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-luxury-500/20;
   }
   
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-brand-600 font-semibold px-6 py-3 rounded-lg border border-brand-200 transition-all duration-300 hover:border-brand-300 shadow-md hover:shadow-lg;
+    @apply bg-white/10 backdrop-blur-sm hover:bg-white/20 text-luxury-100 font-semibold px-8 py-4 rounded-xl border border-luxury-300/30 transition-all duration-300 hover:border-luxury-200/50 shadow-lg hover:shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl;
+  }
+  
+  .luxury-glow {
+    @apply shadow-lg shadow-luxury-400/20 hover:shadow-2xl hover:shadow-luxury-400/40 transition-all duration-300;
   }
 }
