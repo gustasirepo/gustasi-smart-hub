@@ -1,7 +1,7 @@
-
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import RollingKeywordSection from "@/components/RollingKeywordSection";
+import AggregatorIntegrations from "@/components/AggregatorIntegrations";
 import FeatureGrid from "@/components/FeatureGrid";
 import OperationsOverview from "@/components/OperationsOverview";
 import SuccessStories from "@/components/SuccessStories";
@@ -19,6 +19,7 @@ const Index = () => {
       <Navbar />
       <HeroSection />
       <RollingKeywordSection />
+      <AggregatorIntegrations />
       <FeatureGrid />
       <OperationsOverview />
       <SuccessStories />

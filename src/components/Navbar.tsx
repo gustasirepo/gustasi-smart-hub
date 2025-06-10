@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
@@ -37,63 +36,27 @@ const Navbar = () => {
       isScrolled ? 'bg-slate-900/95 backdrop-blur-xl shadow-2xl border-b border-amber-400/20' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="flex-shrink-0">
-              <div className="text-3xl lg:text-4xl font-bold font-playfair">
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">Gustasi</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right side - Login, Sign Up, Language */}
-          <div className="flex items-center space-x-6">
-            {/* Language Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
-                className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-amber-100 hover:text-amber-300 transition-colors duration-300 rounded-lg hover:bg-white/10"
-              >
-                <span>{t("nav.language")}</span>
-                <ChevronDown className="w-4 h-4" />
-              </button>
-              
-              {showLanguageDropdown && (
-                <div className="absolute right-0 mt-2 w-24 bg-white/90 backdrop-blur-md border border-amber-300/30 rounded-xl shadow-2xl z-50">
-                  <div className="py-2">
-                    <button
-                      onClick={() => handleLanguageChange('en')}
-                      className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-200 ${
-                        language === 'en' 
-                          ? 'bg-amber-500/20 text-amber-700' 
-                          : 'text-slate-700 hover:bg-amber-50'
-                      }`}
-                    >
-                      EN
-                    </button>
-                    <button
-                      onClick={() => handleLanguageChange('fr')}
-                      className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-200 ${
-                        language === 'fr' 
-                          ? 'bg-amber-500/20 text-amber-700' 
-                          : 'text-slate-700 hover:bg-amber-50'
-                      }`}
-                    >
-                      FR
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Login Button */}
-            <Button variant="ghost" className="text-amber-100 hover:text-amber-300 font-medium px-6 py-3 hover:bg-white/10 transition-all duration-300">
+        <div className="flex flex-row items-center justify-between w-full h-20 relative">
+          {/* Login Button (mobile only left) */}
+          <div className="block sm:hidden">
+            <Button variant="ghost" className="text-amber-100 hover:text-amber-300 font-medium px-3 py-2 text-sm hover:bg-white/10 transition-all duration-300 sm:px-6 sm:py-3 sm:text-base">
               {t("nav.login")}
             </Button>
-
-            {/* Sign Up Button */}
-            <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-6 py-3 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 hidden sm:inline-flex">
+          </div>
+          {/* Centered Logo */}
+          <div className="flex justify-center w-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
+            <img src="/lovable-uploads/mylogo.svg" alt="Gustasi Logo" className="h-8 sm:h-16 w-auto" />
+          </div>
+          {/* Login/Signup (desktop), Signup (mobile right) */}
+          <div className="flex flex-row items-center space-x-4 sm:space-x-6 ml-auto">
+            {/* Login Button (desktop only) */}
+            <div className="hidden sm:block">
+              <Button variant="ghost" className="text-amber-100 hover:text-amber-300 font-medium px-6 py-3 text-base hover:bg-white/10 transition-all duration-300">
+                {t("nav.login")}
+              </Button>
+            </div>
+            {/* Sign Up Button (always visible) */}
+            <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-3 py-2 text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 sm:px-6 sm:py-3 sm:text-base">
               {t("nav.signup")}
             </Button>
           </div>

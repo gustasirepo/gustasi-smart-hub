@@ -1,8 +1,8 @@
-
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { t } from "@/utils/localization";
 import { Play, CheckCircle, TrendingUp, Shield, Users } from "lucide-react";
+import useEmblaCarousel from 'embla-carousel-react';
 
 const HeroSection = () => {
   const [currentText, setCurrentText] = useState("");
@@ -20,8 +20,19 @@ const HeroSection = () => {
     };
   }, []);
 
+  const images = [
+    {
+      src: '/lovable-uploads/kdsscreen.PNG',
+      alt: 'KDS Screen'
+    },
+    {
+      src: '/lovable-uploads/3e29469b-faef-4245-8a1a-9d015faab115.png',
+      alt: 'KDS Screen'
+    }
+  ];
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pb-16">
       {/* Modern Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -40,14 +51,8 @@ const HeroSection = () => {
             {/* Left Column - Modern Content Layout */}
             <div className="lg:col-span-6 text-center lg:text-left space-y-8">
               
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 rounded-full px-4 py-2 text-sm font-medium text-amber-200 animate-fade-up">
-                <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                Trusted by 50,000+ restaurants worldwide
-              </div>
-
               {/* Main Headline */}
-              <div className="space-y-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
+              <div className="space-y-6 animate-fade-up mt-16" style={{ animationDelay: '0.1s' }}>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
                   <span className="bg-gradient-to-r from-white via-white to-amber-100 bg-clip-text text-transparent">
                     The Ultimate
@@ -106,33 +111,11 @@ const HeroSection = () => {
               </div>
               
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
+              <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
                 <Button className="group bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-8 py-4 text-lg rounded-2xl transition-all duration-300 shadow-2xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-105 border-0">
                   {t("hero.cta")}
                   <div className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</div>
                 </Button>
-                
-                <Button variant="outline" className="group bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-semibold px-8 py-4 text-lg rounded-2xl border border-white/20 hover:border-white/30 transition-all duration-300">
-                  <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                  Watch Demo
-                </Button>
-              </div>
-
-              {/* Integration Badges */}
-              <div className="space-y-4 animate-fade-up" style={{ animationDelay: '0.4s' }}>
-                <p className="text-slate-400 text-sm">Seamlessly integrates with:</p>
-                <div className="flex flex-wrap gap-3">
-                  {[
-                    { name: "Zomato", icon: "🍽️", color: "from-red-500/20 to-pink-500/20" },
-                    { name: "Swiggy", icon: "🛵", color: "from-orange-500/20 to-yellow-500/20" },
-                    { name: "Magicpin", icon: "🎯", color: "from-purple-500/20 to-blue-500/20" }
-                  ].map((platform, index) => (
-                    <div key={index} className={`flex items-center gap-2 bg-gradient-to-r ${platform.color} backdrop-blur-sm px-4 py-2 rounded-full border border-white/10 hover:border-white/20 transition-all duration-300 hover:scale-105`}>
-                      <span className="text-lg">{platform.icon}</span>
-                      <span className="text-white font-medium text-sm">{platform.name}</span>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
 
@@ -155,19 +138,9 @@ const HeroSection = () => {
                       <div className="text-xs text-slate-400">Real-time Updates</div>
                     </div>
                     
-                    {/* Dashboard Image */}
-                    <div className="relative overflow-hidden rounded-2xl">
-                      <img 
-                        src="/lovable-uploads/d85a1c3d-1470-4a9a-9d86-74815713038e.png" 
-                        alt="Gustasi Live Orders Dashboard showing real-time order management with Swiggy, Zomato integration" 
-                        className="w-full h-auto transition-transform duration-700 group-hover:scale-105"
-                        style={{
-                          filter: 'brightness(1.1) contrast(1.1) saturate(1.1)'
-                        }}
-                      />
-                      
-                      {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 via-transparent to-transparent pointer-events-none"></div>
+                    {/* Dashboard Image Slider */}
+                    <div className="embla mx-auto max-w-3xl w-full aspect-video rounded-2xl overflow-hidden shadow-xl">
+                      <EmblaCarousel images={images} />
                     </div>
                     
                     {/* Bottom Stats */}
@@ -204,5 +177,35 @@ const HeroSection = () => {
     </section>
   );
 };
+
+function EmblaCarousel({ images }) {
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+  const autoplayRef = useRef<NodeJS.Timeout | undefined>();
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    autoplayRef.current = setInterval(() => {
+      if (emblaApi) emblaApi.scrollNext();
+    }, 2500);
+    return () => clearInterval(autoplayRef.current);
+  }, [emblaApi]);
+
+  return (
+    <div className="overflow-hidden w-full h-full" ref={emblaRef}>
+      <div className="flex h-full">
+        {images.map((img, idx) => (
+          <div className="min-w-full flex-[0_0_100%] h-full flex items-center justify-center" key={idx}>
+            <img
+              src={img.src}
+              alt={img.alt}
+              className="object-contain w-full h-full transition-transform duration-500 hover:scale-110"
+              style={{ filter: 'brightness(1.1) contrast(1.1) saturate(1.1)' }}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default HeroSection;

@@ -1,55 +1,62 @@
-
 import { t } from "@/utils/localization";
-import { 
-  Circle, 
-  Users, 
-  Image, 
-  FileText, 
-  Search, 
-  List, 
-  Plus, 
-  Info 
+import {
+  ShieldCheck,
+  Users,
+  Table,
+  Boxes,
+  QrCode,
+  UtensilsCrossed,
+  Receipt,
+  KeyRound
 } from "lucide-react";
 
 const FeatureGrid = () => {
   const features = [
     {
-      icon: Circle,
+      icon: ShieldCheck,
+      color: "from-green-400 to-emerald-500",
       title: t("features.fraud"),
       description: "Advanced AI-powered fraud detection and prevention"
     },
     {
       icon: Users,
+      color: "from-blue-400 to-cyan-500",
       title: t("features.crm"),
       description: "Build lasting relationships with intelligent customer insights"
     },
     {
-      icon: Image,
+      icon: Table,
+      color: "from-purple-400 to-violet-500",
       title: t("features.table"),
       description: "Seamless digital table booking and management system"
     },
     {
-      icon: FileText,
+      icon: Boxes,
+      color: "from-amber-400 to-orange-500",
       title: t("features.supplier"),
       description: "Complete supplier management and inventory tracking"
     },
     {
-      icon: Search,
+      icon: QrCode,
+      color: "from-pink-400 to-rose-500",
       title: t("features.qr"),
       description: "Interactive QR menus with real-time updates"
     },
     {
-      icon: List,
+      icon: UtensilsCrossed,
+      color: "from-teal-400 to-green-500",
       title: t("features.kot"),
       description: "Multi-kitchen order tracking system"
     },
     {
-      icon: Plus,
+      icon: Receipt,
+      color: "from-indigo-400 to-blue-500",
       title: t("features.billing"),
       description: "Unified billing system for seamless settlements"
     },
     {
-      icon: Info,
+      icon: KeyRound,
+      color: "from-amber-500 to-yellow-400",
       title: t("features.access"),
       description: "Role-based staff access and permissions"
     }
@@ -78,7 +85,7 @@ const FeatureGrid = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-12 h-12 bg-gradient-to-br from-brand-500 to-brand-600 rounded-lg flex items-center justify-center mb-4">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center mb-4 animate-bounce-gentle`}>
                     <feature.icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-lg font-semibold mb-3 text-gray-900">
