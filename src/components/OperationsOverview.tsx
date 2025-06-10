@@ -1,44 +1,45 @@
-
 import { Button } from "@/components/ui/button";
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 import { ShoppingCart, Code, Database, MessageCircle, Calendar, Truck } from "lucide-react";
 
 const OperationsOverview = () => {
+  const currentLang = useLanguage();
+
   const operationModules = [
     {
       icon: ShoppingCart,
       title: t("features.order"),
-      description: "Real-time order tracking and kitchen operations",
+      description: t("operations.orderDesc"),
       color: "from-amber-500 to-orange-500"
     },
     {
       icon: Code,
       title: t("features.menu"),
-      description: "Dynamic menu management and pricing control",
+      description: t("operations.menuDesc"),
       color: "from-orange-500 to-amber-600"
     },
     {
       icon: Database,
       title: t("features.qr"),
-      description: "Contactless dining with smart QR menus",
+      description: t("operations.qrDesc"),
       color: "from-amber-600 to-orange-600"
     },
     {
       icon: MessageCircle,
       title: t("features.feedback"),
-      description: "Real-time reviews and rating management",
+      description: t("operations.feedbackDesc"),
       color: "from-orange-600 to-amber-500"
     },
     {
       icon: Calendar,
       title: t("features.table"),
-      description: "Seamless booking and table management",
+      description: t("operations.tableDesc"),
       color: "from-amber-500 to-orange-500"
     },
     {
       icon: Truck,
       title: t("features.supplier"),
-      description: "Smart inventory tracking and supplier management",
+      description: t("operations.supplierDesc"),
       color: "from-orange-500 to-amber-600"
     }
   ];

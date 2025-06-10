@@ -1,7 +1,8 @@
-
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 
 const SuccessStories = () => {
+  const currentLang = useLanguage();
+
   const stories = [
     {
       metric: "230%",
@@ -29,7 +30,7 @@ const SuccessStories = () => {
               {t("success.title")}
             </h2>
             <p className="text-xl text-gray-600">
-              Real results from real restaurants using Gustasi
+              {t("success.subtitle")}
             </p>
           </div>
 

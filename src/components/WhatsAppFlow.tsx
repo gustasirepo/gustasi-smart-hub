@@ -1,8 +1,10 @@
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 import { ChevronRight } from "lucide-react";
 import { ShieldCheck, ClipboardList, BarChart2 } from "lucide-react";
 
 const WhatsAppFlow = () => {
+  const currentLang = useLanguage();
+
   const steps = [
     {
       label: t("whatsapp.scan"),
@@ -35,7 +37,7 @@ const WhatsAppFlow = () => {
               {t("whatsapp.title")}
             </h2>
             <p className="text-xl text-gray-600">
-              Seamless customer journey from QR scan to order completion
+              {t("whatsapp.subtitle")}
             </p>
           </div>
 

@@ -1,4 +1,4 @@
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 import {
   ShieldCheck,
   Users,
@@ -11,54 +11,56 @@ import {
 } from "lucide-react";
 
 const FeatureGrid = () => {
+  const currentLang = useLanguage();
+
   const features = [
     {
       icon: ShieldCheck,
       color: "from-green-400 to-emerald-500",
       title: t("features.fraud"),
-      description: "Advanced AI-powered fraud detection and prevention"
+      description: t("features.fraudDesc")
     },
     {
       icon: Users,
       color: "from-blue-400 to-cyan-500",
       title: t("features.crm"),
-      description: "Build lasting relationships with intelligent customer insights"
+      description: t("features.crmDesc")
     },
     {
       icon: Table,
       color: "from-purple-400 to-violet-500",
       title: t("features.table"),
-      description: "Seamless digital table booking and management system"
+      description: t("features.tableDesc")
     },
     {
       icon: Boxes,
       color: "from-amber-400 to-orange-500",
       title: t("features.supplier"),
-      description: "Complete supplier management and inventory tracking"
+      description: t("features.supplierDesc")
     },
     {
       icon: QrCode,
       color: "from-pink-400 to-rose-500",
       title: t("features.qr"),
-      description: "Interactive QR menus with real-time updates"
+      description: t("features.qrDesc")
     },
     {
       icon: UtensilsCrossed,
       color: "from-teal-400 to-green-500",
       title: t("features.kot"),
-      description: "Multi-kitchen order tracking system"
+      description: t("features.kotDesc")
     },
     {
       icon: Receipt,
       color: "from-indigo-400 to-blue-500",
       title: t("features.billing"),
-      description: "Unified billing system for seamless settlements"
+      description: t("features.billingDesc")
     },
     {
       icon: KeyRound,
       color: "from-amber-500 to-yellow-400",
       title: t("features.access"),
-      description: "Role-based staff access and permissions"
+      description: t("features.accessDesc")
     }
   ];
 
@@ -72,7 +74,7 @@ const FeatureGrid = () => {
               {t("features.title")}
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Everything you need to run a successful restaurant business in one powerful platform
+              {t("features.subtitle")}
             </p>
           </div>
 

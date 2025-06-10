@@ -1,8 +1,10 @@
-import { t } from "@/utils/localization";
-import { setLanguage, getCurrentLanguage } from "@/utils/localization";
-import { useState } from "react";
+import { t, useLanguage, setLanguage } from "@/utils/localization";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
+  const currentLang = useLanguage();
+  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+
   const footerLinks = [
     { label: t("footer.home"), href: "#" },
     { label: t("footer.about"), href: "#" },
@@ -11,7 +13,10 @@ const Footer = () => {
     { label: t("footer.contact"), href: "#" }
   ];
 
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  const handleLanguageChange = (lang: 'en' | 'fr') => {
+    setLanguage(lang);
+    setShowLanguageDropdown(false);
+  };
 
   return (
     <footer className="relative overflow-hidden">
@@ -24,14 +29,14 @@ const Footer = () => {
             <div className="absolute top-8 right-8 z-10">
               <div className="flex gap-2 bg-white/10 rounded-full px-3 py-1 border border-amber-300/30">
                 <button
-                  onClick={() => { setLanguage('en'); setShowLanguageDropdown(false); }}
-                  className={`text-sm font-semibold px-2 py-1 rounded transition-colors duration-200 ${getCurrentLanguage() === 'en' ? 'bg-amber-500/20 text-amber-200' : 'text-amber-100 hover:bg-amber-500/10'}`}
+                  onClick={() => handleLanguageChange('en')}
+                  className={`text-sm font-semibold px-2 py-1 rounded transition-colors duration-200 ${currentLang === 'en' ? 'bg-amber-500/20 text-amber-200' : 'text-amber-100 hover:bg-amber-500/10'}`}
                 >
                   EN
                 </button>
                 <button
-                  onClick={() => { setLanguage('fr'); setShowLanguageDropdown(false); }}
-                  className={`text-sm font-semibold px-2 py-1 rounded transition-colors duration-200 ${getCurrentLanguage() === 'fr' ? 'bg-amber-500/20 text-amber-200' : 'text-amber-100 hover:bg-amber-500/10'}`}
+                  onClick={() => handleLanguageChange('fr')}
+                  className={`text-sm font-semibold px-2 py-1 rounded transition-colors duration-200 ${currentLang === 'fr' ? 'bg-amber-500/20 text-amber-200' : 'text-amber-100 hover:bg-amber-500/10'}`}
                 >
                   FR
                 </button>
@@ -42,7 +47,7 @@ const Footer = () => {
               <div className="md:col-span-2">
                 <img src="/lovable-uploads/mylogo.svg" alt="Gustasi Logo" className="h-16 mb-6" />
                 <p className="text-amber-200/90 mb-8 max-w-md text-lg leading-relaxed">
-                  The ultimate all-in-one restaurant solution. Automate orders, manage stock, and drive profits with our intelligent POS platform.
+                  {t("footer.description")}
                 </p>
                 {/* Social Media Icons */}
                 <div className="flex gap-4 mb-6">
@@ -71,7 +76,7 @@ const Footer = () => {
               </div>
               {/* Navigation */}
               <div>
-                <h3 className="text-xl font-semibold mb-6 text-amber-100">Navigation</h3>
+                <h3 className="text-xl font-semibold mb-6 text-amber-100">{t("footer.navigation")}</h3>
                 <ul className="space-y-4">
                   {footerLinks.map((link, index) => (
                     <li key={index}>
@@ -106,7 +111,7 @@ const Footer = () => {
             </div>
             {/* Bottom Bar */}
             <div className="border-t border-amber-400/20 pt-8 text-center">
-              <p className="text-amber-300/80 text-lg">&copy; 2024 Gustasi. All rights reserved.</p>
+              <p className="text-amber-300/80 text-lg">{t("footer.copyright")}</p>
             </div>
           </div>
         </div>

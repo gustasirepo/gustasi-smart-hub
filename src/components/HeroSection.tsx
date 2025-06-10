@@ -1,24 +1,11 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 import { Play, CheckCircle, TrendingUp, Shield, Users } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
 
 const HeroSection = () => {
-  const [currentText, setCurrentText] = useState("");
-
-  useEffect(() => {
-    const handleLanguageChange = () => {
-      setCurrentText(t("hero.tagline"));
-    };
-
-    handleLanguageChange();
-    window.addEventListener("languageChanged", handleLanguageChange);
-    
-    return () => {
-      window.removeEventListener("languageChanged", handleLanguageChange);
-    };
-  }, []);
+  const currentLang = useLanguage();
 
   const images = [
     {
@@ -55,15 +42,15 @@ const HeroSection = () => {
               <div className="space-y-6 animate-fade-up mt-16" style={{ animationDelay: '0.1s' }}>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
                   <span className="bg-gradient-to-r from-white via-white to-amber-100 bg-clip-text text-transparent">
-                    The Ultimate
+                    {t("hero.mainTitle")}
                   </span>
                   <br />
                   <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
-                    Restaurant Solution
+                    {t("hero.subTitle")}
                   </span>
                 </h1>
                 <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed max-w-2xl">
-                  Transform your restaurant with intelligent automation, real-time analytics, and seamless multi-platform integration.
+                  {t("hero.description")}
                 </p>
               </div>
 
@@ -75,7 +62,7 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-white">+35%</div>
-                    <div className="text-xs text-slate-400">Order Growth</div>
+                    <div className="text-xs text-slate-400">{t("hero.orderGrowth")}</div>
                   </div>
                 </div>
                 
@@ -85,7 +72,7 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-white">25%</div>
-                    <div className="text-xs text-slate-400">Fraud Reduction</div>
+                    <div className="text-xs text-slate-400">{t("hero.fraudReduction")}</div>
                   </div>
                 </div>
                 
@@ -95,7 +82,7 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-white">50K+</div>
-                    <div className="text-xs text-slate-400">Restaurants</div>
+                    <div className="text-xs text-slate-400">{t("hero.restaurants")}</div>
                   </div>
                 </div>
                 
@@ -105,7 +92,7 @@ const HeroSection = () => {
                   </div>
                   <div>
                     <div className="font-semibold text-white">4.9★</div>
-                    <div className="text-xs text-slate-400">Rating</div>
+                    <div className="text-xs text-slate-400">{t("hero.rating")}</div>
                   </div>
                 </div>
               </div>
@@ -133,9 +120,9 @@ const HeroSection = () => {
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex items-center gap-2 bg-green-500/20 border border-green-400/30 rounded-full px-3 py-1">
                         <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        <span className="text-green-300 text-xs font-medium">Live Dashboard</span>
+                        <span className="text-green-300 text-xs font-medium">{t("hero.liveDashboard")}</span>
                       </div>
-                      <div className="text-xs text-slate-400">Real-time Updates</div>
+                      <div className="text-xs text-slate-400">{t("hero.realTimeUpdates")}</div>
                     </div>
                     
                     {/* Dashboard Image Slider */}
@@ -147,15 +134,15 @@ const HeroSection = () => {
                     <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
                       <div className="text-center">
                         <div className="text-lg font-bold text-white">₹1,943</div>
-                        <div className="text-xs text-slate-400">Avg. Order Value</div>
+                        <div className="text-xs text-slate-400">{t("hero.avgOrderValue")}</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-bold text-green-400">+23%</div>
-                        <div className="text-xs text-slate-400">Today's Growth</div>
+                        <div className="text-xs text-slate-400">{t("hero.todaysGrowth")}</div>
                       </div>
                       <div className="text-center">
                         <div className="text-lg font-bold text-blue-400">8</div>
-                        <div className="text-xs text-slate-400">Active Orders</div>
+                        <div className="text-xs text-slate-400">{t("hero.activeOrders")}</div>
                       </div>
                     </div>
                   </div>
@@ -163,11 +150,11 @@ const HeroSection = () => {
 
                 {/* Floating Elements */}
                 <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg animate-bounce-gentle">
-                  New Order! ₹683
+                  {t("hero.newOrder")} ₹683
                 </div>
                 
                 <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg animate-bounce-gentle" style={{ animationDelay: '1s' }}>
-                  Order Ready! Table 4
+                  {t("hero.orderReady")} Table 4
                 </div>
               </div>
             </div>
