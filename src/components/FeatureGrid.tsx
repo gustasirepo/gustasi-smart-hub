@@ -81,7 +81,7 @@ const FeatureGrid = () => {
             {features.map((feature, index) => (
               <div 
                 key={index}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 card-hover animate-fade-up"
+                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 card-hover animate-fade-up cursor-pointer"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex flex-col items-center text-center">

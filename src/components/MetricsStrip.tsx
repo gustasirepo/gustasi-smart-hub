@@ -1,12 +1,12 @@
-
 import { t } from "@/utils/localization";
+import { ChefHat, Building2, BarChart2, ShieldCheck } from "lucide-react";
 
 const MetricsStrip = () => {
   const metrics = [
-    { value: t("metrics.chefs"), icon: "👨‍🍳", color: "from-amber-500 to-orange-500" },
-    { value: t("metrics.cities"), icon: "🏙️", color: "from-orange-500 to-amber-600" },
-    { value: t("metrics.reports"), icon: "📊", color: "from-amber-600 to-orange-600" },
-    { value: t("metrics.savings"), icon: "🔒", color: "from-orange-600 to-amber-500" }
+    { value: t("metrics.chefs"), icon: <ChefHat className="w-8 h-8 text-amber-500 mx-auto" />, color: "from-amber-500 to-orange-500" },
+    { value: t("metrics.cities"), icon: <Building2 className="w-8 h-8 text-blue-500 mx-auto" />, color: "from-orange-500 to-amber-600" },
+    { value: t("metrics.reports"), icon: <BarChart2 className="w-8 h-8 text-green-500 mx-auto" />, color: "from-amber-600 to-orange-600" },
+    { value: t("metrics.savings"), icon: <ShieldCheck className="w-8 h-8 text-emerald-500 mx-auto" />, color: "from-orange-600 to-amber-500" }
   ];
 
   return (

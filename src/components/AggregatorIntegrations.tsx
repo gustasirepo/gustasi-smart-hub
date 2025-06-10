@@ -3,7 +3,7 @@ import React from "react";
 const aggregators = [
   { name: "Zomato", icon: "https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png", color: "from-red-500/20 to-pink-500/20" },
   { name: "Swiggy", icon: "https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png", color: "from-orange-500/20 to-yellow-500/20" },
-  { name: "Magicpin", icon: "https://seeklogo.com/images/M/magicpin-logo-0B6A2B7B2B-seeklogo.com.png", color: "from-purple-500/20 to-blue-500/20" }
+  { name: "Magicpin", icon: "https://assets.magicpin.com/images/mp_logo_new.png", color: "from-purple-500/20 to-blue-500/20" }
 ];
 
 const AggregatorIntegrations = () => (

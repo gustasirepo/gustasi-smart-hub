@@ -39,9 +39,12 @@ const Navbar = () => {
         <div className="flex flex-row items-center justify-between w-full h-20 relative">
           {/* Login Button (mobile only left) */}
           <div className="block sm:hidden">
-            <Button variant="ghost" className="text-amber-100 hover:text-amber-300 font-medium px-3 py-2 text-sm hover:bg-white/10 transition-all duration-300 sm:px-6 sm:py-3 sm:text-base">
-              {t("nav.login")}
-            </Button>
+            <a
+              href="https://www.gustasi.com/Login"
+              className="text-amber-100 hover:text-amber-300 font-medium px-3 py-2 text-sm hover:bg-white/10 transition-all duration-300 sm:px-6 sm:py-3 sm:text-base"
+            >
+              Login
+            </a>
           </div>
           {/* Centered Logo */}
           <div className="flex justify-center w-auto absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
@@ -51,14 +54,20 @@ const Navbar = () => {
           <div className="flex flex-row items-center space-x-4 sm:space-x-6 ml-auto">
             {/* Login Button (desktop only) */}
             <div className="hidden sm:block">
-              <Button variant="ghost" className="text-amber-100 hover:text-amber-300 font-medium px-6 py-3 text-base hover:bg-white/10 transition-all duration-300">
-                {t("nav.login")}
-              </Button>
+              <a
+                href="https://www.gustasi.com/Login"
+                className="text-amber-100 hover:text-amber-300 font-medium px-6 py-3 text-base hover:bg-white/10 transition-all duration-300"
+              >
+                Login
+              </a>
             </div>
             {/* Sign Up Button (always visible) */}
-            <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-3 py-2 text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 sm:px-6 sm:py-3 sm:text-base">
-              {t("nav.signup")}
-            </Button>
+            <a
+              href="https://www.gustasi.com/Signup"
+              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-3 py-2 text-sm rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 sm:px-6 sm:py-3 sm:text-base"
+            >
+              Sign Up
+            </a>
           </div>
         </div>
       </div>

@@ -21,12 +21,12 @@ const Index = () => {
       <RollingKeywordSection />
       <AggregatorIntegrations />
       <FeatureGrid />
+      <MetricsStrip />
       <OperationsOverview />
       <SuccessStories />
       <WhatsAppFlow />
       <IntegrationLogos />
       <FranchiseDashboard />
-      <MetricsStrip />
       <Footer />
       <ChatWidget />
       <StickyDemo />
