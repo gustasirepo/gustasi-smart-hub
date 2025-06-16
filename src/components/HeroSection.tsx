@@ -19,16 +19,16 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 pb-16">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0F0E16] via-[#191B24] to-[#0F0E16] pb-16">
       {/* Modern Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-amber-500/20 to-orange-500/20 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-orange-500/15 to-amber-500/15 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#D8C7AA]/20 to-[#B59469]/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-[#B59469]/15 to-[#D8C7AA]/15 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
       
       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-50" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D8C7AA' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -41,11 +41,11 @@ const HeroSection = () => {
               {/* Main Headline */}
               <div className="space-y-6 animate-fade-up mt-16" style={{ animationDelay: '0.1s' }}>
                 <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-                  <span className="bg-gradient-to-r from-white via-white to-amber-100 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent">
                     {t("hero.mainTitle")}
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 bg-clip-text text-transparent">
+                  <span className="bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent">
                     {t("hero.subTitle")}
                   </span>
                 </h1>
@@ -56,9 +56,9 @@ const HeroSection = () => {
 
               {/* Key Benefits Grid */}
               <div className="grid grid-cols-2 gap-4 animate-fade-up" style={{ animationDelay: '0.2s' }}>
-                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                  <div className="w-10 h-10 bg-gradient-to-r from-green-400 to-emerald-500 rounded-lg flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-[#2D2A3D] hover:border-[#D8C7AA]/30 transition-colors">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#D8C7AA] to-[#B59469] rounded-lg flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
                     <div className="font-semibold text-white">+35%</div>
@@ -66,9 +66,9 @@ const HeroSection = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                  <div className="w-10 h-10 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-lg flex items-center justify-center">
-                    <Shield className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-[#2D2A3D] hover:border-[#D8C7AA]/30 transition-colors">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#D8C7AA] to-[#B59469] rounded-lg flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
                     <div className="font-semibold text-white">25%</div>
@@ -76,9 +76,9 @@ const HeroSection = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                  <div className="w-10 h-10 bg-gradient-to-r from-purple-400 to-violet-500 rounded-lg flex items-center justify-center">
-                    <Users className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-[#2D2A3D] hover:border-[#D8C7AA]/30 transition-colors">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#D8C7AA] to-[#B59469] rounded-lg flex items-center justify-center">
+                    <Users className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
                     <div className="font-semibold text-white">50K+</div>
@@ -86,9 +86,9 @@ const HeroSection = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
-                  <div className="w-10 h-10 bg-gradient-to-r from-amber-400 to-orange-500 rounded-lg flex items-center justify-center">
-                    <CheckCircle className="w-5 h-5 text-white" />
+                <div className="flex items-center gap-3 p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-[#2D2A3D] hover:border-[#D8C7AA]/30 transition-colors">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#D8C7AA] to-[#B59469] rounded-lg flex items-center justify-center">
+                    <CheckCircle className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
                     <div className="font-semibold text-white">4.9★</div>
@@ -97,11 +97,16 @@ const HeroSection = () => {
                 </div>
               </div>
               
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-                <Button className="group bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-8 py-4 text-lg rounded-2xl transition-all duration-300 shadow-2xl shadow-amber-500/25 hover:shadow-amber-500/40 hover:scale-105 border-0">
+              {/* Single CTA Button - Centered */}
+              <div className="w-full flex justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
+                <Button 
+                  onClick={() => window.location.href = 'https://www.gustasi.com/contactus'}
+                  className="mx-auto bg-gradient-to-r from-[#D8C7AA] to-[#B59469] hover:from-[#C9B48C] hover:to-[#A6865E] text-[#191B24] text-lg px-10 py-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 hover:shadow-[0_10px_25px_-5px_rgba(216,199,170,0.3)] group"
+                >
                   {t("hero.cta")}
-                  <div className="ml-2 group-hover:translate-x-1 transition-transform duration-300">→</div>
+                  <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
                 </Button>
               </div>
             </div>

@@ -34,14 +34,14 @@ export const translations: Translations = {
   "hero.newOrder": { en: "New Order!", fr: "Nouvelle Commande!" },
   "hero.orderReady": { en: "Order Ready!", fr: "Commande Prête!" },
   
-  // Rolling Keywords
+  // Rolling Keywords - Used in the hero section
   "rolling.restaurant": { en: "Restaurant", fr: "Restaurant" },
   "rolling.cafe": { en: "Cafe", fr: "Café" },
   "rolling.bar": { en: "Bar", fr: "Bar" },
   "rolling.resort": { en: "Resort", fr: "Station" },
   "rolling.hotel": { en: "Hotel", fr: "Hôtel" },
   "rolling.chef": { en: "Chef", fr: "Chef" },
-  "rolling.subtitle": { en: "Explore", fr: "Explorer" },
+  "rolling.subtitle": { en: "Discover & Savor", fr: "Découvrez & Savourez" },
   "rolling.subtitle2": { en: "Near You", fr: "Près de Vous" },
   "rolling.ai": { en: "AI Recommendations", fr: "Recommandations IA" },
   "rolling.reviews": { en: "Real-time Reviews", fr: "Avis en Temps Réel" },
@@ -51,8 +51,11 @@ export const translations: Translations = {
   "rolling.users": { en: "1M+ Users", fr: "1M+ Utilisateurs" },
   "rolling.rating": { en: "4.9★ Rating", fr: "4,9★ Note" },
   
-  // Features
-  "features.title": { en: "Complete Restaurant Management", fr: "Gestion Complète de Restaurant" },
+  // Features Section
+  "features.title": { en: "Everything You Need in One Place", fr: "Tout Ce Dont Vous Avez Besoin au Même Endroit" },
+  "features.subtitle": { en: "Powerful features designed to help your business grow", fr: "Des fonctionnalités puissantes conçues pour développer votre entreprise" },
+  "features.pageTitle": { en: "Feature", fr: "Fonctionnalité" },
+  "features.pageDescription": { en: "Discover how this feature can transform your restaurant operations", fr: "Découvrez comment cette fonctionnalité peut transformer vos opérations de restauration" },
   "features.fraud": { en: "Fraud Prevention", fr: "Prévention Fraude" },
   "features.crm": { en: "CRM & Customer Retention", fr: "CRM & Fidélisation" },
   "features.table": { en: "Digital Table Management", fr: "Gestion Tables Digitale" },
@@ -66,7 +69,7 @@ export const translations: Translations = {
   "features.feedback": { en: "Customer Feedback", fr: "Commentaires Clients" },
   
   // Feature Grid Additional
-  "features.subtitle": { en: "Everything you need to run a successful restaurant business in one powerful platform", fr: "Tout ce dont vous avez besoin pour gérer une entreprise de restauration réussie dans une plateforme puissante" },
+  "features.gridSubtitle": { en: "Everything you need to run a successful restaurant business in one powerful platform", fr: "Tout ce dont vous avez besoin pour gérer une entreprise de restauration réussie dans une plateforme puissante" },
   "features.fraudDesc": { en: "Advanced AI-powered fraud detection and prevention", fr: "Détection et prévention de la fraude avancée basée sur l'IA" },
   "features.crmDesc": { en: "Build lasting relationships with intelligent customer insights", fr: "Construisez des relations durables avec des insights clients intelligents" },
   "features.tableDesc": { en: "Seamless digital table booking and management system", fr: "Système de réservation et de gestion de tables numérique fluide" },
@@ -144,13 +147,13 @@ export const translations: Translations = {
 
 let currentLanguage: 'en' | 'fr' = 'en';
 
-export const t = (key: string): string => {
+export function t(key: string): string {
   const translation = translations[key]?.[currentLanguage];
   if (Array.isArray(translation)) {
     return translation[0]; // Return first item if it's an array
   }
   return translation || key;
-};
+}
 
 export const tArray = (key: string): string[] => {
   const translation = translations[key]?.[currentLanguage];

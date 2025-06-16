@@ -6,7 +6,7 @@ const LoadingScreen = () => {
       <div className="relative">
         <div className="w-16 h-16 border-4 border-amber-500/20 border-t-amber-500 rounded-full animate-spin"></div>
         <div className="absolute inset-0 flex items-center justify-center">
-          <img src="/lovable-uploads/mylogo.svg" alt="Gustasi Logo" className="w-8 h-8" />
+          <img src="/lovable-uploads/mylogo.svg" alt="Gustasi Logo" className="w-8 h-8" onError={(e) => { console.error('Failed to load logo:', e); }} />
         </div>
       </div>
     </div>

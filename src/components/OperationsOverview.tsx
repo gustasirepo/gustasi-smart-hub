@@ -106,7 +106,10 @@ const OperationsOverview = () => {
 
           {/* Bottom CTA */}
           <div className="text-center mt-16 animate-fade-up" style={{ animationDelay: '1s' }}>
-            <Button className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-12 py-6 text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-amber-500/20">
+            <Button 
+              onClick={() => window.location.href = 'https://www.gustasi.com/contactus'}
+              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-12 py-6 text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-amber-500/20"
+            >
               {t("cta.schedule")}
             </Button>
           </div>

@@ -7,8 +7,10 @@ import {
   QrCode,
   UtensilsCrossed,
   Receipt,
-  KeyRound
+  KeyRound,
+  ArrowRight
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const FeatureGrid = () => {
   const currentLang = useLanguage();
@@ -81,23 +83,32 @@ const FeatureGrid = () => {
           {/* Features Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, index) => (
-              <div 
+              <Link 
+                to={`/features/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
                 key={index}
-                className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 card-hover animate-fade-up cursor-pointer"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                className="block group"
               >
-                <div className="flex flex-col items-center text-center">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center mb-4 animate-bounce-gentle`}>
-                    <feature.icon className="w-6 h-6 text-white" />
+                <div 
+                  className="bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 card-hover animate-fade-up h-full flex flex-col"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex flex-col items-center text-center flex-grow">
+                    <div className={`w-12 h-12 bg-gradient-to-br ${feature.color} rounded-lg flex items-center justify-center mb-4 animate-bounce-gentle`}>
+                      <feature.icon className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold mb-3 text-gray-900 group-hover:text-amber-600 transition-colors">
+                      {feature.title}
+                    </h3>
+                    <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="text-lg font-semibold mb-3 text-gray-900">
-                    {feature.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
+                  <div className="mt-auto pt-4 border-t border-gray-100 text-amber-600 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                    <span className="text-sm font-medium">Learn more</span>
+                    <ArrowRight className="w-4 h-4 ml-1" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
