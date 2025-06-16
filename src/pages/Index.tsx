@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import StickyDemo from "@/components/StickyDemo";
 import LoadingScreen from "@/components/LoadingScreen";
+import { MobilePOSSection } from "@/components/MobilePOSSection";
 
 const Index = () => {
   console.log('Rendering Index component...');
@@ -41,6 +42,7 @@ const Index = () => {
     <div className="min-h-screen bg-gradient-bg">
       <Navbar />
       <HeroSection />
+      <MobilePOSSection />
       <ExploreRestaurants />
       <AggregatorIntegrations />
       <FeatureGrid />
