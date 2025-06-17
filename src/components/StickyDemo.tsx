@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 
 const StickyDemo = () => {
+  useLanguage(); // Ensures re-render on language change
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

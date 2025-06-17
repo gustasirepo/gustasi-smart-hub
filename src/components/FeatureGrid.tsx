@@ -104,7 +104,7 @@ const FeatureGrid = () => {
                     </p>
                   </div>
                   <div className="mt-auto pt-4 border-t border-gray-100 text-amber-600 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                    <span className="text-sm font-medium">Learn more</span>
+                    <span className="text-sm font-medium">{t('features.learnMore')}</span>
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </div>
                 </div>

@@ -22,23 +22,7 @@ import {
   UserCheck 
 } from 'lucide-react';
 
-// Default translations in case i18n is not set up
-const defaultTranslations = {
-  title: "Digital Ordering System",
-  subtitle: "For Restaurant Owners",
-  scan: "Customer Scans QR",
-  scanDesc: "QR code at table or takeaway",
-  menu: "Menu Sent via WhatsApp",
-  menuDesc: "Interactive menu in chat",
-  order: "Order Placed",
-  orderDesc: "Customer completes order",
-  process: "Order Processing",
-  processDesc: "Kitchen receives order",
-  customer: "Customer Data Captured",
-  customerDesc: "For future engagement",
-  analytics: "Business Insights",
-  analyticsDesc: "Track customer behavior"
-};
+import { t } from "@/utils/localization";
 
 // Step component
 interface StepProps {
@@ -91,17 +75,12 @@ const WhatsAppFlow = () => {
   const [isAnimating, setIsAnimating] = useState(false);
   // Using default language (English)
 
-  // Get translation with fallback
-  const getTranslation = useCallback((key: string) => {
-    return defaultTranslations[key as keyof typeof defaultTranslations] || key;
-  }, []);
-
   // Steps configuration
   const steps = [
     {
       id: 1,
-      title: getTranslation('scan'),
-      description: getTranslation('scanDesc'),
+      title: t('wa.scan') || '',
+      description: t('wa.scanDesc') || '',
       icon: <QrCode className="h-5 w-5" />,
       content: (
         <div className="p-6 text-center">
@@ -117,23 +96,23 @@ const WhatsAppFlow = () => {
               }}
             />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Scan to Start</h3>
-          <p className="text-gray-600">Point your camera at the QR code to open our menu in WhatsApp</p>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('wa.scanHeadline')}</h3>
+          <p className="text-gray-600">{t('wa.scanBody')}</p>
         </div>
       )
     },
     {
       id: 2,
-      title: getTranslation('chat'),
-      description: getTranslation('chatDesc'),
+      title: t('wa.chat') || '',
+      description: t('wa.chatDesc') || '',
       icon: <MessageCircle className="h-5 w-5" />,
       content: (
         <div className="p-6 text-center">
           <div className="bg-green-50 p-6 rounded-full inline-flex items-center justify-center mb-6">
             <MessageCircle className="h-16 w-16 text-green-600" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Chat with Us</h3>
-          <p className="text-gray-600 mb-6">Send us a message on WhatsApp to start your order</p>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('wa.chatHeadline')}</h3>
+          <p className="text-gray-600 mb-6">{t('wa.chatBody')}</p>
           <a 
             href="https://wa.me/1234567890" 
             target="_blank" 
@@ -141,21 +120,21 @@ const WhatsAppFlow = () => {
             className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors"
           >
             <MessageCircle className="mr-2 h-5 w-5" />
-            Open WhatsApp
+            {t('wa.openWhatsApp')}
           </a>
         </div>
       )
     },
     {
       id: 3,
-      title: getTranslation('menu'),
-      description: getTranslation('menuDesc'),
+      title: t('wa.menu'),
+      description: t('wa.menuDesc'),
       icon: <Menu className="h-5 w-5" />,
       content: (
         <div className="p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-4">Our Menu</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-4">{t('wa.menuHeadline')}</h3>
           <div className="grid grid-cols-1 gap-4">
-            {['Appetizers', 'Main Course', 'Desserts', 'Drinks'].map((category) => (
+            {[t('wa.menuCat.appetizers'), t('wa.menuCat.mainCourse'), t('wa.menuCat.desserts'), t('wa.menuCat.drinks')].map((category) => (
               <div key={category} className="border border-gray-200 rounded-lg p-4 hover:bg-gray-50 cursor-pointer transition-colors">
                 <div className="flex items-center justify-between">
                   <h4 className="font-medium text-gray-900">{category}</h4>
@@ -169,16 +148,16 @@ const WhatsAppFlow = () => {
     },
     {
       id: 4,
-      title: getTranslation('order'),
-      description: getTranslation('orderDesc'),
+      title: t('wa.order'),
+      description: t('wa.orderDesc'),
       icon: <CheckCircle className="h-5 w-5" />,
       content: (
         <div className="p-6 text-center">
           <div className="bg-green-50 p-6 rounded-full inline-flex items-center justify-center mb-6">
             <CheckCircle className="h-16 w-16 text-green-600" />
           </div>
-          <h3 className="text-lg font-medium text-gray-900 mb-2">Order Placed!</h3>
-          <p className="text-gray-600 mb-6">Your order has been received and is being prepared</p>
+          <h3 className="text-lg font-medium text-gray-900 mb-2">{t('wa.orderPlaced')}</h3>
+          <p className="text-gray-600 mb-6">{t('wa.orderPlacedBody')}</p>
           <div className="text-sm text-gray-500 bg-gray-50 p-4 rounded-lg">
             Order #ORD-{Math.floor(100000 + Math.random() * 900000)}
           </div>
@@ -187,19 +166,19 @@ const WhatsAppFlow = () => {
     },
     {
       id: 5,
-      title: getTranslation('track'),
-      description: getTranslation('trackDesc'),
+      title: t('wa.track'),
+      description: t('wa.trackDesc'),
       icon: <Smartphone className="h-5 w-5" />,
       content: (
         <div className="p-6">
-          <h3 className="text-lg font-medium text-gray-900 mb-6">Track Your Order</h3>
+          <h3 className="text-lg font-medium text-gray-900 mb-6">{t('wa.trackHeadline')}</h3>
           <div className="space-y-6">
             {[
-              { status: 'Order Placed', time: 'Just now', active: true },
-              { status: 'Preparing', time: 'Estimated 10 min', active: false },
-              { status: 'Ready for Pickup', time: 'Estimated 25 min', active: false },
-              { status: 'On the Way', time: 'Estimated 40 min', active: false },
-              { status: 'Delivered', time: 'Estimated 50 min', active: false },
+              { status: t('wa.trackStatus.placed'), time: t('wa.trackTime.justNow'), active: true },
+              { status: t('wa.trackStatus.preparing'), time: t('wa.trackTime.eta10'), active: false },
+              { status: t('wa.trackStatus.ready'), time: t('wa.trackTime.eta25'), active: false },
+              { status: t('wa.trackStatus.onWay'), time: t('wa.trackTime.eta40'), active: false },
+              { status: t('wa.trackStatus.delivered'), time: t('wa.trackTime.eta50'), active: false },
             ].map((step, index) => (
               <div key={index} className="flex items-start">
                 <div className={`flex-shrink-0 h-8 w-8 rounded-full flex items-center justify-center ${
@@ -239,8 +218,8 @@ const WhatsAppFlow = () => {
     // Step 1: Customer Scans QR Code
     {
       id: 1,
-      title: getTranslation('scan'),
-      description: getTranslation('scanDesc'),
+      title: t('wa.scan'),
+      description: t('wa.scanDesc'),
       icon: <QrCode className="h-5 w-5" />,
       content: (
         <div className="p-6">
@@ -275,8 +254,8 @@ const WhatsAppFlow = () => {
     // Step 2: Menu Sent via WhatsApp
     {
       id: 2,
-      title: getTranslation('menu'),
-      description: getTranslation('menuDesc'),
+      title: t('wa.menu'),
+      description: t('wa.menuDesc'),
       icon: <MessageCircle className="h-5 w-5" />,
       content: (
         <div className="p-6">
@@ -323,8 +302,8 @@ const WhatsAppFlow = () => {
     // Step 3: Order Placed
     {
       id: 3,
-      title: getTranslation('order'),
-      description: getTranslation('orderDesc'),
+      title: t('wa.order'),
+      description: t('wa.orderDesc'),
       icon: <ShoppingBag className="h-5 w-5" />,
       content: (
         <div className="p-6">
@@ -363,8 +342,8 @@ const WhatsAppFlow = () => {
     // Step 4: Order Processing
     {
       id: 4,
-      title: getTranslation('process'),
-      description: getTranslation('processDesc'),
+      title: t('wa.process'),
+      description: t('wa.processDesc'),
       icon: <Clock className="h-5 w-5" />,
       content: (
         <div className="p-6">
@@ -423,8 +402,8 @@ const WhatsAppFlow = () => {
     // Step 5: Customer Data Captured
     {
       id: 5,
-      title: getTranslation('customer'),
-      description: getTranslation('customerDesc'),
+      title: t('wa.customer'),
+      description: t('wa.customerDesc'),
       icon: <UserCheck className="h-5 w-5" />,
       content: (
         <div className="p-6">
@@ -492,8 +471,8 @@ const WhatsAppFlow = () => {
     // Step 6: Business Analytics
     {
       id: 6,
-      title: getTranslation('analytics'),
-      description: getTranslation('analyticsDesc'),
+      title: t('wa.analytics'),
+      description: t('wa.analyticsDesc'),
       icon: <BarChart2 className="h-5 w-5" />,
       content: (
         <div className="p-6">
@@ -555,10 +534,10 @@ const WhatsAppFlow = () => {
             
             <div className="mt-4 pt-4 border-t border-blue-100 flex justify-between">
               <button className="text-xs font-medium text-blue-600 hover:text-blue-700 flex items-center">
-                <Download className="h-3 w-3 mr-1" /> Export Report
+                <Download className="h-3 w-3 mr-1" /> {t('wa.exportReport')}
               </button>
               <button className="text-xs font-medium text-blue-600 hover:text-blue-700">
-                View Detailed Analytics →
+                {t('wa.viewDetailedAnalytics')}
               </button>
             </div>
           </div>
@@ -579,8 +558,8 @@ const WhatsAppFlow = () => {
     <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
       {/* Header */}
       <div className="bg-green-600 p-6 text-white">
-        <h2 className="text-2xl font-bold">{getTranslation('title')}</h2>
-        <p className="text-green-100">{getTranslation('subtitle')}</p>
+        <h2 className="text-2xl font-bold">{t('wa.title')}</h2>
+        <p className="text-green-100">{t('wa.subtitle')}</p>
       </div>
 
       {/* Progress */}
@@ -629,7 +608,7 @@ const WhatsAppFlow = () => {
               className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={currentStep === 0}
             >
-              Previous
+              {t('wa.previous')}
             </button>
             <div className="flex space-x-2">
               {Array.from({ length: steps.length }).map((_, i) => (
@@ -647,7 +626,7 @@ const WhatsAppFlow = () => {
               onClick={() => goToStep((currentStep + 1) % steps.length)}
               className="px-4 py-2 text-sm font-medium text-green-600 hover:text-green-800"
             >
-              {currentStep === steps.length - 1 ? 'Finish' : 'Next'}
+              {currentStep === steps.length - 1 ? t('wa.finish') : t('wa.next')}
             </button>
           </div>
         </div>
@@ -657,3 +636,6 @@ const WhatsAppFlow = () => {
 };
 
 export default WhatsAppFlow;
+
+
+

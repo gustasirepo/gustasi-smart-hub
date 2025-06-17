@@ -15,11 +15,11 @@ const ExploreRestaurants = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const venueTypes = [
-    { name: t("rolling.restaurant"), icon: <Utensils className="w-5 h-5" /> },
-    { name: t("rolling.cafe"), icon: <Coffee className="w-5 h-5" /> },
-    { name: t("rolling.bar"), icon: <Martini className="w-5 h-5" /> },
-    { name: t("rolling.resort"), icon: <Hotel className="w-5 h-5" /> },
-    { name: t("rolling.chef"), icon: <ChefHat className="w-5 h-5" /> }
+    { name: t("rolling.restaurant"), icon: <Utensils className="w-5 h-5 text-amber-400" /> },
+    { name: t("rolling.cafe"), icon: <Coffee className="w-5 h-5 text-amber-400" /> },
+    { name: t("rolling.bar"), icon: <Martini className="w-5 h-5 text-amber-400" /> },
+    { name: t("rolling.resort"), icon: <Hotel className="w-5 h-5 text-amber-400" /> },
+    { name: t("rolling.chef"), icon: <ChefHat className="w-5 h-5 text-amber-400" /> }
   ];
 
   useEffect(() => {
@@ -40,55 +40,68 @@ const ExploreRestaurants = () => {
   const currentVenue = venueTypes[currentKeywordIndex];
 
   return (
-    <section className="py-16 lg:py-28 bg-gradient-to-b from-white to-amber-50 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-amber-400 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob"></div>
-        <div className="absolute top-1/2 -right-20 w-96 h-96 bg-orange-400 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000"></div>
+    <section className="py-16 lg:py-28 relative overflow-hidden bg-gradient-to-br from-[#0F0E16] via-[#191B24] to-[#0F0E16] relative">
+      {/* Modern Background Elements */}
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#D8C7AA]/20 to-[#B59469]/20 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-[#B59469]/15 to-[#D8C7AA]/15 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
+      
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 opacity-30" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D8C7AA' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-5xl mx-auto text-center">
           {/* Section Header */}
           <div className="mb-12">
-            <span className="inline-block px-3 py-1 text-sm font-semibold text-amber-800 bg-amber-100 rounded-full mb-4">
-              {t("rolling.subtitle")}
+            <span className="inline-block px-4 py-1.5 text-sm font-medium text-amber-100 bg-amber-900/30 border border-amber-800/30 rounded-full mb-6 backdrop-blur-sm">
+              {t('explore.discoverSavor')}
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6">
-              Discover Amazing {currentVenue.name} <br className="hidden md:block" />
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent">
+                {t('rolling.discoverAmazing')}
+              </span>
+              <br className="hidden md:block" />
               <span className="relative inline-block">
-                <span className={`relative z-10 bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 -translate-y-2'}`}>
-                  Near You
+                <span className={`relative z-10 bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 -translate-y-2'}`}>
+                  {t('rolling.nearYou')}
                 </span>
-                <span className="absolute bottom-0 left-0 w-full h-3 bg-amber-100/60 -z-0 transform -translate-y-1"></span>
+                <span className="absolute bottom-0 left-0 w-full h-3 bg-amber-900/30 -z-0 transform -translate-y-1 rounded-full"></span>
               </span>
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-12">
-              Find the best dining experiences, from cozy cafes to fine dining restaurants, all in one place.
+            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
+              {t('rolling.description')}
             </p>
             
             {/* Large CTA Button */}
             <Button 
               onClick={handleExploreClick}
               size="lg"
-              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 relative overflow-hidden group"
             >
-              {t("rolling.explore")} Now
-              <ArrowRight className="ml-2 h-5 w-5" />
+              <span className="relative z-10">
+                {t("rolling.exploreNow")}
+                <span className={`ml-2.5 transition-transform duration-200 ${currentKeywordIndex === 0 ? 'scale-110' : ''}`}>
+                  <ArrowRight className="h-5 w-5 inline-block transition-transform group-hover:translate-x-1" />
+                </span>
+              </span>
+              <span className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-white/10 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
             </Button>
             
             <div className="flex flex-wrap justify-center gap-4 mt-8">
-              <span className="text-sm text-slate-500 flex items-center bg-white/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-amber-100">
-                <MapPin className="w-4 h-4 mr-1.5 text-amber-600" />
-                New York • London • Paris
+              <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
+                <MapPin className="w-4.5 h-4.5 mr-2.5 text-amber-400/90" />
+                {t("rolling.cities")}
               </span>
-              <span className="text-sm text-slate-500 flex items-center bg-white/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-amber-100">
-                <Star className="w-4 h-4 mr-1.5 text-amber-600" />
-                Top Rated
+              <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
+                <Star className="w-4.5 h-4.5 mr-2.5 text-amber-400/90" />
+                {t('rolling.topRated')}
               </span>
-              <span className="text-sm text-slate-500 flex items-center bg-white/50 backdrop-blur-sm px-3 py-1.5 rounded-full border border-amber-100">
-                <Clock className="w-4 h-4 mr-1.5 text-amber-600" />
-                Open Now
+              <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
+                <Clock className="w-4.5 h-4.5 mr-2.5 text-amber-400/90" />
+                {t('rolling.openNow')}
               </span>
             </div>
           </div>
@@ -106,16 +119,16 @@ const ExploreRestaurants = () => {
                   setCurrentKeywordIndex(index);
                   setIsVisible(true);
                 }}
-                className={`flex items-center gap-2 px-5 py-3 rounded-xl transition-all duration-300 ${
-                  currentKeywordIndex === index
-                    ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg'
-                    : 'bg-white text-slate-700 hover:bg-amber-50 border border-slate-200 hover:border-amber-200'
-                }`}
+                className={`flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                      currentKeywordIndex === index
+                        ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-600/20 border border-amber-500/40'
+                        : 'bg-white/5 text-gray-200 hover:bg-white/10 border border-white/5 hover:border-amber-600/40'
+                    }`}
               >
                 {React.cloneElement(venue.icon, {
                   className: `w-5 h-5 ${currentKeywordIndex === index ? 'text-white' : 'text-amber-600'}`
                 })}
-                <span className="font-medium">{venue.name}s</span>
+                <span className="font-medium">{t('rolling.venuePlural')}</span>
               </button>
             ))}
           </div>
@@ -124,20 +137,17 @@ const ExploreRestaurants = () => {
           <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-8 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-amber-50">
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">50,000+</div>
-              <div className="text-sm text-slate-600">{t("rolling.restaurants")}</div>
+              <div className="text-sm text-slate-600">{<>50,000+ {t('rolling.venuePlural')}</>}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
             <div className="text-center">
               <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">1M+</div>
-              <div className="text-sm text-slate-600">{t("rolling.users")}</div>
+              <div className="text-sm text-slate-600">{t('rolling.users')}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
             <div className="text-center">
-              <div className="flex items-center justify-center gap-1">
-                <Star className="w-5 h-5 text-amber-500 fill-current" />
-                <span className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">4.9</span>
-              </div>
-              <div className="text-sm text-slate-600">{t("rolling.rating")}</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">4.9★</div>
+              <div className="text-sm text-slate-600">{t('rolling.rating')}</div>
             </div>
           </div>
         </div>

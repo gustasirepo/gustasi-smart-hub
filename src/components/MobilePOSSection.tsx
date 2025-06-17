@@ -3,6 +3,29 @@ import { Check, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from './ui/button';
 import { useInView } from 'react-intersection-observer';
 import { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+
+// Structured data for the mobile POS feature
+import { t } from "@/utils/localization";
+const mobilePOSStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Gustasi POS Mobile",
+  "operatingSystem": "Android, iOS",
+  "applicationCategory": "BusinessApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": t("pos.description"),
+  "featureList": [
+    t("pos.feature.swiggyZomato"),
+    t("pos.feature.gustasiOrders"),
+    t("pos.feature.bluetoothPrinter"),
+    t("pos.feature.menuBilling")
+  ]
+};
 
 export function MobilePOSSection() {
   const [ref, inView] = useInView({
@@ -53,7 +76,12 @@ export function MobilePOSSection() {
   }, []);
 
   return (
-    <section id="mobile-pos" className="w-full bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 md:py-16 px-4 sm:px-6 lg:px-8">
+    <section id="mobile-pos" className="w-full bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 md:py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="mobile-pos-heading">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(mobilePOSStructuredData)}
+        </script>
+      </Helmet>
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Left Column */}
@@ -71,36 +99,36 @@ export function MobilePOSSection() {
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/80"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
                   </span>
-                  🚀 Now Available on Mobile
+                  🚀 {t("pos.nowAvailable")}
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
+              <h2 id="mobile-pos-heading" className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
                 <span className="bg-gradient-to-r from-gray-800 to-gray-700 dark:from-white dark:via-white dark:to-[#F5F2ED] bg-clip-text text-transparent">
-                  The Future of Restaurant Management
+                  {t("pos.headline.main")}
                 </span>
                 <br />
                 <span className="bg-gradient-to-r from-amber-600 to-orange-500 dark:from-[#D8C7AA] dark:via-[#C9B48C] dark:to-[#B59469] bg-clip-text text-transparent">
-                  Is in Your Hands
+                  {t("pos.headline.sub")}
                 </span>
               </h2>
             </motion.div>
             
             <motion.div variants={item} className="space-y-6">
               <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
-                Transform your smartphone into a powerful POS system. Manage orders, track inventory, and grow your business—all from the palm of your hand.
+                {t("pos.body")}
               </p>
               <div className="flex items-center space-x-2 text-blue-600">
                 <div className="w-8 h-0.5 bg-blue-400"></div>
-                <span className="text-sm font-medium">NO HARDWARE REQUIRED</span>
+                <span className="text-sm font-medium">{t("pos.noHardwareRequired")}</span>
               </div>
             </motion.div>
             
             <motion.div variants={item} className="space-y-4 pt-4">
               {[
-                'Accept Swiggy & Zomato Orders from Mobile',
-                'Receive Online Orders via Gustasi',
-                'Print Bills & KOTs via Bluetooth Printer',
-                'Manage Menu, Orders & Billing — Anytime, Anywhere'
+                t("pos.feature.swiggyZomato"),
+                t("pos.feature.gustasiOrders"),
+                t("pos.feature.bluetoothPrinter"),
+                t("pos.feature.menuBilling")
               ].map((feature, index) => (
                 <motion.div 
                   key={index} 
@@ -120,7 +148,7 @@ export function MobilePOSSection() {
                 href="https://www.gustasi.com/Signup"
                 className="inline-block bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold text-lg px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20"
               >
-                Sign Up Now
+                {t('cta.signupNow')}
               </a>
             </motion.div>
           </motion.div>
@@ -152,16 +180,17 @@ export function MobilePOSSection() {
                       >
                         <img 
                           src={screenshots[currentSlide]} 
-                          alt={`Gustasi POS Screenshot ${currentSlide + 1}`}
+                          alt={`Gustasi POS Mobile App - ${['Dashboard showing real-time sales and orders', 'Order management interface', 'Menu customization screen', 'Sales and performance reports'][currentSlide]}`}
                           className="w-full h-full object-cover object-top"
                           style={{ objectFit: 'cover', objectPosition: 'top center' }}
                           onError={(e) => {
-                            // Extra fallback in case the placeholder fails
                             const target = e.target as HTMLImageElement;
                             target.src = `https://via.placeholder.com/360x700/${['4f46e5', '7c3aed', '8b5cf6', 'a78bfa'][currentSlide]}/ffffff?text=Gustasi+POS+${['Dashboard', 'Orders', 'Menu', 'Reports'][currentSlide]}`;
                           }}
-                          loading="eager"
-                          fetchPriority="high"
+                          loading="lazy"
+                          width={360}
+                          height={700}
+                          fetchPriority={currentSlide === 0 ? 'high' : 'auto'}
                         />
                       </motion.div>
                     </AnimatePresence>
@@ -215,12 +244,12 @@ export function MobilePOSSection() {
                   } 
                 } : {}}
               >
-                <div className="flex items-start space-x-2">
-                  <div className="bg-green-100 p-1.5 rounded-lg">
-                    <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <div className="flex items-start space-x-2" role="alert" aria-live="polite">
+                  <div className="bg-green-100 p-1.5 rounded-lg flex-shrink-0">
+                    <div className="w-2 h-2 bg-green-500 rounded-full" aria-hidden="true"></div>
                   </div>
                   <div>
-                    <p className="text-xs font-medium">New Order</p>
+                    <p className="text-xs font-medium">New Order Received</p>
                     <p className="text-xs text-gray-500">Table #5 - $42.50</p>
                   </div>
                 </div>

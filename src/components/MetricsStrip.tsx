@@ -1,7 +1,8 @@
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 import { ChefHat, Building2, BarChart2, ShieldCheck } from "lucide-react";
 
 const MetricsStrip = () => {
+  useLanguage(); // Ensures re-render on language change
   const metrics = [
     { value: t("metrics.chefs"), icon: <ChefHat className="w-8 h-8 text-amber-500 mx-auto" />, color: "from-amber-500 to-orange-500" },
     { value: t("metrics.cities"), icon: <Building2 className="w-8 h-8 text-blue-500 mx-auto" />, color: "from-orange-500 to-amber-600" },
