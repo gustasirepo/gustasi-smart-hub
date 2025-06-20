@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { t, useLanguage } from "@/utils/localization";
 import { ShoppingCart, Code, Database, MessageCircle, Calendar, Truck } from "lucide-react";
 
 const OperationsOverview = () => {
+  const navigate = useNavigate();
   const currentLang = useLanguage();
 
   const operationModules = [
@@ -107,7 +109,10 @@ const OperationsOverview = () => {
           {/* Bottom CTA */}
           <div className="text-center mt-16 animate-fade-up" style={{ animationDelay: '1s' }}>
             <Button 
-              onClick={() => window.location.href = 'https://www.gustasi.com/contactus'}
+              onClick={() => {
+                const lang = window.location.pathname.split('/')[1] || 'en';
+                navigate(`/${lang}/schedule-demo`);
+              }}
               className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-12 py-6 text-xl rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-amber-500/20"
             >
               {t("cta.schedule")}

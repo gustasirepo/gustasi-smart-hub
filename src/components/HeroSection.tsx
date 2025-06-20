@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { t, useLanguage } from "@/utils/localization";
 import { Play, CheckCircle, TrendingUp, Shield, Users } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const currentLang = useLanguage();
 
   const images = [
@@ -19,7 +21,10 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0F0E16] via-[#191B24] to-[#0F0E16] pb-16">
+    <section 
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0F0E16] via-[#191B24] to-[#0F0E16] pb-16 pt-28 md:pt-32"
+      lang={currentLang}
+    >
       {/* Modern Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#D8C7AA]/20 to-[#B59469]/20 rounded-full blur-3xl animate-pulse-slow"></div>
@@ -40,16 +45,15 @@ const HeroSection = () => {
               
               {/* Main Headline */}
               <div className="space-y-6 animate-fade-up mt-16" style={{ animationDelay: '0.1s' }}>
-                <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-                  <span className="bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent">
+                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight ${currentLang === 'hi' ? 'font-sans' : ''}`}>
+                  <span className="block bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent mb-2">
                     {t("hero.mainTitle")}
                   </span>
-                  <br />
-                  <span className="bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent mt-2">
                     {t("hero.subTitle")}
                   </span>
                 </h1>
-                <p className="text-xl lg:text-2xl text-slate-300 leading-relaxed max-w-2xl">
+                <p className={`text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl ${currentLang === 'hi' ? 'font-sans' : ''}`}>
                   {t("hero.description")}
                 </p>
               </div>
@@ -100,7 +104,10 @@ const HeroSection = () => {
               {/* Single CTA Button - Centered */}
               <div className="w-full flex justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
                 <Button 
-                  onClick={() => window.location.href = 'https://www.gustasi.com/contactus'}
+                  onClick={() => {
+                    const lang = window.location.pathname.split('/')[1] || 'en';
+                    navigate(`/${lang}/schedule-demo`);
+                  }}
                   className="mx-auto bg-gradient-to-r from-[#D8C7AA] to-[#B59469] hover:from-[#C9B48C] hover:to-[#A6865E] text-[#191B24] text-lg px-10 py-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 hover:shadow-[0_10px_25px_-5px_rgba(216,199,170,0.3)] group"
                 >
                   {t("hero.cta")}

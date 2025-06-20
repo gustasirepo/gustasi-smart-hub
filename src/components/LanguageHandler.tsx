@@ -12,7 +12,7 @@ const LanguageHandler = () => {
 
   useEffect(() => {
     if (lang && supportedLanguages.includes(lang)) {
-      setLanguage(lang as 'en' | 'fr');
+      setLanguage(lang as 'en' | 'fr' | 'hi' | 'bn' | 'ta');
     } else {
       // Default to English if the language in the URL is not supported
       // or if there's no language code.

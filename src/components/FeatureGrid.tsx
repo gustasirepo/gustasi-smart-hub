@@ -84,7 +84,10 @@ const FeatureGrid = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <Link 
-                to={`/features/${feature.title.toLowerCase().replace(/\s+/g, '-')}`}
+                to={feature.title.toLowerCase().includes('fraud') 
+                  ? `/${currentLang}/fraud-prevention`
+                  : `/${currentLang}/features/${feature.title.toLowerCase().replace(/\s+/g, '-')}`
+                }
                 key={index}
                 className="block group"
               >

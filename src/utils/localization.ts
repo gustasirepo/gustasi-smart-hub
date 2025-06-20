@@ -326,8 +326,321 @@ export const translations: Translations = {
   "wa.viewDetailedAnalytics": { en: "View Detailed Analytics", fr: "Voir les analyses détaillées", hi: "विस्तृत विश्लेषण देखें", bn: "বিস্তারিত বিশ্লেষণ দেখুন", ta: "விரிவான பகுப்பாய்வைக் காண்க" },
 };
 
-type SupportedLanguage = 'en' | 'fr' | 'hi' | 'bn' | 'ta';
+export type SupportedLanguage = 'en' | 'fr' | 'hi' | 'bn' | 'ta';
 let currentLanguage: SupportedLanguage = 'en';
+
+// Add default translations for the contact and demo pages
+translations['contact.pageTitle'] = {
+  en: "Contact Us | Gustasi POS",
+  fr: "Contactez-nous | Gustasi POS",
+  hi: "हमसे संपर्क करें | गुस्तासी पीओएस",
+  bn: "আমাদের সাথে যোগাযোগ করুন | গুস্তাসি পিওএস",
+  ta: "எங்களைத் தொடர்பு கொள்ள | கஸ்தாசி பிஓஎஸ்"
+};
+
+translations['demo.pageTitle'] = {
+  en: "Schedule a Demo | Gustasi POS",
+  fr: "Planifier une démo | Gustasi POS",
+  hi: "डेमो शेड्यूल करें | गुस्तासी पीओएस",
+  bn: "একটি ডেমো শিডিউল করুন | গুস্তাসি পিওএস",
+  ta: "ஒரு டெமோவை திட்டமிடவும் | கஸ்தாசி பிஓஎஸ்"
+};
+
+translations['contact.hero.title'] = {
+  en: "Let's Talk – We're Here to Help",
+  fr: "Parlons – Nous sommes là pour vous aider",
+  hi: "बात करते हैं – हम यहाँ आपकी मदद के लिए हैं",
+  bn: "চলুন কথা বলি – আমরা আপনাকে সাহায্য করতে এখানে আছি",
+  ta: "பேசலாம் – உங்களுக்கு உதவ நாங்கள் இங்கே இருக்கிறோம்"
+};
+
+translations['contact.hero.subtitle'] = {
+  en: "Have questions? Send us a message and we'll get back to you soon.",
+  fr: "Des questions ? Envoyez-nous un message et nous vous répondrons dès que possible.",
+  hi: "प्रश्न हैं? हमें एक संदेश भेजें और हम आपको जल्द ही जवाब देंगे।",
+  bn: "প্রশ্ন আছে? আমাদের একটি বার্তা পাঠান এবং আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।",
+  ta: "கேள்விகள் உள்ளதா? எங்களுக்கு ஒரு செய்தியை அனுப்பவும், நாங்கள் உங்களுக்கு விரைவில் பதிலளிப்போம்."
+};
+
+translations['demo.hero.title'] = {
+  en: "Schedule a Live Demo",
+  fr: "Planifier une démonstration en direct",
+  hi: "लाइव डेमो शेड्यूल करें",
+  bn: "একটি লাইভ ডেমো শিডিউল করুন",
+  ta: "நேரடி டெமோவை திட்டமிடவும்"
+};
+
+translations['demo.hero.subtitle'] = {
+  en: "Book a personalized demo to see how Gustasi can transform your restaurant operations.",
+  fr: "Réservez une démonstration personnalisée pour voir comment Gustasi peut transformer les opérations de votre restaurant.",
+  hi: "एक व्यक्तिगत डेमो बुक करें और देखें कि गुस्तासी आपके रेस्तरां के संचालन को कैसे बदल सकता है।",
+  bn: "একটি ব্যক্তিগতকৃত ডেমো বুক করুন এবং দেখুন কিভাবে গুস্তাসি আপনার রেস্তোরাঁর অপারেশনগুলিকে রূপান্তর করতে পারে।",
+  ta: "உங்கள் உணவக செயல்பாடுகளை கஸ்தாசி எவ்வாறு மாற்ற முடியும் என்பதைக் காண தனிப்பயனாக்கப்பட்ட டெமோவைப் புத்தகம் செய்யவும்."
+};
+
+// Form field translations
+translations['form.name'] = {
+  en: "Name",
+  fr: "Nom",
+  hi: "नाम",
+  bn: "নাম",
+  ta: "பெயர்"
+};
+
+translations['form.email'] = {
+  en: "Email",
+  fr: "E-mail",
+  hi: "ईमेल",
+  bn: "ইমেইল",
+  ta: "மின்னஞ்சல்"
+};
+
+translations['form.phone'] = {
+  en: "Phone",
+  fr: "Téléphone",
+  hi: "फ़ोन",
+  bn: "ফোন",
+  ta: "தொலைபேசி"
+};
+
+translations['form.interest'] = {
+  en: "I'm interested in...",
+  fr: "Je suis intéressé par...",
+  hi: "मुझे इसमें दिलचस्पी है...",
+  bn: "আমি আগ্রহী...",
+  ta: "நான் ஆர்வமாக உள்ளேன்..."
+};
+
+translations['form.message'] = {
+  en: "Message / Requirements",
+  fr: "Message / Exigences",
+  hi: "संदेश / आवश्यकताएं",
+  bn: "বার্তা / প্রয়োজনীয়তা",
+  ta: "செய்தி / தேவைகள்"
+};
+
+translations['form.sendMessage'] = {
+  en: "Send Message",
+  fr: "Envoyer le message",
+  hi: "संदेश भेजें",
+  bn: "বার্তা পাঠান",
+  ta: "செய்தியை அனுப்பவும்"
+};
+
+translations['form.fullName'] = {
+  en: "Full Name",
+  fr: "Nom complet",
+  hi: "पूरा नाम",
+  bn: "পুরো নাম",
+  ta: "முழு பெயர்"
+};
+
+translations['form.preferredTime'] = {
+  en: "Preferred Time",
+  fr: "Heure préférée",
+  hi: "पसंदीदा समय",
+  bn: "পছন্দের সময়",
+  ta: "விருப்பமான நேரம்"
+};
+
+translations['form.selectDate'] = {
+  en: "Select a Date",
+  fr: "Sélectionner une date",
+  hi: "एक तारीख चुनें",
+  bn: "একটি তারিখ নির্বাচন করুন",
+  ta: "ஒரு தேதியைத் தேர்ந்தெடுக்கவும்"
+};
+
+translations['form.additionalNotes'] = {
+  en: "Additional Notes",
+  fr: "Notes supplémentaires",
+  hi: "अतिरिक्त नोट्स",
+  bn: "অতিরিক্ত নোট",
+  ta: "கூடுதல் குறிப்புகள்"
+};
+
+translations['form.confirmDemo'] = {
+  en: "Confirm Demo Booking",
+  fr: "Confirmer la réservation de démo",
+  hi: "डेमो बुकिंग की पुष्टि करें",
+  bn: "ডেমো বুকিং নিশ্চিত করুন",
+  ta: "டெமோ பதிவை உறுதிப்படுத்தவும்"
+};
+
+// Form field placeholders and labels
+translations['form.yourName'] = {
+  en: "Your name",
+  fr: "Votre nom",
+  hi: "आपका नाम",
+  bn: "আপনার নাম",
+  ta: "உங்கள் பெயர்"
+};
+
+translations['form.yourEmail'] = {
+  en: "your.email@example.com",
+  fr: "votre.email@exemple.com",
+  hi: "आपका.ईमेल@उदाहरण.कॉम",
+  bn: "আপনার.ইমেইল@উদাহরণ.কম",
+  ta: "உங்கள்.மின்னஞ்சல்@எடுத்துக்காட்டு.காம்"
+};
+
+translations['form.phonePlaceholder'] = {
+  en: "+1 (___) ___-____",
+  fr: "+33 _ __ __ __ __",
+  hi: "+91 ________",
+  bn: "+88 ________",
+  ta: "+91 ________"
+};
+
+translations['form.tellUsMore'] = {
+  en: "Tell us how we can help you...",
+  fr: "Dites-nous comment nous pouvons vous aider...",
+  hi: "हमें बताएं कि हम आपकी कैसे मदद कर सकते हैं...",
+  bn: "আমাদের বলুন আমরা আপনাকে কীভাবে সাহায্য করতে পারি...",
+  ta: "உங்களுக்கு எப்படி உதவ முடியும் என்று எங்களிடம் சொல்லுங்கள்..."
+};
+
+translations['form.selectTime'] = {
+  en: "Select a time",
+  fr: "Sélectionnez une heure",
+  hi: "समय चुनें",
+  bn: "একটি সময় নির্বাচন করুন",
+  ta: "ஒரு நேரத்தைத் தேர்ந்தெடுக்கவும்"
+};
+
+translations['form.pickDate'] = {
+  en: "Pick a date",
+  fr: "Choisir une date",
+  hi: "एक तिथि चुनें",
+  bn: "একটি তারিখ নির্বাচন করুন",
+  ta: "ஒரு தேதியைத் தேர்ந்தெடுக்கவும்"
+};
+
+translations['form.demoFocus'] = {
+  en: "Tell us what you'd like to focus on during the demo...",
+  fr: "Dites-nous sur quoi vous souhaitez vous concentrer pendant la démo...",
+  hi: "हमें बताएं कि आप डेमो के दौरान किस पर ध्यान केंद्रित करना चाहेंगे...",
+  bn: "আমাদের বলুন আপনি ডেমোর সময় কোন বিষয়ে ফোকাস করতে চান...",
+  ta: "டெமோவின் போது நீங்கள் எதில் கவனம் செலுத்த விரும்புகிறீர்கள் என்று எங்களிடம் சொல்லுங்கள்..."
+};
+
+// Messages
+translations['messages.thankYou'] = {
+  en: "Thank You!",
+  fr: "Merci !",
+  hi: "धन्यवाद!",
+  bn: "ধন্যবাদ!",
+  ta: "நன்றி!"
+};
+
+translations['messages.messageReceived'] = {
+  en: "We've received your message and will get back to you soon.",
+  fr: "Nous avons bien reçu votre message et vous répondrons bientôt.",
+  hi: "हमें आपका संदेश मिल गया है और हम जल्द ही आपको जवाब देंगे।",
+  bn: "আমরা আপনার বার্তা পেয়েছি এবং শীঘ্রই আপনার সাথে যোগাযোগ করব।",
+  ta: "உங்கள் செய்தியைப் பெற்றுள்ளோம், விரைவில் உங்களுடன் தொடர்பு கொள்கிறோம்."
+};
+
+translations['messages.demoBooked'] = {
+  en: "Demo Booked Successfully!",
+  fr: "Démo réservée avec succès !",
+  hi: "डेमो सफलतापूर्वक बुक किया गया!",
+  bn: "ডেমো সফলভাবে বুক করা হয়েছে!",
+  ta: "டெமோ வெற்றிகரமாக பதிவு செய்யப்பட்டது!"
+};
+
+translations['messages.demoConfirmation'] = {
+  en: "We've sent a confirmation to your email with the meeting details.",
+  fr: "Nous avons envoyé une confirmation à votre adresse e-mail avec les détails de la réunion.",
+  hi: "हमने मीटिंग के विवरण के साथ आपके ईमेल पर एक पुष्टिकरण भेज दिया है।",
+  bn: "আমরা মিটিংয়ের বিবরণ সহ আপনার ইমেল ঠিকানায় একটি নিশ্চিতকরণ পাঠিয়েছি।",
+  ta: "கூட்டத்தின் விவரங்களுடன் உங்கள் மின்னஞ்சலுக்கு ஒரு உறுதிப்படுத்தலை அனுப்பியுள்ளோம்."
+};
+
+// Actions
+translations['actions.sendAnother'] = {
+  en: "Send Another Message",
+  fr: "Envoyer un autre message",
+  hi: "एक और संदेश भेजें",
+  bn: "আরেকটি বার্তা পাঠান",
+  ta: "மற்றொரு செய்தியை அனுப்பவும்"
+};
+
+translations['actions.backToContact'] = {
+  en: "Back to Contact",
+  fr: "Retour au contact",
+  hi: "संपर्क पर वापस जाएं",
+  bn: "যোগাযোগে ফিরে যান",
+  ta: "தொடர்புக்குத் திரும்பு"
+};
+
+// Tabs
+translations['tabs.contactUs'] = {
+  en: "Contact Us",
+  fr: "Contactez-nous",
+  hi: "हमसे संपर्क करें",
+  bn: "আমাদের সাথে যোগাযোগ করুন",
+  ta: "எங்களைத் தொடர்பு கொள்ள"
+};
+
+translations['tabs.bookDemo'] = {
+  en: "Book Demo",
+  fr: "Réserver une démo",
+  hi: "डेमो बुक करें",
+  bn: "ডেমো বুক করুন",
+  ta: "டெமோவை பதிவு செய்க"
+};
+
+// Options
+translations['options.posSystem'] = {
+  en: "POS System",
+  fr: "Système de caisse",
+  hi: "पीओएस सिस्टम",
+  bn: "পিওএস সিস্টেম",
+  ta: "பிஓஎஸ் அமைப்பு"
+};
+
+translations['options.onlineOrders'] = {
+  en: "Online Orders",
+  fr: "Commandes en ligne",
+  hi: "ऑनलाइन ऑर्डर",
+  bn: "অনলাইন অর্ডার",
+  ta: "ஆன்லைன் ஆர்டர்கள்"
+};
+
+translations['options.inventory'] = {
+  en: "Inventory Management",
+  fr: "Gestion des stocks",
+  hi: "इन्वेंटरी प्रबंधन",
+  bn: "ইনভেন্টরি ব্যবস্থাপনা",
+  ta: "இருப்பு மேலாண்மை"
+};
+
+translations['options.feedback'] = {
+  en: "Feedback",
+  fr: "Retour d'information",
+  hi: "प्रतिक्रिया",
+  bn: "মতামত",
+  ta: "கருத்து"
+};
+
+translations['options.allServices'] = {
+  en: "All Services",
+  fr: "Tous les services",
+  hi: "सभी सेवाएं",
+  bn: "সমস্ত পরিষেবা",
+  ta: "அனைத்து சேவைகளும்"
+};
+
+// Time Slots
+translations['timeSlots.nineAM'] = { en: "09:00 AM", fr: "09:00", hi: "09:00 पूर्वाह्न", bn: "09:00 AM", ta: "காலை 9:00" };
+translations['timeSlots.tenAM'] = { en: "10:00 AM", fr: "10:00", hi: "10:00 पूर्वाह्न", bn: "10:00 AM", ta: "காலை 10:00" };
+translations['timeSlots.elevenAM'] = { en: "11:00 AM", fr: "11:00", hi: "11:00 पूर्वाह्न", bn: "11:00 AM", ta: "காலை 11:00" };
+translations['timeSlots.twelvePM'] = { en: "12:00 PM", fr: "12:00", hi: "12:00 अपराह्न", bn: "12:00 PM", ta: "மதியம் 12:00" };
+translations['timeSlots.onePM'] = { en: "01:00 PM", fr: "13:00", hi: "01:00 अपराह्न", bn: "01:00 PM", ta: "மாலை 1:00" };
+translations['timeSlots.twoPM'] = { en: "02:00 PM", fr: "14:00", hi: "02:00 अपराह्न", bn: "02:00 PM", ta: "மாலை 2:00" };
+translations['timeSlots.threePM'] = { en: "03:00 PM", fr: "15:00", hi: "03:00 अपराह्न", bn: "03:00 PM", ta: "மாலை 3:00" };
+translations['timeSlots.fourPM'] = { en: "04:00 PM", fr: "16:00", hi: "04:00 अपराह्न", bn: "04:00 PM", ta: "மாலை 4:00" };
 
 export function t(key: string): string {
   const translation = translations[key]?.[currentLanguage];
@@ -351,20 +664,43 @@ export const tArray = (key: string): string[] => {
 };
 
 export const setLanguage = (lang: SupportedLanguage) => {
-  currentLanguage = lang;
-  // Trigger a re-render by dispatching a custom event
-  window.dispatchEvent(new CustomEvent('languageChanged'));
+  if (['en', 'fr', 'hi', 'bn', 'ta'].includes(lang)) {
+    currentLanguage = lang as SupportedLanguage;
+    // Save to localStorage for persistence
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('preferredLanguage', lang);
+    }
+    // Trigger a re-render by dispatching a custom event
+    window.dispatchEvent(new CustomEvent('languageChanged'));
+  } else {
+    console.warn(`Unsupported language: ${lang}. Falling back to English.`);
+    currentLanguage = 'en';
+  }
 };
 
 export const getCurrentLanguage = () => currentLanguage;
 
 export const useLanguage = () => {
-  const [currentLang, setCurrentLang] = useState(getCurrentLanguage());
+  const [currentLang, setCurrentLang] = useState<SupportedLanguage>(() => {
+    // Initialize from localStorage if available, otherwise use browser language or default to 'en'
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('preferredLanguage');
+      const browserLang = navigator.language.split('-')[0];
+      return (savedLang || (['en', 'fr', 'hi', 'bn', 'ta'].includes(browserLang) ? browserLang : 'en')) as SupportedLanguage;
+    }
+    return 'en';
+  });
 
   useEffect(() => {
     const handleLanguageChange = () => {
       setCurrentLang(getCurrentLanguage());
     };
+
+    // Set initial language
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && savedLang !== currentLang) {
+      setLanguage(savedLang as SupportedLanguage);
+    }
 
     window.addEventListener('languageChanged', handleLanguageChange);
     return () => {

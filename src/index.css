@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,6 +12,20 @@ body {
   margin: 0;
   min-height: 100vh;
   background-color: rgb(250, 248, 245); /* Soft off-white */
+  font-feature-settings: 'kern' 1, 'calt' 1, 'liga' 1;
+}
+
+/* Apply Noto Sans Devanagari for Hindi text */
+:lang(hi) {
+  font-family: 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* Ensure proper rendering for Devanagari text */
+*:lang(hi) {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
