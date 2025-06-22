@@ -148,12 +148,16 @@ const HeroSection = () => {
                     const lang = window.location.pathname.split('/')[1] || 'en';
                     navigate(`/${lang}/schedule-demo`);
                   }}
-                  className="mx-auto bg-gradient-to-r from-[#D8C7AA] to-[#B59469] hover:from-[#C9B48C] hover:to-[#A6865E] text-[#191B24] text-lg px-10 py-6 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5 hover:shadow-[0_10px_25px_-5px_rgba(216,199,170,0.3)] group"
+                  className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 relative overflow-hidden group"
                 >
-                  {t("hero.cta")}
-                  <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                  </svg>
+                  <span className="relative z-10">
+                    {t("hero.cta")}
+                    <span className="ml-2.5 transition-transform duration-200 group-hover:translate-x-1">
+                      <svg className="w-5 h-5 inline-block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </span>
+                  </span>
                 </Button>
               </div>
             </div>
