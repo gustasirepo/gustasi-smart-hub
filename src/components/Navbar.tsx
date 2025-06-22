@@ -39,11 +39,19 @@ const Navbar = () => {
     { code: 'hi', label: 'हिन्दी' },
     { code: 'bn', label: 'বাংলা' },
     { code: 'ta', label: 'தமிழ்' },
+    { code: 'te', label: 'Telugu' },
   ];
 
+  // Check if current page is homepage
+  const isHomePage = location.pathname === `/${currentLanguage}` || location.pathname === `/${currentLanguage}/`;
+  
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled ? 'bg-slate-900/95 backdrop-blur-xl shadow-2xl border-b border-amber-400/20' : 'bg-transparent'
+      isScrolled 
+        ? 'bg-slate-900/95 backdrop-blur-xl shadow-2xl border-b border-amber-400/20 text-white' 
+        : isHomePage 
+          ? 'bg-transparent text-white' 
+          : 'bg-slate-900/95 backdrop-blur-xl text-white'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between w-full h-20">

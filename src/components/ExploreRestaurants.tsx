@@ -1,11 +1,19 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactElement } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 import { Search, MapPin, Star, Clock, Utensils, Coffee, Martini, Hotel, ChefHat, ArrowRight } from "lucide-react";
 
+interface VenueType {
+  name: string;
+  icon: ReactElement;
+  translatedName?: string;
+}
+
 const ExploreRestaurants = () => {
+  // This ensures the component re-renders when language changes
+  useLanguage();
   const navigate = useNavigate();
   const handleExploreClick = () => {
     navigate('/restaurants');
@@ -14,13 +22,19 @@ const ExploreRestaurants = () => {
   const [isVisible, setIsVisible] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
 
-  const venueTypes = [
-    { name: t("rolling.restaurant"), icon: <Utensils className="w-5 h-5 text-amber-400" /> },
-    { name: t("rolling.cafe"), icon: <Coffee className="w-5 h-5 text-amber-400" /> },
-    { name: t("rolling.bar"), icon: <Martini className="w-5 h-5 text-amber-400" /> },
-    { name: t("rolling.resort"), icon: <Hotel className="w-5 h-5 text-amber-400" /> },
-    { name: t("rolling.chef"), icon: <ChefHat className="w-5 h-5 text-amber-400" /> }
+  const venueTypes: VenueType[] = [
+    { name: "explore.restaurant", icon: <Utensils className="w-5 h-5 text-amber-400" /> },
+    { name: "explore.cafe", icon: <Coffee className="w-5 h-5 text-amber-400" /> },
+    { name: "explore.bar", icon: <Martini className="w-5 h-5 text-amber-400" /> },
+    { name: "explore.resort", icon: <Hotel className="w-5 h-5 text-amber-400" /> },
+    { name: "explore.chef", icon: <ChefHat className="w-5 h-5 text-amber-400" /> }
   ];
+  
+  // Get translated venue types
+  const translatedVenueTypes: VenueType[] = venueTypes.map(venue => ({
+    ...venue,
+    translatedName: t(venue.name)
+  }));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -37,7 +51,7 @@ const ExploreRestaurants = () => {
   }, [isHovered, venueTypes.length]);
 
   // Get current venue type with icon
-  const currentVenue = venueTypes[currentKeywordIndex];
+  const currentVenue = translatedVenueTypes[currentKeywordIndex];
 
   return (
     <section className="py-16 lg:py-28 relative overflow-hidden bg-gradient-to-br from-[#0F0E16] via-[#191B24] to-[#0F0E16] relative">
@@ -56,23 +70,20 @@ const ExploreRestaurants = () => {
         <div className="max-w-5xl mx-auto text-center">
           {/* Section Header */}
           <div className="mb-12">
-            <span className="inline-block px-4 py-1.5 text-sm font-medium text-amber-100 bg-amber-900/30 border border-amber-800/30 rounded-full mb-6 backdrop-blur-sm">
-              {t('explore.discoverSavor')}
-            </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent">
-                {t('rolling.discoverAmazing')}
+                {t('explore.discoverAmazing')}
               </span>
               <br className="hidden md:block" />
               <span className="relative inline-block">
                 <span className={`relative z-10 bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 -translate-y-2'}`}>
-                  {t('rolling.nearYou')}
+                  {t('explore.nearYou')}
                 </span>
                 <span className="absolute bottom-0 left-0 w-full h-3 bg-amber-900/30 -z-0 transform -translate-y-1 rounded-full"></span>
               </span>
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
-              {t('rolling.description')}
+              {t('explore.description')}
             </p>
             
             {/* Large CTA Button */}
@@ -82,7 +93,7 @@ const ExploreRestaurants = () => {
               className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 relative overflow-hidden group"
             >
               <span className="relative z-10">
-                {t("rolling.exploreNow")}
+                {t("explore.exploreNow")}
                 <span className={`ml-2.5 transition-transform duration-200 ${currentKeywordIndex === 0 ? 'scale-110' : ''}`}>
                   <ArrowRight className="h-5 w-5 inline-block transition-transform group-hover:translate-x-1" />
                 </span>
@@ -93,15 +104,15 @@ const ExploreRestaurants = () => {
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
                 <MapPin className="w-4.5 h-4.5 mr-2.5 text-amber-400/90" />
-                {t("rolling.cities")}
+                {t("explore.cities")}
               </span>
               <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
                 <Star className="w-4.5 h-4.5 mr-2.5 text-amber-400/90" />
-                {t('rolling.topRated')}
+                {t('explore.topRated')}
               </span>
               <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
                 <Clock className="w-4.5 h-4.5 mr-2.5 text-amber-400/90" />
-                {t('rolling.openNow')}
+                {t('explore.openNow')}
               </span>
             </div>
           </div>
@@ -112,7 +123,7 @@ const ExploreRestaurants = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            {venueTypes.map((venue, index) => (
+            {translatedVenueTypes.map((venue, index) => (
               <button
                 key={venue.name}
                 onClick={() => {
@@ -126,9 +137,9 @@ const ExploreRestaurants = () => {
                     }`}
               >
                 {React.cloneElement(venue.icon, {
-                  className: `w-5 h-5 ${currentKeywordIndex === index ? 'text-white' : 'text-amber-600'}`
+                  className: `w-5 h-5 mr-2 ${currentKeywordIndex === index ? 'text-white' : 'text-amber-600'}`
                 })}
-                <span className="font-medium">{t('rolling.venuePlural')}</span>
+                <span className="font-medium">{venue.translatedName}</span>
               </button>
             ))}
           </div>

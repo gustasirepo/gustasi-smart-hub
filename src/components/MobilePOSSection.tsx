@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 
 // Structured data for the mobile POS feature
-import { t } from "@/utils/localization";
+import { t, useLanguage } from "@/utils/localization";
 const mobilePOSStructuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
@@ -28,6 +28,9 @@ const mobilePOSStructuredData = {
 };
 
 export function MobilePOSSection() {
+  // This ensures the component re-renders when language changes
+  useLanguage();
+  
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

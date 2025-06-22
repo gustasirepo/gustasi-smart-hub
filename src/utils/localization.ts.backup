@@ -1,0 +1,813 @@
+import React, { useState, useEffect } from 'react';
+
+export interface Translations {
+  [key: string]: {
+    en: string | string[];
+    fr: string | string[];
+    hi?: string | string[];
+    bn?: string | string[];
+    ta?: string | string[];
+    te?: string | string[];
+  };
+}
+
+// Base translations object
+export const translations: Translations = {
+  // Hero Section
+  // Navbar
+  "rolling.venuePlural": {
+    en: "Restaurants",
+    fr: "Restaurants",
+    hi: "रेस्टोरेंट्स",
+    bn: "রেস্টুরেন্ট",
+    ta: "உணவகங்கள்",
+    te: "రెస్టారెంట్లు"
+  },
+  "rolling.discoverAmazing": {
+    en: "Discover Amazing",
+    fr: "Découvrez Incroyable",
+    hi: "शानदार खोजें",
+    bn: "অবিশ্বাস্য আবিষ্কার করুন",
+    ta: "அற்புதங்களை கண்டறியவும்",
+    te: "అద్భుతమైనవి కనుగొనండి"
+  },
+  "rolling.nearYou": {
+    en: "Near You",
+    fr: "Près de chez vous",
+    hi: "आपके पास",
+    bn: "আপনার কাছে",
+    ta: "உங்களுக்கு அருகில்",
+    te: "మీ దగ్గర"
+  },
+  "rolling.description": {
+    en: "Find the best places to eat, drink, and relax around you.",
+    fr: "Trouvez les meilleurs endroits pour manger, boire et vous détendre autour de vous.",
+    hi: "अपने आस-पास खाने, पीने और आराम करने के लिए सबसे अच्छी जगहें खोजें।",
+    bn: "আপনার আশেপাশে খাওয়া, পান এবং বিশ্রাম করার জন্য সেরা স্থানগুলি খুঁজুন।",
+    ta: "உங்கள் அருகில் சாப்பிட, குடிக்க மற்றும் ஓய்வெடுக்க சிறந்த இடங்களை கண்டறியவும்.",
+    te: "మీ చుట్టూ తినడానికి, త్రాగడానికి మరియు విశ్రాంతి తీసుకోవడానికి ఉత్తమ ప్రదేశాలను కనుగొనండి."
+  },
+
+  // Success Stories
+  "success.growth": {
+    en: "Increase in monthly revenue",
+    fr: "Augmentation du revenu mensuel",
+    hi: "मासिक राजस्व में वृद्धि",
+    bn: "মাসিক আয় বৃদ্ধি",
+    ta: "மாதாந்திர வருவாய் அதிகரிப்பு",
+    te: "నెలవారీ ఆదాయంలో పెరుగుదల"
+  },
+  "success.time": {
+    en: "Save 800 hrs/year on accounting",
+    fr: "Économisez 800h/an sur la comptabilité",
+    hi: "लेखांकन पर प्रति वर्ष 800 घंटे बचाएं",
+    bn: "হিসাবরক্ষণে প্রতি বছর ৮০০ ঘন্টা সাশ্রয় করুন",
+    ta: "கணக்கில் ஆண்டுக்கு 800 மணி நேரம் சேமிக்கவும்",
+    te: "అకౌంటింగ్‌లో సంవత్సరానికి 800 గంటలు ఆదా చేయండి"
+  },
+  "success.reports": {
+    en: "Track 25+ real-time reports",
+    fr: "Suivez 25+ rapports en temps réel",
+    hi: "25+ रीयल-टाइम रिपोर्ट्स को ट्रैक करें",
+    bn: "২৫+ রিয়েল-টাইম রিপোর্ট ট্র্যাক করুন",
+    ta: "25+ நேரடி அறிக்கைகளை கண்காணிக்கவும்",
+    te: "25+ రియల్-టైమ్ నివేదికలను ట్రాక్ చేయండి"
+  },
+  // Success Stories - Company Names
+  "success.company.restaurantB": {
+    en: "Restaurant B",
+    fr: "Restaurant B",
+    hi: "रेस्टोरेंट B",
+    bn: "রেস্টুরেন্ট B",
+    ta: "உணவகம் B",
+    te: "రెస్టారెంట్ B"
+  },
+  "success.company.cafeCentral": {
+    en: "Cafe Central",
+    fr: "Café Central",
+    hi: "कैफे सेंट्रल",
+    bn: "ক্যাফে সেন্ট্রাল",
+    ta: "கஃபே சென்ட்ரல்",
+    te: "కెఫే సెంట్రల్"
+  },
+  "success.company.hotelPlaza": {
+    en: "Hotel Plaza",
+    fr: "Hôtel Plaza",
+    hi: "होटल प्लाज़ा",
+    bn: "হোটেল প্লাজা",
+    ta: "ஹோட்டல் பிளாசா",
+    te: "హోటల్ ప్లాజా"
+  },
+  "rolling.topRated": {
+    en: "Top Rated",
+    fr: "Les mieux notés",
+    hi: "शीर्ष रेटेड",
+    bn: "শীর্ষ রেটেড",
+    ta: "சிறந்த மதிப்பீடு",
+    te: "టాప్ రేటెడ్"
+  },
+  "rolling.openNow": {
+    en: "Open Now",
+    fr: "Ouvert maintenant",
+    hi: "अभी खुला है",
+    bn: "এখন খোলা",
+    ta: "இப்போது திறந்துள்ளது",
+    te: "ఇప్పుడు తెరవండి"
+  },
+  "nav.login": { en: "Login", fr: "Connexion", hi: "लॉगिन", bn: "লগইন", ta: "உள்நுழை", te: "లాగిన్" },
+  "nav.signup": { en: "Sign Up", fr: "S'inscrire", hi: "साइन अप", bn: "সাইন আপ", ta: "பதிவு", te: "నమోదు చేసుకోండి" },
+  "nav.language": { en: "EN", fr: "FR", hi: "HI", bn: "BN", ta: "TA", te: "TE" },
+  
+  // Hero Section
+  "hero.tagline": { en: "The Ultimate All-in-One Restaurant Solution", fr: "La Solution Restaurant Tout-en-Un Ultime", hi: "सर्वश्रेष्ठ ऑल-इन-वन रेस्टोरेंट समाधान", bn: "সেরা অল-ইন-ওয়ান রেস্টুরেন্ট সমাধান", ta: "சிறந்த அனைத்தும் ஒன்றாக உள்ள உணவகம் தீர்வு" },
+  "hero.subtext": { en: "Automate orders, manage stock, and drive profits with one intelligent POS platform", fr: "Automatisez les commandes, gérez les stocks et augmentez les profits avec une plateforme POS intelligente", hi: "आदेशों को स्वचालित करें, स्टॉक प्रबंधित करें, और एक बुद्धिमान पीओएस प्लेटफ़ॉर्म के साथ लाभ बढ़ाएं", bn: "অর্ডার স্বয়ংক্রিয় করুন, স্টক পরিচালনা করুন এবং একটি বুদ্ধিমান POS প্ল্যাটফর্ম দিয়ে লাভ বাড়ান", ta: "ஆணைகளை தானாகச் செய்யுங்கள், பங்குகளை நிர்வகியுங்கள், மற்றும் ஒரு புத்திசாலி POS தளத்துடன் லாபங்களை அதிகரியுங்கள்", te: "ఆర్డర్లను ఆటోమేట్ చేయండి, స్టాక్ నిర్వహించండి మరియు ఒక తెలివైన POS ప్లాట్‌ఫారమ్‌తో లాభాలను పెంచుకోండి" },
+  "hero.cta": { en: "Book a Demo", fr: "Réserver une Démo", hi: "डेमो बुक करें", bn: "একটি ডেমো বুক করুন", ta: "டெமோவை பதிவு செய்யவும்", te: "డెమో బుక్ చేయండి" },
+  
+
+  // Hero Section Additional
+  "hero.mainTitle": { en: "The Ultimate", fr: "L'Ultime", hi: "सर्वश्रेष्ठ", bn: "সেরা", ta: "சிறந்த", te: "అత్యుత్తమ" },
+  "hero.subTitle": { en: "Restaurant Solution", fr: "Solution Restaurant", hi: "रेस्टोरेंट समाधान", bn: "রেস্টুরেন্ট সমাধান", ta: "உணவகம் தீர்வு", te: "రెస్టారెంట్ పరిష్కారం" },
+  "hero.description": { 
+    en: "Transform your restaurant with intelligent automation, real-time analytics, and seamless multi-platform integration.", 
+    fr: "Transformez votre restaurant avec l'automatisation intelligente, l'analyse en temps réel et l'intégration transparente multi-plateformes.", 
+    hi: "अपने रेस्तरां को बुद्धिमान स्वचालन, रीयल-टाइम एनालिटिक्स और निर्बाध मल्टी-प्लेटफॉर्म एकीकरण के साथ बदलें।", 
+    bn: "আপনার রেস্টুরেন্টকে বুদ্ধিমান অটোমেশন, রিয়েল-টাইম বিশ্লেষণ এবং নির্বিঘ্ন মাল্টি-প্ল্যাটফর্ম ইন্টিগ্রেশনের সাথে রূপান্তর করুন।", 
+    ta: "உங்கள் உணவகத்தை புத்திசாலி தானியங்கி, நேரடி பகுப்பாய்வு மற்றும் தடையற்ற பல தள ஒருங்கிணைப்புடன் மாற்றுங்கள்.",
+    te: "మీ రెస్టారెంట్‌ను ఇంటెలిజెంట్ ఆటోమేషన్, రియల్-టైమ్ అనలిటిక్స్ మరియు సీమ్‌లెస్ మల్టీ-ప్లాట్‌ఫారమ్ ఇంటిగ్రేషన్‌తో రూపాంతరం చెందండి."
+  },
+  "hero.orderGrowth": { en: "Order Growth", fr: "Croissance des Commandes", hi: "आदेश वृद्धि", bn: "অর্ডার বৃদ্ধি", ta: "ஆணை வளர்ச்சி", te: "ఆర్డర్ వృద్ధి" },
+  "hero.fraudReduction": { en: "Fraud Reduction", fr: "Réduction de la Fraude", hi: "धोखाधड़ी में कमी", bn: "প্রতারণা হ্রাস", ta: "மோசடி குறைப்பு", te: "మోసం తగ్గింపు" },
+  "hero.restaurants": { en: "Restaurants", fr: "Restaurants", hi: "रेस्टोरेंट्स", bn: "রেস্টুরেন্ট", ta: "உணவகங்கள்", te: "రెస్టారెంట్లు" },
+  "hero.rating": { en: "Rating", fr: "Note", hi: "रेटिंग", bn: "রেটিং", ta: "மதிப்பீடு", te: "రేటింగ్" },
+  "hero.ratingValue": { en: "4.9★", fr: "4,9★", hi: "४.९★", bn: "৪.৯★", ta: "௪.௯★", te: "౪.౯★" },
+  "hero.orderGrowthValue": { en: "+35%", fr: "+35%", hi: "+३५%", bn: "+৩৫%", ta: "+௩௫%", te: "+౩౫%" },
+  "hero.fraudReductionValue": { en: "25%", fr: "25%", hi: "२५%", bn: "২৫%", ta: "௨௫%", te: "౨౫%" },
+  "hero.restaurantsValue": { en: "50K+", fr: "50K+", hi: "५०K+", bn: "৫০K+", ta: "௫0K+", te: "50K+" },
+  "pos.nowAvailable": { en: "Now Available", fr: "Disponible Maintenant", hi: "अभी उपलब्ध", bn: "এখনই উপলব্ধ", ta: "இப்போது கிடைக்கிறது", te: "ఇప్పుడు అందుబాటులో ఉంది" },
+  "pos.headline.main": { en: "Mobile POS", fr: "Caisse Mobile", hi: "मोबाइल पीओएस", bn: "মোবাইল পিওএস", ta: "மொபைல் POS", te: "మొబైల్ POS" },
+  "pos.headline.sub": { en: "for Modern Restaurants", fr: "pour Restaurants Modernes", hi: "आधुनिक रेस्तरां के लिए", bn: "আধুনিক রেস্তোঁরাগুলির জন্য", ta: "நவீன உணவகங்களுக்கு", te: "ఆధునిక రెస్టారెంట్ల కోసం" },
+  "pos.body": { en: "Transform your restaurant operations with our mobile POS solution. Take orders tableside, manage inventory, and process payments - all from your smartphone or tablet.", fr: "Transformez les opérations de votre restaurant avec notre solution de caisse mobile. Prenez les commandes à table, gérez les stocks et traitez les paiements - le tout depuis votre smartphone ou tablette.", hi: "हमारे मोबाइल पीओएस समाधान के साथ अपने रेस्तरां के संचालन को बदलें। टेबल साइड ऑर्डर लें, इन्वेंट्री प्रबंधित करें, और भुगतान संसाधित करें - सभी अपने स्मार्टफोन या टैबलेट से।", bn: "আমাদের মোবাইল পিওএস সমাধান দিয়ে আপনার রেস্তোরাঁর অপারেশন রূপান্তর করুন। টেবিলে অর্ডার নিন, ইনভেন্টরি পরিচালনা করুন এবং অর্থপ্রদান প্রক্রিয়া করুন - সবই আপনার স্মার্টফোন বা ট্যাবলেট থেকে।", ta: "எங்கள் மொபைல் POS தீர்வுடன் உங்கள் உணவக செயல்பாடுகளை மாற்றவும். டேபிள் சைட் ஆர்டர்களை எடுத்து, இன்வென்டரியை நிர்வகித்து, கட்டணங்களை செயல்படுத்தவும் - அனைத்தும் உங்கள் ஸ்மார்ட்போன் அல்லது டேப்லெட்டில் இருந்து.", te: "మా మొబైల్ POS పరిష్కారంతో మీ రెస్టారెంట్ ఆపరేషన్లను రూపాంతరపరచండి. టేబుల్ సైడ్ ఆర్డర్లు తీసుకోండి, ఇన్వెంటరీని నిర్వహించండి మరియు చెల్లింపులను ప్రాసెస్ చేయండి - అన్నీ మీ స్మార్ట్ఫోన్ లేదా టాబ్లెట్ నుండి." },
+  "pos.noHardwareRequired": { en: "No additional hardware required", fr: "Aucun matériel supplémentaire requis", hi: "कोई अतिरिक्त हार्डवेयर आवश्यक नहीं", bn: "কোনও অতিরিক্ত হার্ডওয়্যার প্রয়োজন নেই", ta: "கூடுதல் வன்பொருள் தேவையில்லை", te: "అదనపు హార్డ్‌వేర్ అవసరం లేదు" },
+  "pos.feature.swiggyZomato": { en: "Swiggy & Zomato orders directly in your POS", fr: "Commandes Swiggy et Zomato directement dans votre caisse", hi: "स्विगी और ज़ोमैटो ऑर्डर सीधे आपके पीओएस में", bn: "সুইগি এবং জোমাটো অর্ডার সরাসরি আপনার পিওএসে", ta: "ஸ்விகி & ஜோமாட்டோ ஆர்டர்கள் நேரடியாக உங்கள் POS இல்", te: "స్విగ్గీ & జోమాటో ఆర్డర్లు నేరుగా మీ POSలో" },
+  "pos.feature.gustasiOrders": { en: "Gustasi orders sync in real-time", fr: "Commandes Gustasi synchronisées en temps réel", hi: "गुस्तासी ऑर्डर रीयल-टाइम में सिंक होते हैं", bn: "গুস্তাসি অর্ডার রিয়েল-টাইমে সিঙ্ক হয়", ta: "கஸ்தாசி ஆணைகள் நேரடி நேரத்தில் ஒத்திசைக்கப்படுகின்றன", te: "గస్తాసీ ఆర్డర్లు రియల్-టైమ్‌లో సింక్ అవుతాయి" },
+  "pos.feature.bluetoothPrinter": { en: "Bluetooth printer support for kitchen tickets", fr: "Support d'imprimante Bluetooth pour les tickets de cuisine", hi: "किचन टिकटों के लिए ब्लूटूथ प्रिंटर सपोर्ट", bn: "রান্নাঘরের টিকিটের জন্য ব্লুটুথ প্রিন্টার সমর্থন", ta: "சமையலறை டிக்கெட்டுகளுக்கான புளூடூத் பிரிண்டர் ஆதரவு", te: "కిచన్ టిక్కెట్ల కోసం బ్లూటూత్ ప్రింటర్ మద్దతు" },
+  "pos.feature.menuBilling": { en: "Menu & billing at your fingertips", fr: "Menu et facturation à portée de main", hi: "आपकी उंगलियों पर मेनू और बिलिंग", bn: "আপনার আঙুলের ডগায় মেনু এবং বিলিং", ta: "உங்கள் விரல்நுனியில் மெனு & பில்லிங்", te: "మీ వేళ్లతో మెను & బిల్లింగ్" },
+  "hero.liveDashboard": { en: "Live Dashboard", fr: "Tableau de Bord en Direct", hi: "లైవ్ డాష్‌బోర్డ్", bn: "লাইভ ড্যাশবোর্ড", ta: "நேரடி டாஷ்போர்டு", te: "లైవ్ డాష్‌బోర్డ్" },
+  "hero.realTimeUpdates": { en: "Real-time Updates", fr: "Mises à Jour en Temps Réel", hi: "రియల్ టైమ్ నవీకరణలు", bn: "রিয়েল-টাইম আপডেট", ta: "நேரடி புதுப்பிப்புகள்", te: "రియల్ టైమ్ నవీకరణలు" },
+  "hero.avgOrderValue": { en: "Avg. Order Value", fr: "Valeur Moyenne Commande", hi: "సగటు ఆర్డర్ విలువ", bn: "গড় অর্ডার মূল্য", ta: "சராசரி ஆணை மதிப்பு", te: "సగటు ఆర్డర్ విలువ" },
+  "hero.todaysGrowth": { en: "Today's Growth", fr: "Croissance Aujourd'hui", hi: "నేటి వృద్ధి", bn: "আজকের বৃদ্ধি", ta: "இன்றைய வளர்ச்சி", te: "నేటి వృద్ధి" },
+  "hero.activeOrders": { en: "Active Orders", fr: "Commandes Actives", hi: "క్రియాశీల ఆర్డర్లు", bn: "সক্রিয় অর্ডার", ta: "செயலில் உள்ள ஆணைகள்", te: "క్రియాశీల ఆర్డర్లు" },
+  "hero.newOrder": { en: "New Order!", fr: "Nouvelle Commande!", hi: "नया ऑर्डर!", bn: "নতুন অর্ডার!", ta: "புதிய ஆணை!", te: "కొత్త ఆర్డర్!" },
+  "hero.orderReady": { en: "Order Ready!", fr: "Commande Prête!", hi: "आदेश तैयार है!", bn: "অর্ডার প্রস্তুত!", ta: "ஆணை தயாராக உள்ளது!", te: "ఆర్డర్ సిద్ధం!" },
+  "success.company.restaurantB": { en: "Restaurant B", fr: "Restaurant B", hi: "रेस्टोरेंट B", bn: "রেস্টুরেন্ট B", ta: "உணவகம் B", te: "రెస్టారెంట్ B" },
+  "success.company.cafeCentral": {
+    en: "Cafe Central",
+    fr: "Café Central",
+    hi: "कैफे सेंट्रल",
+    bn: "ক্যাফে সেন্ট্রাল",
+    ta: "கஃபே சென்ட்ரல்",
+    te: "కెఫే సెంట్రల్"
+  },
+  "success.company.hotelPlaza": {
+    en: "Hotel Plaza",
+    fr: "Hôtel Plaza",
+    hi: "होटल प्लाज़ा",
+    bn: "হোটেল প্লাজা",
+    ta: "ஹோட்டல் பிளாசா",
+    te: "హోటల్ ప్లాజా"
+  },
+  // Language Names
+  "lang.en": {
+    en: "English",
+    fr: "Anglais",
+    hi: "अंग्रेज़ी",
+    bn: "ইংরেজি",
+    ta: "ஆங்கிலம்",
+    te: "ఆంగ్లం"
+  },
+  "lang.fr": {
+    en: "French",
+    fr: "Français",
+    hi: "फ्रेंच",
+    bn: "ফরাসি",
+    ta: "பிரஞ்சு",
+    te: "ఫ్రెంచ్"
+  },
+  "lang.hi": {
+    en: "Hindi",
+    fr: "Hindi",
+    hi: "हिन्दी",
+    bn: "হিন্দি",
+    ta: "இந்தி",
+    te: "హిందీ"
+  },
+  "lang.bn": {
+    en: "Bengali",
+    fr: "Bengali",
+    hi: "बंगाली",
+    bn: "বাংলা",
+    ta: "பெங்காலி",
+    te: "బెంగాలీ"
+  },
+  "lang.ta": {
+    en: "Tamil",
+    fr: "Tamoul",
+    hi: "तमिल",
+    bn: "তামিল",
+    ta: "தமிழ்",
+    te: "தமிழ்"
+  },
+  "lang.te": {
+    en: "Telugu",
+    fr: "Télougou",
+    hi: "तेलुगु",
+    bn: "তেলুগু",
+    ta: "தெலுங்கு",
+    te: "తెలుగు"
+  },
+  
+  // Operations
+  "operations.title": { en: "360° Operations Overview", fr: "Vue d'Ensemble Opérations 360°", hi: "360° संचालन अवलोकन", bn: "৩৬০° অপারেশনস ওভারভিউ", ta: "360° செயல்பாட்டு மேற்பார்வை", te: "360° ఆపరేషన్స్ అవలోకనం" },
+  "operations.description": { en: "Complete visibility and control over every aspect of your restaurant business", fr: "Visibilité et contrôle complets sur tous les aspects de votre entreprise de restauration", hi: "आपके रेस्तरां व्यवसाय के हर पहलू पर पूरी दृश्यता और नियंत्रण", bn: "আপনার রেস্টুরেন্ট ব্যবসার প্রতিটি দিকের সম্পূর্ণ দৃশ্যমানতা এবং নিয়ন্ত্রণ", ta: "உங்கள் உணவக வணிகத்தின் அனைத்து அம்சங்களிலும் முழுமையான பார்வையும் கட்டுப்பாடும்", te: "మీ రెస్టారెంట్ వ్యాపారంలోని ప్రతి అంశంపై సంపూర్ణ దృశ్యమానత మరియు నియంత్రణ" },
+  "operations.orderDesc": { en: "Real-time order tracking and kitchen operations", fr: "Suivi des commandes en temps réel et opérations de cuisine", hi: "रीयल-टाइम ऑर्डर ट्रैकिंग और किचन संचालन", bn: "রিয়েল-টাইম অর্ডার ট্র্যাকিং এবং রান্নাঘর পরিচালনা", ta: "நேரடி ஆர்டர் கண்காணிப்பு மற்றும் சமையலறை செயல்பாடுகள்", te: "రియల్-టైమ్ ఆర్డర్ ట్రాకింగ్ మరియు కిచన్ ఆపరేషన్స్" },
+  "operations.menuDesc": { en: "Dynamic menu management and pricing control", fr: "Gestion dynamique des menus et contrôle des prix", hi: "डायनामिक मेनू प्रबंधन और मूल्य निर्धारण नियंत्रण", bn: "ডায়নামিক মেনু ম্যানেজমেন্ট এবং মূল্য নিয়ন্ত্রণ", ta: "இயங்கும் மெனு மேலாண்மை மற்றும் விலை கட்டுப்பாடு", te: "డైనమిక్ మెనూ నిర్వహణ మరియు ధర నియంత్రణ" },
+  "operations.qrDesc": { en: "Contactless dining with smart QR menus", fr: "Restaurant sans contact avec menus QR intelligents", hi: "स्मार्ट क्यूआर मेनू के साथ संपर्क रहित भोजन", bn: "স্মার্ট কিউআর মেনুর সাথে কন্টাক্টলেস ডাইনিং", ta: "ஸ்மார்ட் QR மெனுக்களுடன் தொடுதலில்லா உணவு", te: "స్మార్ట్ QR మెనూలతో కాంటాక్ట్‌లెస్ డైనింగ్" },
+  "operations.feedbackDesc": { en: "Real-time reviews and rating management", fr: "Gestion des avis et des notes en temps réel", hi: "रीयल-टाइम समीक्षाएँ और रेटिंग प्रबंधन", bn: "রিয়েল-টাইম রিভিউ এবং রেটিং ম্যানেজমেন্ট", ta: "நேரடி விமர்சனங்கள் மற்றும் மதிப்பீடு மேலாண்மை", te: "రియల్-టైమ్ సమీక్షలు మరియు రేటింగ్ నిర్వహణ" },
+  "operations.tableDesc": { en: "Seamless booking and table management", fr: "Réservation et gestion des tables fluides", hi: "सीमलेस बुकिंग और टेबल प्रबंधन", bn: "নিরবচ্ছিন্ন বুকিং এবং টেবিল ম্যানেজমেন্ট", ta: "முரண்பாடற்ற முன்பதிவு மற்றும் மேசை மேலாண்மை", te: "సీమ్‌లెస్ బుకింగ్ మరియు టేబుల్ నిర్వహణ" },
+  "operations.supplierDesc": { en: "Smart inventory tracking and supplier management", fr: "Suivi intelligent des stocks et gestion des fournisseurs", hi: "स्मार्ट इन्वेंटरी ट्रैकिंग और आपूर्तिकर्ता प्रबंधन", bn: "স্মার্ট ইনভেন্টরি ট্র্যাকিং এবং সাপ্লায়ার ম্যানেজমেন্ট", ta: "ஸ்மார்ட் சரக்கு கண்காணிப்பு மற்றும் சப்ளையர் மேலாண்மை", te: "స్మార్ట్ ఇన్వెంటరీ ట్రాకింగ్ మరియు సరఫరాదారు నిర్వహణ" },
+  
+  // Success Stories
+  "success.title": { 
+    en: "Success Stories", 
+    fr: "Histoires de Succès", 
+    hi: "सफलता की कहानियाँ", 
+    bn: "সাফল্যের গল্প", 
+    ta: "வெற்றிக் கதைகள்", 
+    te: "విజయ కథనాలు" 
+  },
+  "success.subtitle": { 
+    en: "Real results from real restaurants using Gustasi", 
+    fr: "Résultats réels de vrais restaurants utilisant Gustasi", 
+    hi: "गुस्तासी का उपयोग करने वाले असली रेस्तरां से वास्तविक परिणाम", 
+    bn: "গুস্তাসি ব্যবহার করে প্রকৃত রেস্টুরেন্ট থেকে প্রকৃত ফলাফল", 
+    ta: "குஸ்தாசி பயன்படுத்தும் உணவகங்களில் இருந்து உண்மையான முடிவுகள்", 
+    te: "గుస్తాసిని ఉపయోగించి నిజమైన రెస్టారెంట్ల నుండి నిజమైన ఫలితాలు" 
+  },
+  "success.growth": { 
+    en: "Restaurant B saw 230% revenue growth", 
+    fr: "Restaurant B a vu une croissance de 230% du chiffre d'affaires", 
+    hi: "रेस्तरां B ने 230% राजस्व वृद्धि देखी", 
+    bn: "রেস্টুরেন্ট বি ২৩০% রাজস্ব বৃদ্ধি দেখেছে", 
+    ta: "உணவகம் B 230% வருமான வளர்ச்சியை கண்டது", 
+    te: "రెస్టారెంట్ B 230% ఆదాయ వృద్ధిని చవిచూసింది" 
+  },
+  "success.time": { 
+    en: "Save 800 hrs/year on accounting", 
+    fr: "Économisez 800h/an sur la comptabilité", 
+    hi: "लेखांकन पर प्रति वर्ष 800 घंटे बचाएं", 
+    bn: "হিসাবরক্ষণে প্রতি বছর ৮০০ ঘন্টা সাশ্রয় করুন", 
+    ta: "கணக்கில் ஆண்டுக்கு 800 மணி நேரம் சேமிக்கவும்", 
+    te: "అకౌంటింగ్‌లో సంవత్సరానికి 800 గంటలు ఆదా చేయండి" 
+  },
+  "success.reports": { 
+    en: "Track 25+ real-time reports", 
+    fr: "Suivez 25+ rapports en temps réel", 
+    hi: "25+ रीयल-टाइम रिपोर्ट्स को ट्रैक करें", 
+    bn: "২৫+ রিয়েল-টাইম রিপোর্ট ট্র্যাক করুন", 
+    ta: "25+ நேரடி அறிக்கைகளை கண்காணிக்கவும்", 
+    te: "25+ రియల్-టైమ్ నివేదికలను ట్రాక్ చేయండి" 
+  },
+  
+  // WhatsApp Flow
+  "whatsapp.title": { en: "WhatsApp Menu Flow", fr: "Flux Menu WhatsApp", hi: "व्हाट्सएप मेनू फ्लो", bn: "হোয়াটসঅ্যাপ মেনু ফ্লো", ta: "வாட்ஸ்அப் மெனு ஓட்டம்" },
+  "whatsapp.subtitle": { en: "Seamless customer journey from QR scan to order completion", fr: "Parcours client fluide du scan QR à la finalisation de la commande", hi: "क्यूआर स्कैन से ऑर्डर पूर्णता तक सहज ग्राहक यात्रा", bn: "QR স্ক্যান থেকে অর্ডার সম্পূর্ণ হওয়া পর্যন্ত নিরবচ্ছিন্ন গ্রাহক যাত্রা", ta: "QR ஸ்கேன் முதல் ஆணை முடிவடையும் வரை தடையற்ற வாடிக்கையாளர் பயணம்" },
+  "whatsapp.scan": { en: "QR Scan", fr: "Scan QR", hi: "क्यूआर स्कैन", bn: "QR স্ক্যান", ta: "QR ஸ்கேன்" },
+  "whatsapp.verification": { en: "WhatsApp Verification", fr: "Vérification WhatsApp", hi: "व्हाट्सएप सत्यापन", bn: "হোয়াটসঅ্যাপ যাচাইকরণ", ta: "வாட்ஸ்அப் சரிபார்ப்பு" },
+  "whatsapp.menu": { en: "Menu", fr: "Menu", hi: "मेनू", bn: "মেনু", ta: "மெனு" },
+  "whatsapp.capture": { en: "Lead Capture", fr: "Capture de Prospects", hi: "लीड कैप्चर", bn: "লিড ক্যাপচার", ta: "வழிகாட்டி பிடிப்பு" },
+  "whatsapp.note": { en: "Data saved to dashboard for future targeting", fr: "Données sauvegardées au tableau de bord pour le ciblage futur", hi: "भविष्य के टार्गेटिंग के लिए डैशबोर्ड में डेटा सहेजा गया", bn: "ভবিষ্যতের লক্ষ্যকরণের জন্য ড্যাশবোর্ডে ডেটা সংরক্ষিত হয়েছে", ta: "எதிர்கால இலக்கீட்டிற்காக தரவு டாஷ்போர்டில் சேமிக்கப்பட்டது" },
+  
+  // Franchise
+  "franchise.title": { en: "Franchise Dashboard", fr: "Tableau de Bord Franchise", hi: "फ्रेंचाइज़ी डैशबोर्ड", bn: "ফ্র্যাঞ্চাইজি ড্যাশবোর্ড", ta: "கிளை டாஷ்போர்டு" },
+  "franchise.subtitle": { en: "Manage multi-location outlets with a unified, modern franchise dashboard.", fr: "Gérez les points de vente multi-emplacements avec un tableau de bord franchise unifié et moderne.", hi: "एकीकृत, आधुनिक फ्रेंचाइज़ी डैशबोर्ड के साथ मल्टी-लोकेशन आउटलेट्स प्रबंधित करें।", bn: "একীভূত, আধুনিক ফ্র্যাঞ্চাইজি ড্যাশবোর্ড দিয়ে মাল্টি-লোকেশন আউটলেট পরিচালনা করুন।", ta: "ஒருங்கிணைந்த, நவீன கிளை டாஷ்போர்டுடன் பல இடங்களில் உள்ள கிளைகளை நிர்வகிக்கவும்." },
+  "franchise.activeOutlets": { en: "Active Outlets", fr: "Points de Vente Actifs", hi: "सक्रिय आउटलेट्स", bn: "সক্রিয় আউটলেট", ta: "செயலில் உள்ள கிளைகள்" },
+  "franchise.totalRevenue": { en: "Total Revenue", fr: "Revenu Total", hi: "कुल राजस्व", bn: "মোট রাজস্ব", ta: "மொத்த வருமானம்" },
+  "franchise.outletLocations": { en: "Outlet Locations", fr: "Emplacements des Points de Vente", hi: "आउटलेट स्थान", bn: "আউটলেট অবস্থান", ta: "கிளை இடங்கள்" },
+  "franchise.whyChoose": { en: "Why Choose Franchise Dashboard?", fr: "Pourquoi Choisir le Tableau de Bord Franchise ?", hi: "फ्रेंचाइज़ी डैशबोर्ड क्यों चुनें?", bn: "ফ্র্যাঞ্চাইজি ড্যাশবোর্ড কেন বেছে নেবেন?", ta: "கிளை டாஷ்போர்டை ஏன் தேர்வு செய்ய வேண்டும்?" },
+  "franchise.benefit1": { en: "Real-time performance tracking for all outlets", fr: "Suivi des performances en temps réel pour tous les points de vente", hi: "सभी आउटलेट्स के लिए रीयल-टाइम प्रदर्शन ट्रैकिंग", bn: "সমস্ত আউটলেটের জন্য রিয়েল-টাইম পারফরম্যান্স ট্র্যাকিং", ta: "அனைத்து கிளைகளுக்கும் நேரடி செயல்திறன் கண்காணிப்பு" },
+  "franchise.benefit2": { en: "Centralized revenue and staff management", fr: "Gestion centralisée des revenus et du personnel", hi: "केंद्रीकृत राजस्व और स्टाफ प्रबंधन", bn: "কেন্দ্রীভূত রাজস্ব এবং স্টাফ ম্যানেজমেন্ট", ta: "மையப்படுத்தப்பட்ட வருமானம் மற்றும் ஊழியர் மேலாண்மை" },
+  "franchise.benefit3": { en: "Easy onboarding for new franchisees", fr: "Intégration facile des nouveaux franchisés", hi: "नए फ्रेंचाइज़ी के लिए आसान ऑनबोर्डिंग", bn: "নতুন ফ্র্যাঞ্চাইজিদের জন্য সহজ অনবোর্ডিং", ta: "புதிய கிளைதாரர்களுக்கான எளிதான இணைப்பு" },
+  "franchise.benefit4": { en: "Visualize outlet locations and status at a glance", fr: "Visualisez les emplacements et le statut des points de vente en un coup d'œil", hi: "आउटलेट स्थानों और स्थिति को एक नज़र में देखें", bn: "এক নজরে আউটলেট অবস্থান এবং অবস্থা দেখুন", ta: "கிளை இடங்கள் மற்றும் நிலையை ஒரு பார்வையில் காண்க" },
+  
+  // Metrics
+  "metrics.chefs": { en: "7000+ Chefs", fr: "7000+ Chefs", hi: "7000+ शेफ", bn: "৭০০০+ শেফ", ta: "7000+ சமையலர்கள்", te: "7000+ వంటమనుషులు" },
+  "metrics.cities": { en: "50+ Cities", fr: "50+ Villes", hi: "50+ शहर", bn: "৫০+ শহর", ta: "50+ நகரங்கள்", te: "50+ నగరాలు" },
+  "metrics.reports": { en: "25+ Reports", fr: "25+ Rapports", hi: "25+ रिपోर्ट्स", bn: "২৫+ রিপোর্ট", ta: "25+ அறிக்கைகள்", te: "25+ నివేదికలు" },
+  "metrics.savings": { en: "20–25% Fraud Savings", fr: "20–25% Économies Fraude", hi: "20–25% धोखाधड़ी बचत", bn: "২০–২৫% প্রতারণা সাশ্রয়", ta: "20–25% மோசடி சேமிப்பு", te: "20–25% మోసం పొదుపులు" },
+  
+  // CTAs
+  "cta.schedule": { en: "Schedule Demo", fr: "Planifier Démo", hi: "डेमो शेड्यूल करें", bn: "ডেমো নির্ধারণ করুন", ta: "டெமோவை திட்டமிடவும்" },
+  "cta.pricing": { en: "Explore Pricing", fr: "Explorer Prix", hi: "मूल्य निर्धारण देखें", bn: "মূল্য নির্ধারণ দেখুন", ta: "விலை நிர்ணயத்தை ஆராயவும்" },
+  "cta.chefs": { en: "Find Chefs Near You", fr: "Trouver Chefs Près de Vous", hi: "अपने पास शेफ खोजें", bn: "আপনার কাছাকাছি শেফ খুঁজুন", ta: "உங்களுக்கருகில் சமையலர்களை கண்டறியவும்" },
+  
+  // Footer
+  "footer.home": { en: "Home", fr: "Accueil", hi: "होम", bn: "হোম", ta: "முகப்பு" },
+  "footer.about": { en: "About", fr: "À Propos", hi: "के बारे में", bn: "সম্পর্কে", ta: "பற்றி" },
+  "footer.features": { en: "Features", fr: "Fonctionnalités", hi: "विशेषताएँ", bn: "বৈশিষ্ট্যাবলী", ta: "அம்சங்கள்" },
+  "footer.pricing": { en: "Pricing", fr: "Tarification", hi: "मूल्य निर्धारण", bn: "মূল্য নির্ধারণ", ta: "விலை நிர்ணயம்" },
+  "footer.contact": { en: "Contact", fr: "Contact", hi: "संपर्क करें", bn: "যোগাযোগ", ta: "தொடர்பு" },
+  "footer.description": { en: "The ultimate all-in-one restaurant solution. Automate orders, manage stock, and drive profits with our intelligent POS platform.", fr: "La solution tout-en-un ultime pour restaurants. Automatisez les commandes, gérez les stocks et augmentez les profits avec notre plateforme POS intelligente.", hi: "सर्वश्रेष्ठ ऑल-इन-वन रेस्टोरेंट समाधान। आदेशों को स्वचालित करें, स्टॉक प्रबंधित करें, और हमारे बुद्धिमान पीओएस प्लेटफ़ॉर्म के साथ लाभ बढ़ाएं।", bn: "সেরা অল-ইন-ওয়ান রেস্টুরেন্ট সমাধান। অর্ডার স্বয়ংক্রিয় করুন, স্টক পরিচালনা করুন এবং আমাদের বুদ্ধিমান POS প্ল্যাটফর্ম দিয়ে লাভ বাড়ান।", ta: "சிறந்த அனைத்தும் ஒன்றாக உள்ள உணவகம் தீர்வு. ஆணைகளை தானாகச் செய்யுங்கள், பங்குகளை நிர்வகியுங்கள், மற்றும் எங்கள் புத்திசாலி POS தளத்துடன் லாபங்களை அதிகரியுங்கள்." },
+  "footer.navigation": { en: "Navigation", fr: "Navigation", hi: "नेविगेशन", bn: "নেভিগেশন", ta: "வழிசெலுத்தல்" },
+  "footer.copyright": { en: " 2024 Gustasi. All rights reserved.", fr: " 2024 Gustasi. Tous droits réservés.", hi: " 2024 Gustasi. सर्वाधिकार सुरक्षित।", bn: " 2024 Gustasi. সর্বস্বত্ব সংরক্ষিত।", ta: " 2024 Gustasi. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை." },
+  
+  // Chat
+  "chat.help": { en: "Need Help?", fr: "Besoin d'Aide?", hi: "मदद चाहिए?", bn: "সাহায্য দরকার?", ta: "உதவி வேண்டுமா?" },
+  
+  // Aggregator
+  "aggregator.title": { en: "Now you can view all your aggregator orders in one place with Gustasi.", fr: "Maintenant, vous pouvez voir toutes vos commandes d'agrégateurs en un seul endroit avec Gustasi.", hi: "अब आप अपने सभी एग्रीगेटर ऑर्डर को एक ही जगह पर Gustasi के साथ देख सकते हैं।", bn: "এখন আপনি Gustasi দিয়ে আপনার সমস্ত অ্যাগ্রিগেটর অর্ডার এক জায়গায় দেখতে পারেন।", ta: "இப்போது நீங்கள் உங்கள் அனைத்து அகரிகேட்டர் ஆணைகளையும் ஒரே இடத்தில் Gustasi உடன் பார்க்கலாம்.", te: "ఇప్పుడు మీరు మీ అన్ని అగ్రిగేటర్ ఆర్డర్లను Gustasiతో ఒకే చోట చూడవచ్చు." },
+  // Mobile POS Section - Consolidated to remove duplicates
+
+  // WhatsApp Flow
+  "wa.title": { en: "Digital Ordering System", fr: "Système de commande numérique", hi: "डिजिटल ऑर्डरिंग सिस्टम", bn: "ডিজিটাল অর্ডারিং সিস্টেম", ta: "டிஜிட்டல் ஆர்டரிங் சிஸ்டம்" },
+  "wa.subtitle": { en: "For Restaurant Owners", fr: "Pour les restaurateurs", hi: "रेस्तरां मालिकों के लिए", bn: "রেস্টুরেন্ট মালিকদের জন্য", ta: "உணவக உரிமையாளர்களுக்காக" },
+  "wa.scan": { en: "Customer Scans QR", fr: "Le client scanne le QR", hi: "ग्राहक QR स्कैन करता है", bn: "গ্রাহক QR স্ক্যান করেন", ta: "வாடிக்கையாளர் QR ஐ ஸ்கேன் செய்கிறார்" },
+  "wa.scanDesc": { en: "QR code at table or takeaway", fr: "QR code à la table ou à emporter", hi: "टेबल या टेकअवे पर QR कोड", bn: "টেবিল বা টেকঅ্যাওয়েতে QR কোড", ta: "மேசை அல்லது எடுத்துச் செல்ல QR குறியீடு" },
+  "wa.menu": { en: "Menu Sent via WhatsApp", fr: "Menu envoyé via WhatsApp", hi: "WhatsApp के माध्यम से मेनू भेजा गया", bn: "WhatsApp এর মাধ্যমে মেনু পাঠানো হয়েছে", ta: "WhatsApp மூலம் மெனு அனுப்பப்பட்டது" },
+  "wa.menuDesc": { en: "Interactive menu in chat", fr: "Menu interactif dans le chat", hi: "चैट में इंटरएक्टिव मेनू", bn: "চ্যাটে ইন্টারেক্টিভ মেনু", ta: "அரட்டையில் இடைமுக மெனு" },
+  "wa.order": { en: "Order Placed", fr: "Commande passée", hi: "ऑर्डर दिया गया", bn: "অর্ডার দেওয়া হয়েছে", ta: "ஆர்டர் வைக்கப்பட்டது" },
+  "wa.orderDesc": { en: "Customer completes order", fr: "Le client termine la commande", hi: "ग्राहक ने ऑर्डर पूरा किया", bn: "গ্রাহক অর্ডার সম্পন্ন করেছেন", ta: "வாடிக்கையாளர் ஆர்டரை முடிக்கிறார்" },
+  "wa.process": { en: "Order Processing", fr: "Traitement de la commande", hi: "ऑर्डर प्रोसेसिंग", bn: "অর্ডার প্রক্রিয়াকরণ", ta: "ஆர்டர் செயலாக்கம்" },
+  "wa.processDesc": { en: "Kitchen receives order", fr: "La cuisine reçoit la commande", hi: "रसोई को ऑर्डर प्राप्त होता है", bn: "রান্নাঘর অর্ডার পায়", ta: "சமையலறை ஆர்டரை பெறுகிறது" },
+  "wa.customer": { en: "Customer Data Captured", fr: "Données client capturées", hi: "ग्राहक डेटा कैप्चर किया गया", bn: "গ্রাহকের তথ্য সংগ্রহ করা হয়েছে", ta: "வாடிக்கையாளர் தரவு பிடிக்கப்பட்டது" },
+  "wa.customerDesc": { en: "For future engagement", fr: "Pour un engagement futur", hi: "भविष्य की सहभागिता के लिए", bn: "ভবিষ্যতের সম্পৃক্ততার জন্য", ta: "எதிர்கால ஈடுபாட்டிற்காக" },
+  "wa.analytics": { en: "Business Insights", fr: "Aperçus commerciaux", hi: "व्यावसायिक अंतर्दृष्टि", bn: "ব্যবসায়িক অন্তর্দৃষ্টি", ta: "வணிக உள்ளடக்கங்கள்" },
+  "wa.analyticsDesc": { en: "Track customer behavior", fr: "Suivre le comportement des clients", hi: "ग्राहक व्यवहार को ट्रैक करें", bn: "গ্রাহকের আচরণ ট্র্যাক করুন", ta: "வாடிக்கையாளர் நடத்தை கண்காணிக்கவும்" },
+  "wa.scanHeadline": { en: "Scan to Start", fr: "Scannez pour commencer", hi: "शुरू करने के लिए स्कैन करें", bn: "শুরু করতে স্ক্যান করুন", ta: "தொடங்க ஸ்கேன் செய்யவும்" },
+  "wa.scanBody": { en: "Point your camera at the QR code to open our menu in WhatsApp", fr: "Pointez votre caméra sur le QR code pour ouvrir notre menu dans WhatsApp", hi: "WhatsApp में हमारा मेनू खोलने के लिए अपने कैमरे को QR कोड पर रखें", bn: "WhatsApp-এ আমাদের মেনু খুলতে ক্যামেরা QR কোডে নির্দেশ করুন", ta: "WhatsApp இல் எங்கள் மெனுவைத் திறக்க உங்கள் கேமராவை QR குறியீட்டில் நோக்கவும்" },
+  "wa.previous": { en: "Previous", fr: "Précédent", hi: "पिछला", bn: "পূর্ববর্তী", ta: "முந்தையது" },
+  "wa.next": { en: "Next", fr: "Suivant", hi: "अगला", bn: "পরবর্তী", ta: "அடுத்தது" },
+  "wa.finish": { en: "Finish", fr: "Terminer", hi: "समाप्त करें", bn: "শেষ", ta: "முடிக்கவும்" },
+  "wa.exportReport": { en: "Export Report", fr: "Exporter le rapport", hi: "रिपोर्ट निर्यात करें", bn: "রিপোর্ট রপ্তানি করুন", ta: "அறிக்கையை ஏற்றுமதி செய்யவும்" },
+  "wa.viewDetailedAnalytics": { en: "View Detailed Analytics", fr: "Voir les analyses détaillées", hi: "विस्तृत विश्लेषण देखें", bn: "বিস্তারিত বিশ্লেষণ দেখুন", ta: "விரிவான பகுப்பாய்வைக் காண்க" },
+};
+
+export type SupportedLanguage = 'en' | 'fr' | 'hi' | 'bn' | 'ta' | 'te';
+let currentLanguage: SupportedLanguage = 'en';
+
+// Add default translations for the contact and demo pages
+translations['contact.pageTitle'] = {
+  en: "Contact Us | Gustasi POS",
+  fr: "Contactez-nous | Gustasi POS",
+  hi: "हमसे संपर्क करें | गुस्तासी पीओएस",
+  bn: "আমাদের সাথে যোগাযোগ করুন | গুস্তাসি পিওএস",
+  ta: "எங்களைத் தொடர்பு கொள்ள | கஸ்தாசி பிஓஎஸ்",
+  te: "మమ్మల్ని సంప్రదించండి | గుస్తాసీ POS"
+};
+
+translations['demo.pageTitle'] = {
+  en: "Schedule a Demo | Gustasi POS",
+  fr: "Planifier une démo | Gustasi POS",
+  hi: "डेमो शेड्यूल करें | गुस्तासी पीओएस",
+  bn: "একটি ডেমো শিডিউল করুন | গুস্তাসি পিওএস",
+  ta: "ஒரு டெமோவை திட்டமிடவும் | கஸ்தாசி பிஓஎஸ்",
+  te: "డెమోని షెడ్యూల్ చేయండి | గుస్తాసీ POS"
+};
+
+translations['contact.hero.title'] = {
+  en: "Let's Talk – We're Here to Help",
+  fr: "Parlons – Nous sommes là pour vous aider",
+  hi: "बात करते हैं – हम यहाँ आपकी मदद के लिए हैं",
+  bn: "চলুন কথা বলি – আমরা আপনাকে সাহায্য করতে এখানে আছি",
+  ta: "பேசலாம் – உங்களுக்கு உதவ நாங்கள் இங்கே இருக்கிறோம்",
+  te: "మాట్లాడుకుందాం – మేము మీకు సహాయం చేయడానికి ఇక్కడ ఉన్నాము"
+};
+
+translations['contact.hero.subtitle'] = {
+  en: "Have questions? Send us a message and we'll get back to you soon.",
+  fr: "Des questions ? Envoyez-nous un message et nous vous répondrons dès que possible.",
+  hi: "प्रश्न हैं? हमें एक संदेश भेजें और हम आपको जल्द ही जवाब देंगे।",
+  bn: "প্রশ্ন আছে? আমাদের একটি বার্তা পাঠান এবং আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।",
+  ta: "கேள்விகள் உள்ளதா? எங்களுக்கு ஒரு செய்தியை அனுப்பவும், நாங்கள் உங்களுக்கு விரைவில் பதிலளிப்போம்.",
+  te: "ప్రశ్నలు ఉన్నాయా? మాకు ఒక సందేశం పంపండి మరియు మేము త్వరలోనే మీకు తిరిగి స్పందిస్తాము."
+};
+
+translations['demo.hero.title'] = {
+  en: "Schedule a Live Demo",
+  fr: "Planifier une démonstration en direct",
+  hi: "लाइव डेमो शेड्यूल करें",
+  bn: "একটি লাইভ ডেমো শিডিউল করুন",
+  ta: "நேரடி டெமோவை திட்டமிடவும்",
+  te: "ప్రత్యక్ష డెమోని షెడ్యూల్ చేయండి"
+};
+
+translations['demo.hero.subtitle'] = {
+  en: "Book a personalized demo to see how Gustasi can transform your restaurant operations.",
+  fr: "Réservez une démonstration personnalisée pour voir comment Gustasi peut transformer les opérations de votre restaurant.",
+  hi: "एक व्यक्तिगत डेमो बुक करें और देखें कि गुस्तासी आपके रेस्तरां के संचालन को कैसे बदल सकता है।",
+  bn: "একটি ব্যক্তিগতকৃত ডেমো বুক করুন এবং দেখুন কিভাবে গুস্তাসি আপনার রেস্তোরাঁর অপারেশনগুলিকে রূপান্তর করতে পারে।",
+  ta: "உங்கள் உணவக செயல்பாடுகளை கஸ்தாசி எவ்வாறு மாற்ற முடியும் என்பதைக் காண தனிப்பயனாக்கப்பட்ட டெமோவைப் புத்தகம் செய்யவும்.",
+  te: "గుస్తాసి మీ రెస్టారెంట్ కార్యకలాపాలను ఎలా మార్చగలదో చూడటానికి ఒక వ్యక్తిగత డెమోని బుక్ చేయండి."
+};
+
+// Form field translations
+translations['form.name'] = {
+  en: "Name",
+  fr: "Nom",
+  hi: "नाम",
+  bn: "নাম",
+  ta: "பெயர்",
+  te: "పేరు"
+};
+
+translations['form.email'] = {
+  en: "Email",
+  fr: "E-mail",
+  hi: "ईमेल",
+  bn: "ইমেইল",
+  ta: "மின்னஞ்சல்",
+  te: "ఇమెయిల్"
+};
+
+translations['form.phone'] = {
+  en: "Phone",
+  fr: "Téléphone",
+  hi: "फ़ोन",
+  bn: "ফোন",
+  ta: "தொலைபேசி",
+  te: "ఫోన్"
+};
+
+translations['form.interest'] = {
+  en: "I'm interested in...",
+  fr: "Je suis intéressé par...",
+  hi: "मुझे इसमें दिलचस्पी है...",
+  bn: "আমি আগ্রহী...",
+  ta: "நான் ஆர்வமாக உள்ளேன்...",
+  te: "నాకు ఆసక్తి ఉంది..."
+};
+
+translations['form.message'] = {
+  en: "Message / Requirements",
+  fr: "Message / Exigences",
+  hi: "संदेश / आवश्यकताएं",
+  bn: "বার্তা / প্রয়োজনীয়তা",
+  ta: "செய்தி / தேவைகள்",
+  te: "సందేశం / అవసరాలు"
+};
+
+translations['form.sendMessage'] = {
+  en: "Send Message",
+  fr: "Envoyer le message",
+  hi: "संदेश भेजें",
+  bn: "বার্তা পাঠান",
+  ta: "செய்தியை அனுப்பவும்",
+  te: "సందేశం పంపండి"
+};
+
+translations['form.fullName'] = {
+  en: "Full Name",
+  fr: "Nom complet",
+  hi: "पूरा नाम",
+  bn: "পুরো নাম",
+  ta: "முழு பெயர்",
+  te: "పూర్తి పేరు"
+};
+
+translations['form.preferredTime'] = {
+  en: "Preferred Time",
+  fr: "Heure préférée",
+  hi: "पसंदीदा समय",
+  bn: "পছন্দের সময়",
+  ta: "விருப்பமான நேரம்",
+  te: "ఇష్టపడే సమయం"
+};
+
+translations['form.selectDate'] = {
+  en: "Select a Date",
+  fr: "Sélectionner une date",
+  hi: "एक तारीख चुनें",
+  bn: "একটি তারিখ নির্বাচন করুন",
+  ta: "ஒரு தேதியைத் தேர்ந்தெடுக்கவும்",
+  te: "తేదీని ఎంచుకోండి"
+};
+
+translations['form.additionalNotes'] = {
+  en: "Additional Notes",
+  fr: "Notes supplémentaires",
+  hi: "अतिरिक्त नोट्स",
+  bn: "অতিরিক্ত নোট",
+  ta: "கூடுதல் குறிப்புகள்",
+  te: "అదనపు గమనికలు"
+};
+
+translations['form.confirmDemo'] = {
+  en: "Confirm Demo Booking",
+  fr: "Confirmer la réservation de démo",
+  hi: "डेमो बुकिंग की पुष्टि करें",
+  bn: "ডেমো বুকিং নিশ্চিত করুন",
+  ta: "டெமோ பதிவை உறுதிப்படுத்தவும்",
+  te: "డెమో బుకింగ్‌ని నిర్ధారించండి"
+};
+
+// Form field placeholders and labels
+translations['form.yourName'] = {
+  en: "Your name",
+  fr: "Votre nom",
+  hi: "आपका नाम",
+  bn: "আপনার নাম",
+  ta: "உங்கள் பெயர்",
+  te: "మీ పేరు"
+};
+
+translations['form.yourEmail'] = {
+  en: "your.email@example.com",
+  fr: "votre.email@exemple.com",
+  hi: "आपका.ईमेल@उदाहरण.कॉम",
+  bn: "আপনার.ইমেইল@উदাহরণ.কম",
+  ta: "உங்கள்.மின்னஞ்சல்@எடுத்துக்காட்டு.காம்",
+  te: "మీ.ఇమెయిల్@ఉదాహరణ.కామ్"
+};
+
+translations['form.phonePlaceholder'] = {
+  en: "+1 (___) ___-____",
+  fr: "+33 _ __ __ __ __",
+  hi: "+91 ________",
+  bn: "+88 ________",
+  ta: "+91 ________",
+  te: "+91 ________"
+};
+
+translations['form.tellUsMore'] = {
+  en: "Tell us how we can help you...",
+  fr: "Dites-nous comment nous pouvons vous aider...",
+  hi: "हमें बताएं कि हम आपकी कैसे मदद कर सकते हैं...",
+  bn: "আমাদের বলুন আমরা আপনাকে কীভাবে সাহায্য করতে পারি...",
+  ta: "உங்களுக்கு எப்படி உதவ முடியும் என்று எங்களிடம் சொல்லுங்கள்...",
+  te: "మేము మీకు ఎలా సహాయం చేయగలమో మాకు తెలియజేయండి..."
+};
+
+translations['form.selectTime'] = {
+  en: "Select a time",
+  fr: "Sélectionnez une heure",
+  hi: "समय चुनें",
+  bn: "একটি সময় নির্বাচন করুন",
+  ta: "ஒரு நேரத்தைத் தேர்ந்தெடுக்கவும்",
+  te: "సమయాన్ని ఎంచుకోండి"
+};
+
+translations['form.pickDate'] = {
+  en: "Pick a date",
+  fr: "Choisir une date",
+  hi: "एक तिथि चुनें",
+  bn: "একটি তারিখ নির্বাচন করুন",
+  ta: "ஒரு தேதியைத் தேர்ந்தெடுக்கவும்",
+  te: "తేదీని ఎంచుకోండి"
+};
+
+translations['form.demoFocus'] = {
+  en: "Tell us what you'd like to focus on during the demo...",
+  fr: "Dites-nous sur quoi vous souhaitez vous concentrer pendant la démo...",
+  hi: "हमें बताएं कि आप डेमो के दौरान किस पर ध्यान केंद्रित करना चाहेंगे...",
+  bn: "আমাদের বলুন আপনি ডেমোর সময় কোন বিষয়ে ফোকাস করতে চান...",
+  ta: "டெமோவின் போது நீங்கள் எதில் கவனம் செலுத்த விரும்புகிறீர்கள் என்று எங்களிடம் சொல்லுங்கள்...",
+  te: "డెమో సమయంలో మీరు దేనిపై దృష్టి పెట్టాలనుకుంటున్నారో మాకు తెలియజేయండి..."
+};
+
+// Messages
+translations['messages.thankYou'] = {
+  en: "Thank You!",
+  fr: "Merci !",
+  hi: "धन्यवाद!",
+  bn: "ধন্যবাদ!",
+  ta: "நன்றி!",
+  te: "ధన్యవాదాలు!"
+};
+
+translations['messages.messageReceived'] = {
+  en: "We've received your message and will get back to you soon.",
+  fr: "Nous avons bien reçu votre message et vous répondrons bientôt.",
+  hi: "हमें आपका संदेश मिल गया है और हम जल्द ही आपको जवाब देंगे।",
+  bn: "আমরা আপনার বার্তা পেয়েছি এবং শীঘ্রই আপনার সাথে যোগাযোগ করব।",
+  ta: "உங்கள் செய்தியைப் பெற்றுள்ளோம், விரைவில் உங்களுடன் தொடர்பு கொள்கிறோம்.",
+  te: "మేము మీ సందేశాన్ని స్వీకరించాము మరియు త్వరలోనే మీకు తిరిగి స్పందిస్తాము."
+};
+
+
+translations['messages.demoBooked'] = {
+  en: "Demo Booked Successfully!",
+  fr: "Démo réservée avec succès !",
+  hi: "डेमो सफलतापूर्वक बुक किया गया!",
+  bn: "ডেমো সফলভাবে বুক করা হয়েছে!",
+  ta: "டெமோ வெற்றிகரமாக பதிவு செய்யப்பட்டது!",
+  te: "డెమో విజయవంతంగా బుక్ చేయబడింది!"
+};
+
+translations['messages.demoConfirmation'] = {
+  en: "We've sent a confirmation to your email with the meeting details.",
+  fr: "Nous avons envoyé une confirmation à votre adresse e-mail avec les détails de la réunion.",
+  hi: "हमने मीटिंग के विवरण के साथ आपके ईमेल पर एक पुष्टिकरण भेज दिया है।",
+  bn: "আমরা মিটিংয়ের বিবরণ সহ আপনার ইমেল ঠিকানায় একটি নিশ্চিতকরণ পাঠিয়েছি।",
+  ta: "கூட்டத்தின் விவரங்களுடன் உங்கள் மின்னஞ்சலுக்கு ஒரு உறுதிப்படுத்தலை அனுப்பியுள்ளோம்.",
+  te: "మీరు ఇమెయిల్‌కు సమావేశ వివరాలతో ఒక ధృవీకరణను పంపాము."
+};
+
+// Actions
+translations['actions.sendAnother'] = {
+  en: "Send Another Message",
+  fr: "Envoyer un autre message",
+  hi: "एक और संदेश भेजें",
+  bn: "আরেকটি বার্তা পাঠান",
+  ta: "மற்றொரு செய்தியை அனுப்பவும்",
+  te: "మరొక సందేశం పంపండి"
+};
+
+translations['actions.backToContact'] = {
+  en: "Back to Contact",
+  fr: "Retour au contact",
+  hi: "संपर्क पर वापस जाएं",
+  bn: "যোগাযোগে ফিরে যান",
+  ta: "தொடர்புக்குத் திரும்பு",
+  te: "సంప్రదించడానికి తిరిగి వెళ్ళు"
+};
+
+// Tabs
+translations['tabs.contactUs'] = {
+  en: "Contact Us",
+  fr: "Contactez-nous",
+  hi: "हमसे संपर्क करें",
+  bn: "আমাদের সাথে যোগাযোগ করুন",
+  ta: "எங்களைத் தொடர்பு கொள்ள",
+  te: "మమ్మల్ని సంప్రదించండి"
+};
+
+translations['tabs.bookDemo'] = {
+  en: "Book Demo",
+  fr: "Réserver une démo",
+  hi: "डेमो बुक करें",
+  bn: "ডেমো বুক করুন",
+  ta: "டெமோவை பதிவு செய்க",
+  te: "డెమో బుక్ చేయండి"
+};
+
+// Options
+translations['options.posSystem'] = {
+  en: "POS System",
+  fr: "Système de caisse",
+  hi: "पीओएस सिस्टम",
+  bn: "পিওএস সিস্টেম",
+  ta: "பிஓஎஸ் அமைப்பு",
+  te: "POS సిస్టమ్"
+};
+
+translations['options.onlineOrders'] = {
+  en: "Online Orders",
+  fr: "Commandes en ligne",
+  hi: "ऑनलाइन ऑर्डर",
+  bn: "অনলাইন অর্ডার",
+  ta: "ஆன்லைன் ஆர்டர்கள்",
+  te: "ఆన్‌లైన్ ఆర్డర్లు"
+};
+
+translations['options.inventory'] = {
+  en: "Inventory Management",
+  fr: "Gestion des stocks",
+  hi: "इन्वेंटरी प्रबंधन",
+  bn: "ইনভেন্টরি ব্যবস্থাপনা",
+  ta: "இருப்பு மேலாண்மை",
+  te: "ఇన్వెంటరీ నిర్వహణ"
+};
+
+translations['options.feedback'] = {
+  en: "Feedback",
+  fr: "Retour d'information",
+  hi: "प्रतिक्रिया",
+  bn: "মতামত",
+  ta: "கருத்து",
+  te: "ఫీడ్‌బ్యాక్"
+};
+
+// Schedule Demo CTA
+translations['cta.scheduleDemo'] = {
+  en: "Schedule a Demo",
+  fr: "Planifier une démo",
+  hi: "डेमो शेड्यूल करें",
+  bn: "ডেমো শিডিউল করুন",
+  ta: "ஒரு டெமோவை திட்டமிடவும்",
+  te: "డెమోని షెడ్యూల్ చేయండి"
+};
+
+translations['cta.demoDescription'] = {
+  en: "See how our POS system can transform your business. Book a personalized demo today!",
+  fr: "Découvrez comment notre système de caisse peut transformer votre entreprise. Réservez une démo personnalisée dès aujourd'hui !",
+  hi: "देखें कि हमारा पीओएस सिस्टम आपके व्यवसाय को कैसे बदल सकता है। आज ही एक निजीकृत डेमो बुक करें!",
+  bn: "দেখুন কিভাবে আমাদের পিওএস সিস্টেম আপনার ব্যবসাকে রূপান্তর করতে পারে। আজই একটি ব্যক্তিগতকৃত ডেমো বুক করুন!",
+  ta: "எங்கள் POS அமைப்பு உங்கள் வணிகத்தை எவ்வாறு மாற்றும் என்பதைப் பாருங்கள். இன்றே ஒரு தனிப்பயனாக்கப்பட்ட டெமோவைப் பதிவு செய்யவும்!",
+  te: "మా POS సిస్టమ్ మీ వ్యాపారాన్ని ఎలా మార్చగలదో చూడండి. ఈరోజే ఒక వ్యక్తిగతీకరించిన డెమోని బుక్ చేసుకోండి!"
+};
+
+// WhatsApp Modal
+translations['whatsapp.modalTitle'] = {
+  en: "Chat with us on WhatsApp",
+  fr: "Discutez avec nous sur WhatsApp",
+  hi: "व्हाट्सएप पर हमसे चैट करें",
+  bn: "WhatsApp-এ আমাদের সাথে চ্যাট করুন",
+  ta: "எங்களுடன் WhatsApp-ல் அரட்டையிடவும்",
+  te: "మాతో WhatsAppలో చాట్ చేయండి"
+};
+
+translations['whatsapp.modalDescription'] = {
+  en: "Our team is ready to help you with any questions. Click the button below to start a conversation.",
+  fr: "Notre équipe est prête à vous aider pour toute question. Cliquez sur le bouton ci-dessous pour démarrer une conversation.",
+  hi: "हमारी टीम किसी भी सवाल में आपकी मदद के लिए तैयार है। बातचीत शुरू करने के लिए नीचे दिए गए बटन पर क्लिक करें।",
+  bn: "আমাদের টিম যে কোনও প্রশ্নে আপনাকে সাহায্য করতে প্রস্তুত। কথোপকথন শুরু করতে নীচের বোতামে ক্লিক করুন।",
+  ta: "எங்கள் குழு எந்தவொரு கேள்விகளுக்கும் உங்களுக்கு உதவ தயாராக உள்ளது. உரையாடலைத் தொடங்க கீழே உள்ள பொத்தானைக் கிளிக் செய்க.",
+  te: "మా బృందం ఏవైనా ప్రశ్నలకు మీకు సహాయం చేయడానికి సిద్ధంగా ఉంది. సంభాషణ ప్రారంభించడానికి దిగువ బటన్ పై క్లిక్ చేయండి."
+};
+
+translations['whatsapp.openChat'] = {
+  en: "Open WhatsApp Chat",
+  fr: "Ouvrir le chat WhatsApp",
+  hi: "व्हाट्सएप चैट खोलें",
+  bn: "WhatsApp চ্যাট খুলুন",
+  ta: "WhatsApp அரட்டையைத் திறக்கவும்",
+  te: "WhatsApp చాట్ తెరవండి"
+};
+
+// Time Slots
+translations['timeSlots.nineAM'] = { en: "09:00 AM", fr: "09:00", hi: "09:00 पूर्वाह्न", bn: "09:00 AM", ta: "காலை 9:00", te: "ఉదయం 9:00" };
+translations['timeSlots.tenAM'] = { en: "10:00 AM", fr: "10:00", hi: "10:00 पूर्वाह्न", bn: "10:00 AM", ta: "காலை 10:00", te: "ఉదయం 10:00" };
+translations['timeSlots.elevenAM'] = { en: "11:00 AM", fr: "11:00", hi: "11:00 पूर्वाह्न", bn: "11:00 AM", ta: "காலை 11:00", te: "ఉదయం 11:00" };
+translations['timeSlots.twelvePM'] = { en: "12:00 PM", fr: "12:00", hi: "12:00 अपराह्न", bn: "12:00 PM", ta: "மதியம் 12:00", te: "మధ్యాహ్నం 12:00" };
+translations['timeSlots.onePM'] = { en: "01:00 PM", fr: "13:00", hi: "01:00 अपराह्न", bn: "01:00 PM", ta: "மாலை 1:00", te: "మధ్యాహ్నం 1:00" };
+translations['timeSlots.twoPM'] = { en: "02:00 PM", fr: "14:00", hi: "02:00 अपराह्न", bn: "02:00 PM", ta: "மாலை 2:00", te: "మధ్యాహ్నం 2:00" };
+translations['timeSlots.threePM'] = { en: "03:00 PM", fr: "15:00", hi: "03:00 अपराह्न", bn: "03:00 PM", ta: "மாலை 3:00", te: "మధ్యాహ్నం 3:00" };
+translations['timeSlots.fourPM'] = { en: "04:00 PM", fr: "16:00", hi: "04:00 अपराह्न", bn: "04:00 PM", ta: "மாலை 4:00", te: "మధ్యాహ్నం 4:00" };
+
+export function t(key: string): string {
+  const translation = translations[key]?.[currentLanguage];
+  if (Array.isArray(translation)) {
+    return translation[0]; // Return first item if it's an array
+  }
+  return translation || translations[key]?.en as string || key;
+}
+
+export const tArray = (key: string): string[] => {
+  const translation = translations[key]?.[currentLanguage];
+  if (Array.isArray(translation)) {
+    return translation;
+  }
+  const fallback = translations[key]?.en;
+  return [
+    typeof fallback === 'string' ? fallback : 
+    Array.isArray(fallback) ? fallback[0] : 
+    key
+  ];
+};
+
+export const setLanguage = (lang: SupportedLanguage) => {
+  if (['en', 'fr', 'hi', 'bn', 'ta', 'te'].includes(lang)) {
+    currentLanguage = lang as SupportedLanguage;
+    // Save to localStorage for persistence
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('preferredLanguage', lang);
+    }
+    // Trigger a re-render by dispatching a custom event
+    window.dispatchEvent(new CustomEvent('languageChanged'));
+  } else {
+    console.warn(`Unsupported language: ${lang}. Falling back to English.`);
+    currentLanguage = 'en';
+  }
+};
+
+export const getCurrentLanguage = () => currentLanguage;
+
+export const useLanguage = () => {
+  const [currentLang, setCurrentLang] = useState<SupportedLanguage>(() => {
+    // Initialize from localStorage if available, otherwise use browser language or default to 'en'
+    if (typeof window !== 'undefined') {
+      const savedLang = localStorage.getItem('preferredLanguage');
+      const browserLang = navigator.language.split('-')[0];
+      return (savedLang || (['en', 'fr', 'hi', 'bn', 'ta', 'te'].includes(browserLang) ? browserLang : 'en')) as SupportedLanguage;
+    }
+    return 'en';
+  });
+
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setCurrentLang(getCurrentLanguage());
+    };
+
+    // Set initial language
+    const savedLang = localStorage.getItem('preferredLanguage');
+    if (savedLang && savedLang !== currentLang) {
+      setLanguage(savedLang as SupportedLanguage);
+    }
+
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => {
+      window.removeEventListener('languageChanged', handleLanguageChange);
+    };
+  }, []);
+
+  return currentLang;
+};

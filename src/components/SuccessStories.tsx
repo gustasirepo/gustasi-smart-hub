@@ -68,9 +68,6 @@ const SuccessStories = () => {
           className="max-w-6xl mx-auto"
         >
           <motion.div variants={item} className="text-center mb-16">
-            <span className="inline-block px-4 py-1.5 text-sm font-medium text-amber-100 bg-amber-900/30 border border-amber-800/30 rounded-full mb-6 backdrop-blur-sm">
-              Success Stories
-            </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               <span className="bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent">
                 {t("success.title")}

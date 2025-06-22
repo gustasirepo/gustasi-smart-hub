@@ -1,9 +1,8 @@
-import { t, useLanguage, setLanguage } from "@/utils/localization";
-import { useState, useEffect } from "react";
+import { t, useLanguage } from "@/utils/localization";
 
 const Footer = () => {
-  const currentLang = useLanguage();
-  const [showLanguageDropdown, setShowLanguageDropdown] = useState(false);
+  // This ensures the component re-renders when language changes
+  useLanguage();
 
   const footerLinks = [
     { label: t("footer.home"), href: "#" },
@@ -13,11 +12,6 @@ const Footer = () => {
     { label: t("footer.contact"), href: "#" }
   ];
 
-  const handleLanguageChange = (lang: 'en' | 'fr') => {
-    setLanguage(lang);
-    setShowLanguageDropdown(false);
-  };
-
   return (
     <footer className="relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"></div>
@@ -25,23 +19,7 @@ const Footer = () => {
       <div className="relative py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl mx-auto">
-            {/* Language toggler - top right corner */}
-            <div className="absolute top-8 right-8 z-10">
-              <div className="flex gap-2 bg-white/10 rounded-full px-3 py-1 border border-amber-300/30">
-                <button
-                  onClick={() => handleLanguageChange('en')}
-                  className={`text-sm font-semibold px-2 py-1 rounded transition-colors duration-200 ${currentLang === 'en' ? 'bg-amber-500/20 text-amber-200' : 'text-amber-100 hover:bg-amber-500/10'}`}
-                >
-                  EN
-                </button>
-                <button
-                  onClick={() => handleLanguageChange('fr')}
-                  className={`text-sm font-semibold px-2 py-1 rounded transition-colors duration-200 ${currentLang === 'fr' ? 'bg-amber-500/20 text-amber-200' : 'text-amber-100 hover:bg-amber-500/10'}`}
-                >
-                  FR
-                </button>
-              </div>
-            </div>
+
             <div className="grid md:grid-cols-4 gap-12 mb-16">
               {/* Logo & Description */}
               <div className="md:col-span-2">
@@ -51,25 +29,22 @@ const Footer = () => {
                 </p>
                 {/* Social Media Icons */}
                 <div className="flex gap-4 mb-6">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.facebook.com/gustasiinc" target="_self" rel="noopener">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook" className="w-8 h-8 bg-white rounded-full p-1 hover:scale-110 transition-transform" />
                   </a>
-                  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitter.svg" alt="Twitter" className="w-8 h-8 bg-white rounded-full p-1 hover:scale-110 transition-transform" />
+                  <a href="https://x.com/Gustasi_inc" target="_self" rel="noopener">
+                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X (Twitter)" className="w-8 h-8 bg-white rounded-full p-1 hover:scale-110 transition-transform" />
                   </a>
-                  <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.instagram.com/gustasi_inc/" target="_self" rel="noopener">
                     <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg" alt="Instagram" className="w-8 h-8 bg-white rounded-full p-1 hover:scale-110 transition-transform" />
-                  </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
-                    <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" alt="LinkedIn" className="w-8 h-8 bg-white rounded-full p-1 hover:scale-110 transition-transform" />
                   </a>
                 </div>
                 {/* App Download Badges */}
                 <div className="flex gap-4">
-                  <a href="https://play.google.com/store" target="_blank" rel="noopener noreferrer">
+                  <a href="https://play.google.com/store/apps/details?id=com.gustasi.app" target="_self" rel="noopener">
                     <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play" className="h-12" />
                   </a>
-                  <a href="https://www.apple.com/in/app-store/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://apps.apple.com/us/app/gustasi/id1375283296" target="_self" rel="noopener">
                     <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" className="h-12" />
                   </a>
                 </div>

@@ -30,6 +30,8 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ThemePreview from "./components/ThemePreview";
 import LanguageHandler from './components/LanguageHandler';
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,19 @@ const ScrollToTop = () => {
   }, [pathname]);
 
   return null;
+};
+
+// Layout component that includes the Navbar and wraps all pages
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-grow">
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
 };
 
 const AppContent = () => {
@@ -73,17 +88,27 @@ const AppContent = () => {
             path=":featureId" 
             element={
               <Suspense fallback={<PageLoader />}>
-                <FeaturePage />
+                <Layout>
+                  <FeaturePage />
+                </Layout>
               </Suspense>
             } 
           />
         </Route>
-        <Route path="theme-preview" element={<ThemePreview />} />
+        <Route path="theme-preview" element={
+          <Suspense fallback={<PageLoader />}>
+            <Layout>
+              <ThemePreview />
+            </Layout>
+          </Suspense>
+        } />
         <Route 
           path="restaurants" 
           element={
             <Suspense fallback={<PageLoader />}>
-              <RestaurantsPage />
+              <Layout>
+                <RestaurantsPage />
+              </Layout>
             </Suspense>
           } 
         />
@@ -91,7 +116,9 @@ const AppContent = () => {
           path="contact" 
           element={
             <Suspense fallback={<PageLoader />}>
-              <ContactUs defaultTab="contact" />
+              <Layout>
+                <ContactUs defaultTab="contact" />
+              </Layout>
             </Suspense>
           } 
         />
@@ -99,7 +126,9 @@ const AppContent = () => {
           path="schedule-demo" 
           element={
             <Suspense fallback={<PageLoader />}>
-              <ContactUs defaultTab="demo" />
+              <Layout>
+                <ContactUs defaultTab="demo" />
+              </Layout>
             </Suspense>
           } 
         />
@@ -107,11 +136,17 @@ const AppContent = () => {
           path="fraud-prevention" 
           element={
             <Suspense fallback={<PageLoader />}>
-              <FraudPrevention />
+              <Layout>
+                <FraudPrevention />
+              </Layout>
             </Suspense>
           } 
         />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={
+          <Layout>
+            <NotFound />
+          </Layout>
+        } />
       </Route>
     </Routes>
   );

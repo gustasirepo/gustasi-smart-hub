@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-// Using default translations directly
-const useLanguage = () => 'en'; // Default to English
+import { t, useLanguage } from '@/utils/localization';
 import { 
   ArrowRight, 
   BarChart2, 
@@ -21,8 +20,6 @@ import {
   User, 
   UserCheck 
 } from 'lucide-react';
-
-import { t } from "@/utils/localization";
 
 // Step component
 interface StepProps {
@@ -73,7 +70,7 @@ const Step = ({ icon, title, description, isActive, isCompleted, onClick }: Step
 const WhatsAppFlow = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  // Using default language (English)
+  const currentLang = useLanguage(); // This ensures the component re-renders on language change
 
   // Steps configuration
   const steps = [
@@ -549,16 +546,16 @@ const WhatsAppFlow = () => {
   // Auto-advance steps (for demo purposes)
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentStep((prev) => (prev + 1) % allSteps.length);
+      setCurrentStep((prev) => (prev + 1) % steps.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, [allSteps.length]);
+  }, [steps.length]);
 
   return (
     <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
       {/* Header */}
       <div className="bg-green-600 p-6 text-white">
-        <h2 className="text-2xl font-bold">{t('wa.title')}</h2>
+        <h2 className="text-2xl font-bold">{t('digitalOrderingSystem')}</h2>
         <p className="text-green-100">{t('wa.subtitle')}</p>
       </div>
 
@@ -567,11 +564,11 @@ const WhatsAppFlow = () => {
         <div className="w-full bg-gray-200 rounded-full h-2">
           <div 
             className="bg-green-600 h-2 rounded-full transition-all duration-500 ease-in-out"
-            style={{ width: `${((currentStep + 1) / allSteps.length) * 100}%` }}
+            style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
           ></div>
         </div>
         <p className="text-xs text-gray-500 text-right mt-1">
-          Step {currentStep + 1} of {allSteps.length}
+          {t('wa.stepIndicator', { current: currentStep + 1, total: steps.length })}
         </p>
       </div>
 
@@ -579,7 +576,7 @@ const WhatsAppFlow = () => {
         {/* Steps - Left Side */}
         <div className="w-full md:w-1/3 p-6 border-r border-gray-200">
           <div className="space-y-4">
-            {allSteps.map((step, index) => (
+            {steps.map((step, index) => (
               <Step
                 key={step.id}
                 icon={step.icon}
@@ -598,7 +595,7 @@ const WhatsAppFlow = () => {
           <div className={`p-6 transition-opacity duration-300 ${
             isAnimating ? 'opacity-0' : 'opacity-100'
           }`}>
-            {allSteps[currentStep].content}
+            {steps[currentStep].content}
           </div>
 
           {/* Navigation */}
@@ -618,7 +615,7 @@ const WhatsAppFlow = () => {
                   className={`w-2 h-2 rounded-full transition-colors ${
                     i === currentStep ? 'bg-green-600' : 'bg-gray-300 hover:bg-gray-400'
                   }`}
-                  aria-label={`Go to step ${i + 1}`}
+                  aria-label={t('wa.goToStep', { step: i + 1 })}
                 />
               ))}
             </div>

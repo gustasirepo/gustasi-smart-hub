@@ -23,22 +23,32 @@ const ChatWidget = () => {
         <span className="text-2xl">💬</span>
       </button>
 
-      {/* Chat Window (placeholder) */}
+      {/* Chat Window */}
       {isOpen && (
-        <div className="absolute bottom-16 right-0 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 animate-fade-up">
-          <div className="bg-success-500 text-white p-4 rounded-t-lg">
+        <div className="absolute bottom-16 right-0 w-80 bg-white rounded-lg shadow-2xl border border-gray-200 animate-fade-up overflow-hidden">
+          <div className="bg-success-500 text-white p-4">
             <div className="flex items-center justify-between">
-              <span className="font-semibold">Gustasi Support</span>
+              <h3 className="font-semibold">{t('whatsapp.modalTitle')}</h3>
               <button 
                 onClick={() => setIsOpen(false)}
                 className="text-white hover:text-gray-200"
+                aria-label={t('common.close')}
               >
                 ✕
               </button>
             </div>
           </div>
-          <div className="p-4 h-full flex items-center justify-center text-gray-500">
-            Chat functionality coming soon...
+          <div className="p-6">
+            <p className="text-gray-700 mb-6">{t('whatsapp.modalDescription')}</p>
+            <a
+              href="https://wa.me/919876543210" // Replace with your WhatsApp number
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center px-4 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-colors"
+            >
+              <span className="mr-2">💬</span>
+              {t('whatsapp.openChat')}
+            </a>
           </div>
         </div>
       )}

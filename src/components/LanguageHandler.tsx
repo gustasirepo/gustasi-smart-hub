@@ -4,7 +4,7 @@ import { setLanguage } from '@/utils/localization';
 import SEO from './SEO';
 
 // Add any new languages you support to this array
-const supportedLanguages = ['en', 'fr', 'hi', 'bn', 'ta'];
+const supportedLanguages = ['en', 'fr', 'hi', 'bn', 'ta', 'te'];
 
 const LanguageHandler = () => {
   const { lang } = useParams<{ lang: string }>();
@@ -12,7 +12,7 @@ const LanguageHandler = () => {
 
   useEffect(() => {
     if (lang && supportedLanguages.includes(lang)) {
-      setLanguage(lang as 'en' | 'fr' | 'hi' | 'bn' | 'ta');
+      setLanguage(lang as 'en' | 'fr' | 'hi' | 'bn' | 'ta' | 'te');
     } else {
       // Default to English if the language in the URL is not supported
       // or if there's no language code.

@@ -2,6 +2,38 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { t, useLanguage } from "@/utils/localization";
+
+// Helper function to format numbers in English while preserving percentage signs
+const formatNumber = (value: string) => {
+  // Check if the value contains a percentage sign
+  const hasPercentage = value.includes('%');
+  
+  // Replace all non-ASCII digits with their English equivalents
+  const asciiValue = value
+    .replace(/[\u0660-\u0669]/g, d => (d.charCodeAt(0) - 0x0660).toString())  // Arabic-Indic
+    .replace(/[\u06F0-\u06F9]/g, d => (d.charCodeAt(0) - 0x06F0).toString())  // Persian
+    .replace(/[\u0966-\u096F]/g, d => (d.charCodeAt(0) - 0x0966).toString())  // Devanagari
+    .replace(/[\u09E6-\u09EF]/g, d => (d.charCodeAt(0) - 0x09E6).toString())  // Bengali
+    .replace(/[\u0A66-\u0A6F]/g, d => (d.charCodeAt(0) - 0x0A66).toString())  // Gurmukhi
+    .replace(/[\u0AE6-\u0AEF]/g, d => (d.charCodeAt(0) - 0x0AE6).toString())  // Gujarati
+    .replace(/[\u0B66-\u0B6F]/g, d => (d.charCodeAt(0) - 0x0B66).toString())  // Oriya
+    .replace(/[\u0BE6-\u0BEF]/g, d => (d.charCodeAt(0) - 0x0BE6).toString())  // Tamil
+    .replace(/[\u0C66-\u0C6F]/g, d => (d.charCodeAt(0) - 0x0C66).toString())  // Telugu
+    .replace(/[\u0CE6-\u0CEF]/g, d => (d.charCodeAt(0) - 0x0CE6).toString())  // Kannada
+    .replace(/[\u0E50-\u0E59]/g, d => (d.charCodeAt(0) - 0x0E50).toString())  // Thai
+    .replace(/[\u0ED0-\u0ED9]/g, d => (d.charCodeAt(0) - 0x0ED0).toString()); // Lao
+  
+  // Extract the numeric part
+  const numMatch = asciiValue.match(/[0-9.,]+/);
+  if (!numMatch) return value;
+  
+  const num = parseFloat(numMatch[0].replace(/,/g, ''));
+  if (isNaN(num)) return value;
+  
+  // Format the number and add back the percentage sign if it was present
+  const formattedNum = num.toLocaleString('en-US');
+  return hasPercentage ? `${formattedNum}%` : formattedNum;
+};
 import { Play, CheckCircle, TrendingUp, Shield, Users } from "lucide-react";
 import useEmblaCarousel from 'embla-carousel-react';
 
@@ -45,15 +77,15 @@ const HeroSection = () => {
               
               {/* Main Headline */}
               <div className="space-y-6 animate-fade-up mt-16" style={{ animationDelay: '0.1s' }}>
-                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight ${currentLang === 'hi' ? 'font-sans' : ''}`}>
-                  <span className="block bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent mb-2">
+                <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.2] tracking-tight ${currentLang === 'hi' ? 'font-sans' : ''} pt-3`}>
+                  <span className="block bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent mb-2 pb-1">
                     {t("hero.mainTitle")}
                   </span>
-                  <span className="block bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent mt-2">
+                  <span className="block bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent mt-4 pt-1 pb-1">
                     {t("hero.subTitle")}
                   </span>
                 </h1>
-                <p className={`text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl ${currentLang === 'hi' ? 'font-sans' : ''}`}>
+                <p className={`text-lg lg:text-xl text-slate-300 leading-relaxed max-w-2xl mt-4 ${currentLang === 'hi' ? 'font-sans' : ''}`}>
                   {t("hero.description")}
                 </p>
               </div>
@@ -65,7 +97,9 @@ const HeroSection = () => {
                     <TrendingUp className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">+35%</div>
+                    <div className="font-semibold text-white">
+                      {formatNumber(t("hero.orderGrowthValue"))}
+                    </div>
                     <div className="text-xs text-slate-400">{t("hero.orderGrowth")}</div>
                   </div>
                 </div>
@@ -75,7 +109,9 @@ const HeroSection = () => {
                     <Shield className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">25%</div>
+                    <div className="font-semibold text-white">
+                      {formatNumber(t("hero.fraudReductionValue"))}
+                    </div>
                     <div className="text-xs text-slate-400">{t("hero.fraudReduction")}</div>
                   </div>
                 </div>
@@ -85,7 +121,9 @@ const HeroSection = () => {
                     <Users className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">50K+</div>
+                    <div className="font-semibold text-white">
+                      {formatNumber(t("hero.restaurantsValue"))}
+                    </div>
                     <div className="text-xs text-slate-400">{t("hero.restaurants")}</div>
                   </div>
                 </div>
@@ -95,7 +133,9 @@ const HeroSection = () => {
                     <CheckCircle className="w-5 h-5 text-[#191B24]" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">4.9★</div>
+                    <div className="font-semibold text-white">
+                      {formatNumber(t("hero.ratingValue"))}
+                    </div>
                     <div className="text-xs text-slate-400">{t("hero.rating")}</div>
                   </div>
                 </div>
