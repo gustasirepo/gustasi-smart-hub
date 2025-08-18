@@ -5,11 +5,11 @@ const Footer = () => {
   useLanguage();
 
   const footerLinks = [
-    { label: t("footer.home"), href: "#" },
-    { label: t("footer.about"), href: "https://www.gustasi.com/AboutUs" },
-    { label: t("footer.features"), href: "#" },
-    { label: t("footer.pricing"), href: "#" },
-    { label: t("footer.contact"), href: "/en/schedule-demo" }
+    { label: t("footer.home"), href: "#", target: "_self" as const, rel: "noopener" as const },
+    { label: t("footer.about"), href: "https://www.gustasi.com/AboutUs", target: "_blank" as const, rel: "noopener" as const },
+    { label: t("footer.features"), href: "#", target: "_self" as const, rel: "noopener" as const },
+    { label: t("footer.pricing"), href: "#", target: "_self" as const, rel: "noopener" as const },
+    { label: t("footer.contact"), href: "/en/schedule-demo", target: "_self" as const, rel: "noopener" as const }
   ];
 
   return (
