@@ -1,7 +1,6 @@
 import { t, useLanguage } from "@/utils/localization";
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { TrendingUp, Clock, BarChart3 } from 'lucide-react';
 
 const SuccessStories = () => {
   const currentLang = useLanguage();
@@ -15,19 +14,19 @@ const SuccessStories = () => {
       metric: "230%",
       description: t("success.growth"),
       company: t("success.company.restaurantB"),
-      icon: <TrendingUp className="w-8 h-8 text-emerald-400" />
+      icon: "📈"
     },
     {
       metric: "800 hrs",
       description: t("success.time"),
       company: t("success.company.cafeCentral"),
-      icon: <Clock className="w-8 h-8 text-blue-400" />
+      icon: "⏱️"
     },
     {
       metric: "25+",
       description: t("success.reports"),
       company: t("success.company.hotelPlaza"),
-      icon: <BarChart3 className="w-8 h-8 text-purple-400" />
+      icon: "📊"
     }
   ];
 
@@ -87,7 +86,7 @@ const SuccessStories = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/5 hover:border-amber-600/30 transition-all duration-300 group"
               >
-                <div className="mb-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                <div className="text-5xl mb-6 opacity-90 group-hover:opacity-100 transition-opacity">
                   {story.icon}
                 </div>
                 <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-4">
