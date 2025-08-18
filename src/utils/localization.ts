@@ -90,6 +90,30 @@ export const translations: Translations = {
     ta: "ஹோட்டல் பிளாசா",
     te: "హోటల్ ప్లాజా"
   },
+  "rolling.venuePlural": {
+    en: "Venues",
+    fr: "Lieux",
+    hi: "स्थान",
+    bn: "ভেন্যু",
+    ta: "இடங்கள்",
+    te: "వేదికలు"
+  },
+  "rolling.users": {
+    en: "Users",
+    fr: "Utilisateurs",
+    hi: "उपयोगकर्ता",
+    bn: "ব্যবহারকারী",
+    ta: "பயனர்கள்",
+    te: "వినియోగదారులు"
+  },
+  "rolling.rating": {
+    en: "Rating",
+    fr: "Note",
+    hi: "रेटिंग",
+    bn: "রেটিং",
+    ta: "மதிப்பீடு",
+    te: "రేటింగ్"
+  },
   "rolling.topRated": {
     en: "Top Rated",
     fr: "Les mieux notés",

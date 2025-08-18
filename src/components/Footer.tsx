@@ -6,10 +6,10 @@ const Footer = () => {
 
   const footerLinks = [
     { label: t("footer.home"), href: "#" },
-    { label: t("footer.about"), href: "#" },
+    { label: t("footer.about"), href: "https://www.gustasi.com/AboutUs" },
     { label: t("footer.features"), href: "#" },
     { label: t("footer.pricing"), href: "#" },
-    { label: t("footer.contact"), href: "#" }
+    { label: t("footer.contact"), href: "/en/schedule-demo" }
   ];
 
   return (
@@ -57,6 +57,8 @@ const Footer = () => {
                     <li key={index}>
                       <a 
                         href={link.href}
+                        target={link.target}
+                        rel={link.rel}
                         className="text-amber-300/80 hover:text-amber-100 transition-colors duration-300 text-lg hover:translate-x-2 transform inline-block"
                       >
                         {link.label}

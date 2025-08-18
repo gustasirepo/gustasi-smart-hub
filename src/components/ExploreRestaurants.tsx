@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { t, useLanguage } from "@/utils/localization";
 import { Search, MapPin, Star, Clock, Utensils, Coffee, Martini, Hotel, ChefHat, ArrowRight } from "lucide-react";
+import RollingNumber from "./ui/RollingNumber";
 
 interface VenueType {
   name: string;
@@ -147,17 +148,25 @@ const ExploreRestaurants = () => {
           {/* Stats */}
           <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-8 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-amber-50">
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">50,000+</div>
-              <div className="text-sm text-slate-600">{<>50,000+ {t('rolling.venuePlural')}</>}</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <RollingNumber value={50000} duration={2000} suffix="+" />
+              </div>
+              <div className="text-sm text-slate-600">
+                {t('rolling.venuePlural')}
+              </div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">1M+</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <RollingNumber value={1000000} duration={2000} suffix="+" />
+              </div>
               <div className="text-sm text-slate-600">{t('rolling.users')}</div>
             </div>
             <div className="hidden sm:block w-px h-12 bg-gradient-to-b from-transparent via-slate-200 to-transparent"></div>
             <div className="text-center">
-              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">4.9★</div>
+              <div className="text-3xl font-bold bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+                <RollingNumber value={4.9} duration={2000} suffix="★" />
+              </div>
               <div className="text-sm text-slate-600">{t('rolling.rating')}</div>
             </div>
           </div>
