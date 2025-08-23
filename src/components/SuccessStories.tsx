@@ -1,6 +1,7 @@
 import { t, useLanguage } from "@/utils/localization";
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { TrendingUp, Clock, BarChart4, Sparkles } from 'lucide-react';
 
 const SuccessStories = () => {
   const currentLang = useLanguage();
@@ -14,19 +15,70 @@ const SuccessStories = () => {
       metric: "230%",
       description: t("success.growth"),
       company: t("success.company.restaurantB"),
-      icon: "📈"
+      icon: (
+        <div className="relative w-14 h-14 flex items-center justify-center">
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl"
+            initial={{ rotate: 0 }}
+            animate={{ rotate: 360 }}
+            transition={{ 
+              duration: 15, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+          />
+          <div className="relative z-10 bg-gradient-to-r from-amber-400 to-orange-400 p-3 rounded-xl text-white">
+            <TrendingUp className="w-8 h-8" />
+          </div>
+        </div>
+      )
     },
     {
       metric: "800 hrs",
       description: t("success.time"),
       company: t("success.company.cafeCentral"),
-      icon: "⏱️"
+      icon: (
+        <div className="relative w-14 h-14 flex items-center justify-center">
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-2xl"
+            animate={{
+              scale: [1, 1.05, 1],
+              opacity: [0.9, 1, 0.9],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          />
+          <div className="relative z-10 bg-gradient-to-r from-blue-400 to-cyan-400 p-3 rounded-xl text-white">
+            <Clock className="w-8 h-8" />
+          </div>
+        </div>
+      )
     },
     {
       metric: "25+",
       description: t("success.reports"),
       company: t("success.company.hotelPlaza"),
-      icon: "📊"
+      icon: (
+        <div className="relative w-14 h-14 flex items-center justify-center">
+          <motion.div 
+            className="absolute inset-0 bg-gradient-to-br from-purple-400 to-pink-500 rounded-2xl"
+            animate={{
+              rotate: [0, 10, -10, 0],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              repeatType: "loop"
+            }}
+          />
+          <div className="relative z-10 bg-gradient-to-r from-purple-400 to-pink-400 p-3 rounded-xl text-white">
+            <BarChart4 className="w-8 h-8" />
+          </div>
+        </div>
+      )
     }
   ];
 
@@ -86,9 +138,13 @@ const SuccessStories = () => {
                 whileHover={{ y: -5 }}
                 className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/5 hover:border-amber-600/30 transition-all duration-300 group"
               >
-                <div className="text-5xl mb-6 opacity-90 group-hover:opacity-100 transition-opacity">
+                <motion.div 
+                  className="mb-6 group-hover:opacity-100 transition-opacity"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   {story.icon}
-                </div>
+                </motion.div>
                 <div className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-amber-400 to-orange-400 bg-clip-text text-transparent mb-4">
                   {story.metric}
                 </div>

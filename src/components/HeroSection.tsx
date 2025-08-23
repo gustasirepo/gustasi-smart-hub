@@ -56,24 +56,25 @@ const HeroSection = () => {
     <section 
       className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-[#0F0E16] via-[#191B24] to-[#0F0E16] pb-16 pt-28 md:pt-32"
       lang={currentLang}
+      style={{ isolation: 'isolate' }}
     >
       {/* Modern Background Elements */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-[#D8C7AA]/20 to-[#B59469]/20 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-to-r from-[#B59469]/15 to-[#D8C7AA]/15 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
       </div>
       
       {/* Grid Pattern Overlay */}
-      <div className="absolute inset-0 opacity-30" style={{
+      <div className="absolute inset-0 opacity-30 z-0" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D8C7AA' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }}></div>
       
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
         <div className="max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-[80vh]">
             
             {/* Left Column - Modern Content Layout */}
-            <div className="lg:col-span-6 text-center lg:text-left space-y-8">
+            <div className="lg:col-span-6 text-center lg:text-left space-y-8 relative z-20">
               
               {/* Main Headline */}
               <div className="space-y-6 animate-fade-up mt-16" style={{ animationDelay: '0.1s' }}>
@@ -163,14 +164,14 @@ const HeroSection = () => {
             </div>
 
             {/* Right Column - Dashboard Showcase */}
-            <div className="lg:col-span-6 relative animate-fade-up" style={{ animationDelay: '0.2s' }}>
+            <div className="lg:col-span-6 relative animate-fade-up z-10">
               <div className="relative">
                 {/* Glow Effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-amber-400/30 to-orange-400/30 rounded-3xl blur-3xl animate-pulse-slow"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400/30 to-orange-400/30 rounded-3xl blur-3xl animate-pulse-slow z-0"></div>
                 
                 {/* Main Dashboard Container */}
-                <div className="relative group">
-                  <div className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-2xl rounded-3xl p-6 border border-white/20 shadow-2xl hover:shadow-amber-500/20 transition-all duration-700 hover:scale-[1.02]">
+                <div className="relative group z-10" style={{ isolation: 'isolate' }}>
+                  <div className="bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-6 border border-white/20 shadow-2xl hover:shadow-amber-500/20 transition-all duration-700 hover:scale-[1.02] relative z-10 overflow-hidden">
                     
                     {/* Header Badge */}
                     <div className="flex items-center justify-between mb-4">
@@ -186,30 +187,32 @@ const HeroSection = () => {
                       <EmblaCarousel images={images} />
                     </div>
                     
-                    {/* Bottom Stats */}
-                    <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-white">₹1,943</div>
-                        <div className="text-xs text-slate-400">{t("hero.avgOrderValue")}</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-green-400">+23%</div>
-                        <div className="text-xs text-slate-400">{t("hero.todaysGrowth")}</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-lg font-bold text-blue-400">8</div>
-                        <div className="text-xs text-slate-400">{t("hero.activeOrders")}</div>
+                    {/* Bottom Stats - Ensure they stay within the container */}
+                    <div className="relative z-10 bg-transparent">
+                      <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/10">
+                        <div className="text-center flex-1">
+                          <div className="text-lg font-bold text-white">{t("hero.avgOrderValueValue")}</div>
+                          <div className="text-xs text-slate-400">{t("hero.avgOrderValue")}</div>
+                        </div>
+                        <div className="text-center flex-1">
+                          <div className="text-lg font-bold text-green-400">{t("hero.todaysGrowthValue")}</div>
+                          <div className="text-xs text-slate-400">{t("hero.todaysGrowth")}</div>
+                        </div>
+                        <div className="text-center flex-1">
+                          <div className="text-lg font-bold text-blue-400">{t("hero.activeOrdersValue")}</div>
+                          <div className="text-xs text-slate-400">{t("hero.activeOrders")}</div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg animate-bounce-gentle">
+                <div className="absolute -top-4 -right-4 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg animate-bounce-gentle z-20 pointer-events-none">
                   {t("hero.newOrder")} ₹683
                 </div>
                 
-                <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg animate-bounce-gentle" style={{ animationDelay: '1s' }}>
+                <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg animate-bounce-gentle z-20 pointer-events-none">
                   {t("hero.orderReady")} Table 4
                 </div>
               </div>

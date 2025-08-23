@@ -54,12 +54,12 @@ export function MobilePOSSection() {
 
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Placeholder images with different screens
+  // Mobile POS screenshots
   const screenshots = [
-    'https://placehold.co/360x780/4f46e5/ffffff?text=POS+Dashboard',
-    'https://placehold.co/360x780/7c3aed/ffffff?text=Orders+Screen',
-    'https://placehold.co/360x780/8b5cf6/ffffff?text=Menu+Management',
-    'https://placehold.co/360x780/a78bfa/ffffff?text=Sales+Reports',
+    '/lovable-uploads/M1.jpg',
+    '/lovable-uploads/M2.jpg',
+    '/lovable-uploads/M3.jpg',
+    '/lovable-uploads/M4.jpg',
   ];
 
   const nextSlide = () => {
@@ -79,7 +79,7 @@ export function MobilePOSSection() {
   }, []);
 
   return (
-    <section id="mobile-pos" className="w-full bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 md:py-16 px-4 sm:px-6 lg:px-8" aria-labelledby="mobile-pos-heading">
+    <section id="mobile-pos" className="w-full bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 py-12 md:py-16 px-4 sm:px-6 lg:px-8 pb-24 md:pb-32" aria-labelledby="mobile-pos-heading">
       <Helmet>
         <script type="application/ld+json">
           {JSON.stringify(mobilePOSStructuredData)}
@@ -171,7 +171,7 @@ export function MobilePOSSection() {
               <div className="relative bg-white rounded-3xl p-1.5 sm:p-2 shadow-2xl border-6 sm:border-8 border-gray-800 overflow-hidden">
                 <div className="bg-gray-900 rounded-xl sm:rounded-2xl overflow-hidden">
                   {/* Phone mockup with screenshot carousel */}
-                  <div className="aspect-[9/18] relative overflow-hidden">
+                  <div className="aspect-[9/18] relative overflow-hidden" style={{ paddingBottom: '20px' }}>
                     <AnimatePresence mode="wait">
                       <motion.div
                         key={currentSlide}
@@ -184,8 +184,8 @@ export function MobilePOSSection() {
                         <img 
                           src={screenshots[currentSlide]} 
                           alt={`Gustasi POS Mobile App - ${['Dashboard showing real-time sales and orders', 'Order management interface', 'Menu customization screen', 'Sales and performance reports'][currentSlide]}`}
-                          className="w-full h-full object-cover object-top"
-                          style={{ objectFit: 'cover', objectPosition: 'top center' }}
+                          className="w-full h-full object-contain object-top"
+                          style={{ objectFit: 'contain', objectPosition: 'top', maxHeight: 'calc(100% - 20px)' }}
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
                             target.src = `https://via.placeholder.com/360x700/${['4f46e5', '7c3aed', '8b5cf6', 'a78bfa'][currentSlide]}/ffffff?text=Gustasi+POS+${['Dashboard', 'Orders', 'Menu', 'Reports'][currentSlide]}`;

@@ -68,28 +68,57 @@ const Footer = () => {
                 </ul>
               </div>
               {/* Contact */}
-              <div>
-                <h3 className="text-xl font-semibold mb-6 text-amber-100">{t("footer.contact")}</h3>
-                <div className="space-y-4 text-amber-300/80">
-                  <div className="flex items-center gap-3 text-lg">
-                    <span>📧</span>
-                    <span>hello@gustasi.com</span>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-2xl font-bold mb-2 text-amber-100">Contact Us Today</h3>
+                  <a 
+                    href="mailto:contact@gustasi.com" 
+                    className="inline-flex items-center gap-2 text-lg text-amber-300/90 hover:text-amber-100 transition-colors group"
+                  >
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-amber-500/20 group-hover:bg-amber-500/30 transition-colors">
+                      ✉️
+                    </span>
+                    contact@gustasi.com
+                  </a>
+                </div>
+
+                <div className="space-y-6 w-full">
+                  {/* India - Head Office */}
+                  <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700/50 w-full">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-amber-400">🇮🇳</span>
+                      <h4 className="text-lg font-semibold text-amber-100">India - Head Office</h4>
+                    </div>
+                    <div className="pl-2 border-l-2 border-amber-500/30">
+                      <p className="text-sm text-amber-200/80 leading-relaxed">
+                        Ashritha Enclave H NO 12-13-559/Flat No 103,<br/>
+                        Road No 2, Tarnaka,<br/>
+                        Hyderabad, Telangana 500017
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-3 text-lg">
-                    <span>📞</span>
-                    <span>+91 6366 200 200</span>
-                  </div>
-                  <div className="flex items-center gap-3 text-lg">
-                    <span>📍</span>
-                    <span>91springboard, 74, 3rd Cross Rd, Koramangala 5th Block, Bengaluru, Karnataka 560034</span>
+
+                  {/* Canada Office */}
+                  <div className="bg-slate-800/50 p-4 rounded-lg border border-slate-700/50 w-full">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-amber-400">🇨🇦</span>
+                      <h4 className="text-lg font-semibold text-amber-100">Canada</h4>
+                    </div>
+                    <div className="pl-2 border-l-2 border-amber-500/30">
+                      <p className="text-sm text-amber-200/80 leading-relaxed">
+                        400-6500 TransCanadaian Highway,<br/>
+                        Pointe-Claire, Québec,<br/>
+                        Montreal, QC, H9R0A5
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            {/* Bottom Bar */}
-            <div className="border-t border-amber-400/20 pt-8 text-center">
-              <p className="text-amber-300/80 text-lg">{t("footer.copyright")}</p>
-            </div>
+          </div>
+          {/* Bottom Bar */}
+          <div className="border-t border-amber-400/20 pt-8 text-center">
+            <p className="text-amber-300/80 text-lg">{t("footer.copyright")}</p>
           </div>
         </div>
       </div>

@@ -249,6 +249,54 @@ export const translations: Translations = {
   'wa.next': { en: 'Next', fr: 'Suivant', hi: 'अगला', bn: 'পরবর্তী', ta: 'அடுத்தது', te: 'తర్వాత' },
   'wa.finish': { en: 'Finish', fr: 'Terminer', hi: 'समाप्त करें', bn: 'শেষ', ta: 'முடிக்கவும்', te: 'ముగించు' },
 
+  "hero.avgOrderValueValue": {
+    en: "₹1,943",
+    fr: "1 943 ₹",
+    hi: "₹1,943",
+    bn: "₹১,৯৪৩",
+    ta: "₹1,943",
+    te: "₹1,943"
+  },
+  "hero.avgOrderValue": {
+    en: "Avg. Order Value",
+    fr: "Valeur moyenne de commande",
+    hi: "औसत ऑर्डर मूल्य",
+    bn: "গড় অর্ডার মূল্য",
+    ta: "சராசரி ஆர்டர் மதிப்பு",
+    te: "సగటు ఆర్డర్ విలువ"
+  },
+  "hero.todaysGrowthValue": {
+    en: "+23%",
+    fr: "+23 %",
+    hi: "+23%",
+    bn: "+২৩%",
+    ta: "+23%",
+    te: "+23%"
+  },
+  "hero.todaysGrowth": {
+    en: "Today's Growth",
+    fr: "Croissance du jour",
+    hi: "आज की वृद्धि",
+    bn: "আজকের বৃদ্ধি",
+    ta: "இன்றைய வளர்ச்சி",
+    te: "నేటి వృద్ధి"
+  },
+  "hero.activeOrdersValue": {
+    en: "8",
+    fr: "8",
+    hi: "8",
+    bn: "৮",
+    ta: "8",
+    te: "8"
+  },
+  "hero.activeOrders": {
+    en: "Active Orders",
+    fr: "Commandes actives",
+    hi: "सक्रिय ऑर्डर",
+    bn: "সক্রিয় অর্ডার",
+    ta: "செயலில் உள்ள ஆர்டர்கள்",
+    te: "సక్రియ ఆర్డర్లు"
+  },
   "hero.liveDashboard": {
     en: "Live Dashboard",
     fr: "Tableau de Bord en Direct",
