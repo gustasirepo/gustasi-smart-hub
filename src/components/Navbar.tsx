@@ -74,8 +74,10 @@ const Navbar = () => {
               <button 
                 onClick={() => setShowLanguageDropdown(!showLanguageDropdown)}
                 className="flex items-center text-amber-100 hover:text-amber-300 px-3 py-2 rounded-lg hover:bg-white/10 transition-colors"
+                aria-label="Change language"
               >
-                {getLanguageName(currentLanguage)}
+                <span className="hidden sm:inline">{getLanguageName(currentLanguage)}</span>
+                <span className="sm:hidden text-sm">{currentLanguage.toUpperCase()}</span>
                 <ChevronDown className="w-4 h-4 ml-1" />
               </button>
               {showLanguageDropdown && (
@@ -103,19 +105,25 @@ const Navbar = () => {
               </a>
               <a
                 href="https://www.gustasi.com/Signup"
-                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 px-6 py-3 text-base"
+                className="hidden sm:block bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 px-6 py-3 text-base"
               >
                 {t('nav.signup')}
               </a>
             </div>
             
-            {/* Mobile Login */}
-            <div className="block sm:hidden">
+            {/* Mobile Auth Buttons */}
+            <div className="flex items-center space-x-2 sm:hidden">
               <a
                 href="https://www.gustasi.com/Login"
                 className="text-amber-100 hover:text-amber-300 font-medium px-3 py-2 text-sm hover:bg-white/10 transition-all duration-300"
               >
                 {t('nav.login')}
+              </a>
+              <a
+                href="https://www.gustasi.com/Signup"
+                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow hover:shadow-md border border-amber-500/20 px-3 py-2 text-sm"
+              >
+                {t('nav.signup')}
               </a>
             </div>
           </div>

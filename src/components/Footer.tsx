@@ -5,11 +5,11 @@ const Footer = () => {
   useLanguage();
 
   const footerLinks = [
-    { label: t("footer.home"), href: "#" },
-    { label: t("footer.about"), href: "https://www.gustasi.com/AboutUs" },
-    { label: t("footer.features"), href: "#" },
-    { label: t("footer.pricing"), href: "#" },
-    { label: t("footer.contact"), href: "/en/schedule-demo" }
+    { label: t("footer.home"), href: "#", target: "_self", rel: "noopener" },
+    { label: t("footer.about"), href: "https://www.gustasi.com/AboutUs", target: "_blank", rel: "noopener noreferrer" },
+    { label: t("footer.features"), href: "#features", target: "_self", rel: "noopener" },
+    { label: t("footer.pricing"), href: "#pricing", target: "_self", rel: "noopener" },
+    { label: t("footer.contact"), href: "/en/schedule-demo", target: "_self", rel: "noopener" }
   ];
 
   return (
@@ -52,20 +52,19 @@ const Footer = () => {
               {/* Navigation */}
               <div>
                 <h3 className="text-xl font-semibold mb-6 text-amber-100">{t("footer.navigation")}</h3>
-                <ul className="space-y-4">
+                <div className="grid grid-cols-2 gap-3">
                   {footerLinks.map((link, index) => (
-                    <li key={index}>
-                      <a 
-                        href={link.href}
-                        target={link.target}
-                        rel={link.rel}
-                        className="text-amber-300/80 hover:text-amber-100 transition-colors duration-300 text-lg hover:translate-x-2 transform inline-block"
-                      >
-                        {link.label}
-                      </a>
-                    </li>
+                    <a 
+                      key={index}
+                      href={link.href}
+                      target={link.target}
+                      rel={link.rel}
+                      className="text-amber-300/80 hover:text-amber-100 transition-colors duration-300 text-base sm:text-lg hover:translate-x-1 sm:hover:translate-x-2 transform inline-block py-1.5"
+                    >
+                      {link.label}
+                    </a>
                   ))}
-                </ul>
+                </div>
               </div>
               {/* Contact */}
               <div className="space-y-6">

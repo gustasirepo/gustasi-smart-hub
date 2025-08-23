@@ -130,16 +130,16 @@ const SuccessStories = () => {
             </p>
           </motion.div>
 
-          <motion.div variants={container} className="grid md:grid-cols-3 gap-8">
+          <motion.div variants={container} className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {stories.map((story, index) => (
               <motion.div 
                 key={index}
                 variants={item}
                 whileHover={{ y: -5 }}
-                className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/5 hover:border-amber-600/30 transition-all duration-300 group"
+                className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/5 hover:border-amber-600/30 transition-all duration-300 group flex flex-col items-center text-center"
               >
                 <motion.div 
-                  className="mb-6 group-hover:opacity-100 transition-opacity"
+                  className="mb-6 group-hover:opacity-100 transition-opacity flex justify-center"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
