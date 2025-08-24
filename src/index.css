@@ -178,7 +178,7 @@ iframe {
   }
   
   .btn-primary {
-    @apply bg-gradient-to-r from-luxury-600 to-copper-600 hover:from-luxury-700 hover:to-copper-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-luxury-500/20;
+    @apply bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
   }
   
   .btn-secondary {

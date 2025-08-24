@@ -25,6 +25,7 @@ const FeaturePage = lazy(() => import("@/pages/FeaturePage").then(module => {
 const RestaurantsPage = lazy(() => import("@/pages/RestaurantsPage"));
 const FraudPrevention = lazy(() => import("@/pages/FraudPrevention"));
 const ContactUs = lazy(() => import("@/pages/ContactUs"));
+const ChefsPage = lazy(() => import("@/pages/chefs"));
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -62,22 +63,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 };
 
 const AppContent = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Initial load effect
-  useEffect(() => {
-    // Simulate initial loading if needed
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return <PageLoader />;
-  }
-
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/en" replace />} />
@@ -138,6 +123,16 @@ const AppContent = () => {
             <Suspense fallback={<PageLoader />}>
               <Layout>
                 <FraudPrevention />
+              </Layout>
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="chefs/:city?" 
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <Layout>
+                <ChefsPage />
               </Layout>
             </Suspense>
           } 

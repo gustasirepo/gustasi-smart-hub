@@ -17,7 +17,9 @@ const ExploreRestaurants = () => {
   useLanguage();
   const navigate = useNavigate();
   const handleExploreClick = () => {
-    navigate('/restaurants');
+    // Get current language from URL or default to 'en'
+    const lang = window.location.pathname.split('/')[1] || 'en';
+    navigate(`/${lang}/chefs/Hyderabad-Telangana-India`);
   };
   const [currentKeywordIndex, setCurrentKeywordIndex] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
