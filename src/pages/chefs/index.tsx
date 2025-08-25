@@ -4,6 +4,7 @@ import { useLanguage } from '@/utils/localization';
 import { Search, MapPin, Star, Clock, Filter, ArrowLeft, ChevronDown, ChevronRight, ChevronLeft, ChevronUp, X, TrendingUp, Sparkles, ChefHat, Leaf, Cake, Users, Zap, Check } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import CityHeritageCarousel from '@/components/CityHeritageCarousel';
 import { Button } from '@/components/ui/button';
 
 // Add pulsing animation
@@ -400,6 +401,13 @@ const ChefsPage = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* City Heritage Carousel */}
+      <div className="bg-gradient-to-b from-slate-950 to-slate-900 border-t border-b border-slate-800/30">
+        <div className="max-w-7xl mx-auto">
+          <CityHeritageCarousel />
         </div>
       </div>
 
