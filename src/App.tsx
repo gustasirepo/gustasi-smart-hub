@@ -38,13 +38,35 @@ const queryClient = new QueryClient();
 
 // Component to handle scroll restoration and preloading
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash, key } = useLocation();
 
   useEffect(() => {
+    // If there's a hash, scroll to the element with that ID
+    if (hash) {
+      // Use setTimeout to ensure the element is in the DOM
+      const timer = setTimeout(() => {
+        const element = document.getElementById(hash.substring(1));
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else if (hash === '#features') {
+          // If we're on a different page and the element isn't found,
+          // wait for the home page to load and then scroll
+          const checkElement = setInterval(() => {
+            const el = document.getElementById('features');
+            if (el) {
+              el.scrollIntoView({ behavior: 'smooth' });
+              clearInterval(checkElement);
+            }
+          }, 100);
+        }
+      }, 0);
+      return () => clearTimeout(timer);
+    }
+    // Otherwise scroll to top
     window.scrollTo(0, 0);
     // Start preloading other components when route changes
     preloadComponents();
-  }, [pathname]);
+  }, [pathname, hash, key]); // Add key to re-run effect when navigation occurs
 
   return null;
 };
