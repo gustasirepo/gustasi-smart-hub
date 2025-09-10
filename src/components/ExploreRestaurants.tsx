@@ -73,36 +73,61 @@ const ExploreRestaurants = () => {
         <div className="max-w-5xl mx-auto text-center">
           {/* Section Header */}
           <div className="mb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold">
               <span className="bg-gradient-to-r from-white via-white to-[#F5F2ED] bg-clip-text text-transparent">
                 {t('explore.discoverAmazing')}
               </span>
-              <br className="hidden md:block" />
-              <span className="relative inline-block">
-                <span className={`relative z-10 bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 -translate-y-2'}`}>
-                  {t('explore.nearYou')}
-                </span>
-                <span className="absolute bottom-0 left-0 w-full h-3 bg-amber-900/30 -z-0 transform -translate-y-1 rounded-full"></span>
-              </span>
             </h2>
-            <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-12">
-              {t('explore.description')}
-            </p>
             
-            {/* Large CTA Button */}
-            <Button 
-              onClick={handleExploreClick}
-              size="lg"
-              className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 relative overflow-hidden group"
+            {/* Venue Type Selector */}
+            <div 
+              className="flex flex-wrap justify-center gap-3 my-8"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              <span className="relative z-10">
-                {t("explore.exploreNow")}
-                <span className={`ml-2.5 transition-transform duration-200 ${currentKeywordIndex === 0 ? 'scale-110' : ''}`}>
-                  <ArrowRight className="h-5 w-5 inline-block transition-transform group-hover:translate-x-1" />
-                </span>
+              {translatedVenueTypes.map((venue, index) => (
+                <button
+                  key={venue.name}
+                  onClick={() => {
+                    setCurrentKeywordIndex(index);
+                    setIsVisible(true);
+                  }}
+                  className={`flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-medium transition-all duration-200 ${
+                        currentKeywordIndex === index
+                          ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-600/20 border border-amber-500/40'
+                          : 'bg-white/5 text-gray-200 hover:bg-white/10 border border-white/5 hover:border-amber-600/40'
+                      }`}
+                >
+                  {React.cloneElement(venue.icon, {
+                    className: `w-5 h-5 mr-2 ${currentKeywordIndex === index ? 'text-white' : 'text-amber-600'}`
+                  })}
+                  <span className="font-medium">{venue.translatedName}</span>
+                </button>
+              ))}
+            </div>
+            
+            <div className="relative inline-block mt-2">
+              <span className={`relative z-10 bg-gradient-to-r from-[#D8C7AA] via-[#C9B48C] to-[#B59469] bg-clip-text text-transparent text-3xl font-bold transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0 -translate-y-2'}`}>
+                {t('explore.nearYou')}
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-white/10 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
-            </Button>
+              <span className="absolute bottom-0 left-0 w-full h-3 bg-amber-900/30 -z-0 transform -translate-y-1 rounded-full"></span>
+            </div>
+            {/* Large CTA Button */}
+            <div className="relative mt-12">
+              <Button 
+                onClick={handleExploreClick}
+                size="lg"
+                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 relative overflow-hidden group"
+              >
+                <span className="relative z-10">
+                  {t("explore.exploreNow")}
+                  <span className={`ml-2.5 transition-transform duration-200 ${currentKeywordIndex === 0 ? 'scale-110' : ''}`}>
+                    <ArrowRight className="h-5 w-5 inline-block transition-transform group-hover:translate-x-1" />
+                  </span>
+                </span>
+                <span className="absolute inset-0 bg-gradient-to-r from-amber-500/0 via-white/10 to-amber-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+              </Button>
+            </div>
             
             <div className="flex flex-wrap justify-center gap-4 mt-8">
               <span className="text-sm text-gray-200 flex items-center bg-white/10 hover:bg-white/20 backdrop-blur-sm px-4 py-2.5 rounded-full border border-amber-800/40 hover:border-amber-600/60 transition-all duration-200">
@@ -120,32 +145,6 @@ const ExploreRestaurants = () => {
             </div>
           </div>
 
-          {/* Venue Type Selector */}
-          <div 
-            className="flex flex-wrap justify-center gap-3 mb-16"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            {translatedVenueTypes.map((venue, index) => (
-              <button
-                key={venue.name}
-                onClick={() => {
-                  setCurrentKeywordIndex(index);
-                  setIsVisible(true);
-                }}
-                className={`flex items-center justify-center px-6 py-3.5 rounded-full text-sm font-medium transition-all duration-200 ${
-                      currentKeywordIndex === index
-                        ? 'bg-gradient-to-r from-amber-600 to-orange-600 text-white shadow-lg shadow-amber-600/20 border border-amber-500/40'
-                        : 'bg-white/5 text-gray-200 hover:bg-white/10 border border-white/5 hover:border-amber-600/40'
-                    }`}
-              >
-                {React.cloneElement(venue.icon, {
-                  className: `w-5 h-5 mr-2 ${currentKeywordIndex === index ? 'text-white' : 'text-amber-600'}`
-                })}
-                <span className="font-medium">{venue.translatedName}</span>
-              </button>
-            ))}
-          </div>
 
           {/* Stats */}
           <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-8 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-sm border border-amber-50">
