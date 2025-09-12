@@ -17,9 +17,25 @@ interface SEOProps {
     section?: string;
     tags?: string[];
   };
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
+  product?: {
+    name: string;
+    image: string;
+    description: string;
+    brand: string;
+    sku?: string;
+    offers: {
+      price: string;
+      priceCurrency: string;
+      availability: 'InStock' | 'OutOfStock' | 'PreOrder';
+    };
+  };
 }
 
-export default function SEO({
+export default function EnhancedSEO({
   title = "Gustasi - Ultimate All-in-One Restaurant POS System",
   description = "Automate orders, manage stock, and drive profits with Gustasi's intelligent POS platform for restaurants, bars, cafes, and home chefs.",
   ogType = "website",
@@ -29,6 +45,8 @@ export default function SEO({
   keywords = ["restaurant POS", "point of sale", "restaurant management", "POS system", "restaurant software"],
   robots = "index, follow",
   article,
+  faqs = [],
+  product
 }: SEOProps) {
   const location = useLocation();
   const siteUrl = "https://www.gustasi.com";
@@ -38,13 +56,15 @@ export default function SEO({
   // Get path without language prefix
   const pathWithoutLang = location.pathname.replace(/^\/(en|fr|hi|bn|ta)/, '');
   const canonicalUrl = `${siteUrl}${pathWithoutLang || '/'}`;
+  const currentLang = location.pathname.match(/^\/(en|fr|hi|bn|ta)/)?.[1] || 'en';
 
-  // Default structured data if not provided
+  // Default structured data
   const defaultStructuredData = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": siteName,
     "url": siteUrl,
+    "inLanguage": currentLang,
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${siteUrl}/search?q={search_term_string}`,
@@ -52,7 +72,41 @@ export default function SEO({
     }
   };
 
-  const mergedStructuredData = structuredData || defaultStructuredData;
+  // FAQ Schema
+  const faqStructuredData = faqs.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+
+  // Product Schema
+  const productStructuredData = product ? {
+    "@context": "https://schema.org/",
+    "@type": "Product",
+    "name": product.name,
+    "image": product.image,
+    "description": product.description,
+    "brand": {
+      "@type": "Brand",
+      "name": product.brand
+    },
+    "sku": product.sku || "",
+    "offers": {
+      "@type": "Offer",
+      "url": canonicalUrl,
+      "priceCurrency": product.offers.priceCurrency,
+      "price": product.offers.price,
+      "availability": `https://schema.org/${product.offers.availability}`,
+      "itemCondition": "https://schema.org/NewCondition"
+    }
+  } : null;
 
   // Language configuration
   const languages: { code: string; name: string }[] = [
@@ -62,9 +116,6 @@ export default function SEO({
     { code: 'bn', name: 'বাংলা' },
     { code: 'ta', name: 'தமிழ்' },
   ];
-
-  // Get current language from path or default to 'en'
-  const currentLang = location.pathname.match(/^\/(en|fr|hi|bn|ta)/)?.[1] || 'en';
 
   return (
     <Helmet>
@@ -126,22 +177,33 @@ export default function SEO({
       <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: light)" />
       <meta name="theme-color" content="#0f172a" media="(prefers-color-scheme: dark)" />
 
-      {/* Favicon */}
-      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-      <link rel="manifest" href="/site.webmanifest" />
-      <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0f172a" />
-
       {/* Preload critical resources */}
       <link rel="preload" href="/fonts/Inter.var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://www.google-analytics.com" />
+      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+      <link rel="preconnect" href="https://www.googletagmanager.com" />
+      <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
 
       {/* Structured Data */}
       <script type="application/ld+json">
-        {JSON.stringify(mergedStructuredData)}
+        {JSON.stringify(structuredData || defaultStructuredData)}
       </script>
 
-      {/* Additional structured data for the organization */}
+      {/* FAQ Schema */}
+      {faqStructuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(faqStructuredData)}
+        </script>
+      )}
+
+      {/* Product Schema */}
+      {productStructuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(productStructuredData)}
+        </script>
+      )}
+
+      {/* Organization Schema */}
       <script type="application/ld+json">
         {JSON.stringify({
           '@context': 'https://schema.org',
