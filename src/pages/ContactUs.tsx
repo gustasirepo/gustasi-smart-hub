@@ -156,16 +156,19 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultTab = 'contact' }) => {
     setSubmitError(null);
     
     try {
-      const response = await fetch('/api/send-contact-email', {
+      const response = await fetch('http://localhost:3000/api/send-contact-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
+        credentials: 'include',
       });
       
+      const data = await response.json();
+      
       if (!response.ok) {
-        throw new Error('Failed to send message');
+        throw new Error(data.message || 'Failed to send message');
       }
       
       setIsSubmitted(true);

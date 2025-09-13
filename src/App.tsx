@@ -33,6 +33,7 @@ import ThemePreview from "./components/ThemePreview";
 import LanguageHandler from './components/LanguageHandler';
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+const ScheduleDemoRedirect = lazy(() => import("@/components/ScheduleDemoRedirect"));
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const ScrollToTop = () => {
 
 // Layout component that includes the Navbar and wraps all pages
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  console.log('Rendering Layout component');
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -81,6 +83,29 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </main>
       <Footer />
     </div>
+  );
+};
+
+// Simple test button component
+const TestButton = () => {
+  return (
+    <button 
+      style={{
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        zIndex: 9999,
+        backgroundColor: 'red',
+        color: 'white',
+        padding: '10px 20px',
+        border: 'none',
+        borderRadius: '5px',
+        cursor: 'pointer'
+      }}
+      onClick={() => window.open('https://tawk.to/chat/5f644095f0e7167d00117318/1j4vgptkl', 'tawkto')}
+    >
+      Test Chat
+    </button>
   );
 };
 
@@ -133,9 +158,15 @@ const AppContent = () => {
           path="schedule-demo" 
           element={
             <Suspense fallback={<PageLoader />}>
-              <Layout>
-                <ContactUs defaultTab="demo" />
-              </Layout>
+              <ScheduleDemoRedirect />
+            </Suspense>
+          } 
+        />
+        <Route 
+          path="demo" 
+          element={
+            <Suspense fallback={<PageLoader />}>
+              <ScheduleDemoRedirect />
             </Suspense>
           } 
         />

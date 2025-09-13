@@ -11,6 +11,25 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     strictPort: false, // Allow Vite to find an available port if 8080 is in use
+    headers: {
+      'Content-Security-Policy': [
+        "default-src 'self';",
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' *.googletagmanager.com *.google-analytics.com;",
+        "style-src 'self' 'unsafe-inline';",
+        "img-src 'self' data: blob: https:;",
+        "font-src 'self';",
+        "connect-src 'self' *.google-analytics.com;",
+        "media-src 'self';",
+        "object-src 'none';",
+      ].join(' ')
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
   preview: {
     host: true,

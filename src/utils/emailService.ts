@@ -1,9 +1,5 @@
-import emailjs from '@emailjs/browser';
-
-// Initialize EmailJS with your public key
-const EMAILJS_SERVICE_ID = 'YOUR_EMAILJS_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_EMAILJS_PUBLIC_KEY';
+import nodemailer from 'nodemailer';
+import { smtpConfig } from '@/lib/emailConfig';
 
 export interface DemoBookingData {
   name: string;
@@ -11,43 +7,58 @@ export interface DemoBookingData {
   phone: string;
   date: string;
   time: string;
-  notes: string;
+  message: string;
+  company?: string;
 }
 
 export const sendDemoBookingEmail = async (data: DemoBookingData): Promise<{ success: boolean; message: string }> => {
   try {
-    // Initialize EmailJS with your public key
-    emailjs.init(EMAILJS_PUBLIC_KEY);
+    // Create a Nodemailer transporter using SMTP
+    const transporter = nodemailer.createTransport({
+      host: smtpConfig.host,
+      port: smtpConfig.port,
+      secure: smtpConfig.secure, // true for 465, false for other ports
+      auth: {
+        user: smtpConfig.auth.user,
+        pass: smtpConfig.auth.pass,
+      },
+    });
 
-    const templateParams = {
-      to_email: 'contact@gustasi.com',
-      from_name: data.name,
-      from_email: data.email,
-      phone: data.phone,
-      date: data.date,
-      time: data.time,
-      notes: data.notes,
-      subject: `New Demo Booking - ${data.name}`,
+    // Email content
+    const mailOptions = {
+      from: `"${data.name}" <${smtpConfig.auth.user}>`,
+      to: smtpConfig.auth.user, // Send to the admin email
+      replyTo: data.email,
+      subject: `New Demo Request: ${data.name} from ${data.company || 'N/A'}`,
+      html: `
+        <h2>New Demo Request</h2>
+        <p><strong>Name:</strong> ${data.name}</p>
+        <p><strong>Email:</strong> ${data.email}</p>
+        <p><strong>Phone:</strong> ${data.phone || 'Not provided'}</p>
+        <p><strong>Company:</strong> ${data.company || 'Not provided'}</p>
+        <p><strong>Preferred Date:</strong> ${data.date}</p>
+        <p><strong>Preferred Time:</strong> ${data.time}</p>
+        <p><strong>Message:</strong></p>
+        <p>${data.message || 'No additional message provided.'}</p>
+        <br/>
+        <p>This is an automated message from the Gustasi Smart Hub contact form.</p>
+      `,
     };
 
-    const response = await emailjs.send(
-      EMAILJS_SERVICE_ID,
-      EMAILJS_TEMPLATE_ID,
-      templateParams,
-      EMAILJS_PUBLIC_KEY
-    );
-
-    if (response.status === 200) {
-      return { success: true, message: 'Email sent successfully' };
+    // Send the email
+    const info = await transporter.sendMail(mailOptions);
+    
+    if (info.messageId) {
+      return { success: true, message: 'Demo request sent successfully!' };
     } else {
-      console.error('EmailJS Error:', response);
-      return { success: false, message: 'Failed to send email' };
+      console.error('Email sending failed:', info);
+      return { success: false, message: 'Failed to send demo request' };
     }
   } catch (error) {
-    console.error('Error sending email:', error);
+    console.error('Error sending demo request:', error);
     return { 
       success: false, 
-      message: error instanceof Error ? error.message : 'An unknown error occurred' 
+      message: error instanceof Error ? error.message : 'An unknown error occurred while sending the demo request' 
     };
   }
 };

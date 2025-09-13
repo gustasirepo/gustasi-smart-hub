@@ -145,9 +145,9 @@ const HeroSection = () => {
               {/* Single CTA Button - Centered */}
               <div className="w-full flex justify-center animate-fade-up" style={{ animationDelay: '0.3s' }}>
                 <Button 
-                  onClick={() => {
-                    const lang = window.location.pathname.split('/')[1] || 'en';
-                    navigate(`/${lang}/schedule-demo`);
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.location.href = 'https://tawk.to/chat/5f644095f0e7167d00117318/1ij8sc0vj';
                   }}
                   className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-6 text-lg rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl border border-amber-500/20 relative overflow-hidden group"
                 >

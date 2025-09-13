@@ -1,11 +1,11 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { Request, Response } from 'express';
 import nodemailer from 'nodemailer';
 
 // SMTP Configuration
 const smtpConfig = {
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT || '465'),
-  secure: true, // true for 465, false for other ports
+  secure: true,
   auth: {
     user: process.env.SMTP_USER || 'contact@gustasi.com',
     pass: process.env.SMTP_PASS || 'zamepamgsuyosfkf',
@@ -20,30 +20,19 @@ interface ContactFormData {
   interest?: string;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ 
-      success: false,
-      error: 'Method not allowed',
-      message: 'Only POST requests are allowed'
-    });
-  }
-
-  const { name, email, phone, message, interest }: ContactFormData = req.body;
-
-  // Basic validation
-  if (!name || !email || !message) {
-    return res.status(400).json({ 
-      success: false,
-      error: 'Validation failed',
-      message: 'Name, email, and message are required fields'
-    });
-  }
-
+export const sendContactEmail = async (req: Request, res: Response) => {
   try {
+    const formData: ContactFormData = req.body;
+
+    // Basic validation
+    if (!formData.name || !formData.email || !formData.message) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Validation failed',
+        message: 'Name, email, and message are required fields'
+      });
+    }
+
     // Create a Nodemailer transporter with the SMTP settings
     const transporter = nodemailer.createTransport(smtpConfig);
 
@@ -52,12 +41,12 @@ export default async function handler(
 
     // Send mail with defined transport object
     const info = await transporter.sendMail({
-      from: `"${name}" <${smtpConfig.auth.user}>`,
-      to: smtpConfig.auth.user, // Send to the admin email
-      replyTo: email,
-      subject: `New Contact Form: ${name} - ${interest || 'General Inquiry'}`,
-      text: generatePlainTextEmail({ name, email, phone, message, interest }),
-      html: generateHtmlEmail({ name, email, phone, message, interest }),
+      from: `"${formData.name}" <${smtpConfig.auth.user}>`,
+      to: smtpConfig.auth.user,
+      replyTo: formData.email,
+      subject: `New Contact Form: ${formData.name} - ${formData.interest || 'General Inquiry'}`,
+      text: generatePlainTextEmail(formData),
+      html: generateHtmlEmail(formData),
     });
 
     if (!info.messageId) {
@@ -82,7 +71,7 @@ export default async function handler(
       ...(process.env.NODE_ENV === 'development' && { debug: error })
     });
   }
-}
+};
 
 function generatePlainTextEmail(data: ContactFormData): string {
   return `

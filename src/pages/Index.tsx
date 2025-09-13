@@ -12,7 +12,6 @@ import WhatsAppFlow from "@/components/WhatsAppFlow";
 import IntegrationLogos from "@/components/IntegrationLogos";
 import MetricsStrip from "@/components/MetricsStrip";
 import Footer from "@/components/Footer";
-import ChatWidget from "@/components/ChatWidget";
 import StickyDemo from "@/components/StickyDemo";
 import LoadingScreen from "@/components/LoadingScreen";
 import { MobilePOSSection } from "@/components/MobilePOSSection";
@@ -114,7 +113,6 @@ const Index = () => {
       </div>
       <IntegrationLogos />
       <Footer />
-      <ChatWidget />
       <StickyDemo />
     </div>
   );
