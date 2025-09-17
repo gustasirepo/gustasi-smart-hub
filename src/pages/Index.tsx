@@ -116,6 +116,6 @@ const Index = () => {
       <StickyDemo />
     </div>
   );
-};
+}
 
 export default Index;
