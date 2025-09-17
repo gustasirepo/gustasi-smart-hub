@@ -1,0 +1,39 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { t, useLanguage } from "@/utils/localization";
+
+const StickyDemo = () => {
+  const navigate = useNavigate();
+  useLanguage(); // Ensures re-render on language change
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const showAfter = 1000;
+      setIsVisible(scrollPosition > showAfter);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  if (!isVisible) return null;
+
+  return (
+    <div className="fixed bottom-8 left-8 z-40 animate-slide-in-right">
+      <Button 
+        onClick={(e) => {
+          e.preventDefault();
+          window.location.href = 'https://tawk.to/chat/5f644095f0e7167d00117318/1ij8sc0vj';
+        }}
+        className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl border border-amber-500/20 shadow-2xl shadow-amber-500/20 hover:shadow-amber-500/40 animate-glow"
+      >
+        {t("cta.schedule")}
+      </Button>
+    </div>
+  );
+};
+
+export default StickyDemo;

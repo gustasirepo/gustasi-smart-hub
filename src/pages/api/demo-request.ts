@@ -1,0 +1,259 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+import nodemailer from 'nodemailer';
+
+// Configure SMTP settings
+const smtpConfig = {
+  host: process.env.SMTP_HOST || 'smtp.gmail.com', // Using environment variables for security
+  port: parseInt(process.env.SMTP_PORT || '465'),
+  secure: true, // true for 465, false for other ports
+  auth: {
+    user: process.env.SMTP_USER || 'contact@gustasi.com',
+    pass: process.env.SMTP_PASS || 'zamepamgsuyosfkf',
+  },
+};
+
+interface DemoRequestData {
+  name: string;
+  email: string;
+  phone?: string;
+  company?: string;
+  message?: string;
+  preferredDate?: string;
+  preferredTime?: string;
+  [key: string]: any;
+}
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ 
+      success: false,
+      error: 'Method not allowed',
+      message: 'Only POST requests are allowed'
+    });
+  }
+
+  try {
+    const formData: DemoRequestData = req.body;
+
+    // Basic validation
+    if (!formData.name || !formData.email) {
+      return res.status(400).json({ 
+        success: false,
+        error: 'Validation failed',
+        message: 'Name and email are required fields'
+      });
+    }
+
+    // Create a Nodemailer transporter with the SMTP settings
+    const transporter = nodemailer.createTransport(smtpConfig);
+
+    // Verify SMTP connection
+    await transporter.verify();
+
+    // Format the email content
+    const emailContent = {
+      from: `"Gustasi Smart Hub" <${smtpConfig.auth.user}>`,
+      to: smtpConfig.auth.user, // Send to the admin email
+      replyTo: formData.email,
+      subject: `New Demo Request: ${formData.name} from ${formData.company || 'N/A'}`,
+      text: generatePlainTextEmail(formData),
+      html: generateHtmlEmail(formData),
+    };
+
+    // Send the email
+    const info = await transporter.sendMail(emailContent);
+    
+    if (!info.messageId) {
+      throw new Error('Failed to send email');
+    }
+
+    return res.status(200).json({ 
+      success: true, 
+      message: 'Demo request sent successfully!',
+      data: {
+        messageId: info.messageId
+      }
+    });
+
+  } catch (error) {
+    console.error('Error processing demo request:', error);
+    const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
+    
+    return res.status(500).json({ 
+      success: false,
+      error: 'Failed to process demo request',
+      message: errorMessage,
+      ...(process.env.NODE_ENV === 'development' && { debug: error })
+    });
+  }
+}
+
+function generatePlainTextEmail(data: DemoRequestData): string {
+  return `
+NEW DEMO REQUEST
+===============
+
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+Company: ${data.company || 'Not provided'}
+Preferred Date: ${data.preferredDate || 'Not specified'}
+Preferred Time: ${data.preferredTime || 'Not specified'}
+
+MESSAGE:
+${data.message || 'No additional message provided.'}
+
+---
+This is an automated message from the Gustasi Smart Hub contact form.
+`;
+}
+
+function generateHtmlEmail(data: DemoRequestData): string {
+  return `
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Demo Request - Gustasi Smart Hub</title>
+    <style>
+      body { 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        line-height: 1.6; 
+        color: #1f2937; 
+        max-width: 600px; 
+        margin: 0 auto; 
+        padding: 0;
+        background-color: #f9fafb;
+      }
+      .container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+      .header { 
+        background-color: #4f46e5; 
+        color: white; 
+        padding: 24px; 
+        text-align: center; 
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+      }
+      .content { 
+        padding: 24px; 
+        border: 1px solid #e5e7eb; 
+        border-top: none; 
+        border-radius: 0 0 8px 8px; 
+      }
+      .field { 
+        margin-bottom: 16px; 
+        padding-bottom: 16px;
+        border-bottom: 1px solid #f3f4f6;
+      }
+      .field:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+      .field-label { 
+        display: block;
+        font-weight: 600; 
+        color: #4b5563;
+        margin-bottom: 4px;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .field-value {
+        font-size: 1rem;
+        color: #1f2937;
+      }
+      .message { 
+        margin-top: 24px; 
+        padding: 16px; 
+        background-color: #f9fafb; 
+        border-radius: 6px;
+        border-left: 4px solid #4f46e5;
+      }
+      .footer {
+        margin-top: 32px;
+        padding-top: 16px;
+        border-top: 1px solid #e5e7eb;
+        font-size: 0.875rem;
+        color: #6b7280;
+        text-align: center;
+      }
+      .logo {
+        max-width: 180px;
+        height: auto;
+        margin-bottom: 16px;
+      }
+      a {
+        color: #4f46e5;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>New Demo Request</h1>
+      </div>
+      <div class="content">
+        <div class="field">
+          <span class="field-label">Name</span>
+          <div class="field-value">${data.name}</div>
+        </div>
+        
+        <div class="field">
+          <span class="field-label">Email</span>
+          <div class="field-value">
+            <a href="mailto:${data.email}">${data.email}</a>
+          </div>
+        </div>
+        
+        <div class="field">
+          <span class="field-label">Phone</span>
+          <div class="field-value">${data.phone || 'Not provided'}</div>
+        </div>
+        
+        <div class="field">
+          <span class="field-label">Company</span>
+          <div class="field-value">${data.company || 'Not provided'}</div>
+        </div>
+        
+        <div class="field">
+          <span class="field-label">Preferred Date & Time</span>
+          <div class="field-value">
+            ${data.preferredDate || 'Not specified'}
+            ${data.preferredTime ? `at ${data.preferredTime}` : ''}
+          </div>
+        </div>
+        
+        ${data.message ? `
+        <div class="message">
+          <div class="field-label">Message</div>
+          <div style="white-space: pre-line;">${data.message}</div>
+        </div>
+        ` : ''}
+        
+        <div class="footer">
+          <p>This is an automated message from the Gustasi Smart Hub contact form.</p>
+          <p>Please respond to this email to get in touch with the sender.</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+  `;
+}

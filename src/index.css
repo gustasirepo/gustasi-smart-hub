@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: rgb(250, 248, 245); /* Soft off-white */
+}
+
+/* Base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  background-color: rgb(250, 248, 245); /* Soft off-white */
+  font-feature-settings: 'kern' 1, 'calt' 1, 'liga' 1;
+  position: relative;
+}
+
+/* Ensure all containers don't cause horizontal scroll */
+.container {
+  width: 100%;
+  max-width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Prevent images and embeds from overflowing */
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Apply Noto Sans Devanagari for Hindi text */
+:lang(hi) {
+  font-family: 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+/* Ensure proper rendering for Devanagari text */
+*:lang(hi) {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
+
+@layer base {
+  :root {
+    --background: 250 248 245;  /* Soft off-white */
+    --foreground: 25 23 36;    /* Deep navy */
+
+    --card: 255 255 255;
+    --card-foreground: 25 23 36;
+
+    --popover: 255 255 255;
+    --popover-foreground: 25 23 36;
+
+    --primary: 25 23 36;       /* Deep navy */
+    --primary-foreground: 255 255 255;
+
+    --secondary: 216 199 170;   /* Warm gold */
+    --secondary-foreground: 25 23 36;
+
+    --muted: 242 240 237;      /* Soft gray */
+    --muted-foreground: 115 113 126;
+
+    --accent: 181 148 105;     /* Muted gold */
+    --accent-foreground: 255 255 255;
+
+    --destructive: 179 38 30;  /* Deep red */
+    --destructive-foreground: 255 255 255;
+
+    --border: 230 228 225;     /* Light gray */
+    --input: 230 228 225;
+    --ring: 216 199 170;       /* Gold */
+
+    --radius: 0.5rem;          /* Slightly more refined border radius */
+
+    --sidebar-background: 25 23 36;  /* Deep navy */
+    --sidebar-foreground: 250 248 245;
+    --sidebar-primary: 216 199 170;  /* Gold */
+    --sidebar-primary-foreground: 25 23 36;
+    --sidebar-accent: 35 32 51;     /* Slightly lighter navy */
+    --sidebar-accent-foreground: 250 248 245;
+    --sidebar-border: 45 42 61;     /* Border color */
+    --sidebar-ring: 216 199 170;    /* Gold */
+  }
+
+
+  .dark {
+    --background: 15 14 22;      /* Very dark navy */
+    --foreground: 240 240 245;   /* Soft white */
+
+    --card: 25 23 36;           /* Deep navy */
+    --card-foreground: 240 240 245;
+
+    --popover: 25 23 36;
+    --popover-foreground: 240 240 245;
+
+    --primary: 216 199 170;     /* Gold */
+    --primary-foreground: 25 23 36;
+
+    --secondary: 45 42 61;       /* Darker navy */
+    --secondary-foreground: 240 240 245;
+
+    --muted: 35 32 51;          /* Slightly lighter than card */
+    --muted-foreground: 180 180 190;
+
+    --accent: 181 148 105;      /* Muted gold */
+    --accent-foreground: 255 255 255;
+
+    --destructive: 220 38 38;
+    --destructive-foreground: 255 255 255;
+
+    --border: 45 42 61;         /* Dark border */
+    --input: 45 42 61;
+    --ring: 216 199 170;        /* Gold */
+
+    --sidebar-background: 15 14 22;  /* Very dark navy */
+    --sidebar-foreground: 240 240 245;
+    --sidebar-primary: 216 199 170;  /* Gold */
+    --sidebar-primary-foreground: 25 23 36;
+    --sidebar-accent: 35 32 51;     /* Dark navy */
+    --sidebar-accent-foreground: 240 240 245;
+    --sidebar-border: 45 42 61;     /* Border color */
+    --sidebar-ring: 216 199 170;    /* Gold */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-luxury-600 to-copper-600 bg-clip-text text-transparent;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-brand-900;
+  }
+  
+  .luxury-gradient-bg {
+    @apply bg-gradient-to-br from-luxury-50 via-white to-copper-50;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 hover:shadow-luxury-400/20;
+  }
+  
+  .btn-primary {
+    @apply bg-gradient-to-r from-orange-600 to-orange-700 hover:from-orange-700 hover:to-orange-800 text-white font-medium py-2 px-4 rounded-lg transition-all duration-200;
+  }
+  
+  .btn-secondary {
+    @apply bg-white/10 backdrop-blur-sm hover:bg-white/20 text-luxury-100 font-semibold px-8 py-4 rounded-xl border border-luxury-300/30 transition-all duration-300 hover:border-luxury-200/50 shadow-lg hover:shadow-xl;
+  }
+  
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl shadow-2xl;
+  }
+  
+  .luxury-glow {
+    @apply shadow-lg shadow-luxury-400/20 hover:shadow-2xl hover:shadow-luxury-400/40 transition-all duration-300;
+  }
+}
