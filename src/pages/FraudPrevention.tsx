@@ -211,7 +211,7 @@ const FraudPrevention = () => {
               <div className="lg:col-span-6 relative">
                 <div className="relative rounded-3xl overflow-hidden border-2 border-[#D8C7AA]/20 shadow-2xl">
                   <img 
-                    src="./lovable-uploads/kdsscreen.PNG" 
+                    src="/lovable-uploads/kdsscreen.PNG" 
                     alt="Fraud Prevention Dashboard" 
                     className="w-full h-auto rounded-2xl"
                   />

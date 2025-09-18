@@ -43,11 +43,11 @@ const HeroSection = () => {
 
   const images = [
     {
-      src: './lovable-uploads/kdsscreen.PNG',
+      src: '/lovable-uploads/kdsscreen.PNG',
       alt: 'KDS Screen'
     },
     {
-      src: './lovable-uploads/3e29469b-faef-4245-8a1a-9d015faab115.png',
+      src: '/lovable-uploads/3e29469b-faef-4245-8a1a-9d015faab115.png',
       alt: 'KDS Screen'
     }
   ];

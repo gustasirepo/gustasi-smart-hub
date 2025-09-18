@@ -4,7 +4,7 @@ import { t, useLanguage } from "@/utils/localization";
 const aggregators = [
   { name: "Zomato", icon: "https://upload.wikimedia.org/wikipedia/commons/7/75/Zomato_logo.png", color: "from-red-500/20 to-pink-500/20" },
   { name: "Swiggy", icon: "https://upload.wikimedia.org/wikipedia/commons/1/13/Swiggy_logo.png", color: "from-orange-500/20 to-yellow-500/20" },
-  { name: "Magicpin", icon: "./lovable-uploads/magicpin.PNG", color: "from-purple-500/20 to-blue-500/20" }
+  { name: "Magicpin", icon: "/lovable-uploads/magicpin.PNG", color: "from-purple-500/20 to-blue-500/20" }
 ];
 
 const AggregatorIntegrations = () => {
@@ -23,7 +23,7 @@ const AggregatorIntegrations = () => {
                   alt={platform.name + " logo"} 
                   className="h-8 w-8 object-contain" 
                   onError={(e) => { 
-                    e.currentTarget.src = './lovable-uploads/mylogo.svg';
+                    e.currentTarget.src = '/lovable-uploads/mylogo.svg';
                     e.currentTarget.className = 'h-8 w-8 object-contain opacity-50';
                   }} 
                 />

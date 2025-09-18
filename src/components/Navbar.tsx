@@ -59,7 +59,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <Link to={`/${currentLanguage}`} className="group relative">
               <img 
-                src="./lovable-uploads/Logo.png" 
+                src="/lovable-uploads/Logo.png" 
                 alt="Gustasi Logo" 
                 className="h-8 sm:h-16 w-auto transform transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-lg"
               />

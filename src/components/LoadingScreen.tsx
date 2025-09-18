@@ -32,7 +32,7 @@ const LoadingScreen = () => {
             <div className="absolute inset-0 flex items-center justify-center p-2 transition-opacity duration-300"
                 style={{ opacity: imageLoaded ? 1 : 0 }}>
               <img 
-                src="./lovable-uploads/Logo.png" 
+                src="/lovable-uploads/Logo.png" 
                 alt="Gustasi Logo" 
                 className="w-full h-auto max-w-[72px] scale-110"
                 onLoad={() => setImageLoaded(true)}
