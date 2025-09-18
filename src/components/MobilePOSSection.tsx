@@ -56,10 +56,10 @@ export function MobilePOSSection() {
   
   // Mobile POS screenshots
   const screenshots = [
-    '/lovable-uploads/M1.jpg',
-    '/lovable-uploads/M2.jpg',
-    '/lovable-uploads/M3.jpg',
-    '/lovable-uploads/M4.jpg',
+    './lovable-uploads/M1.jpg',
+    './lovable-uploads/M2.jpg',
+    './lovable-uploads/M3.jpg',
+    './lovable-uploads/M4.jpg',
   ];
 
   const nextSlide = () => {

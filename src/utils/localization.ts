@@ -306,7 +306,6 @@ export const translations: Translations = {
     te: "లైవ్ డాష్‌బోర్డ్"
   },
   "hero.realTimeUpdates": { en: "Real-time Updates", fr: "Mises à Jour en Temps Réel", hi: "రియల్ టైమ్ నవీకరణలు", bn: "রিয়েল-টাইম আপডেট", ta: "நேரடி புதுப்பிப்புகள்", te: "రియల్ టైమ్ నవీకరణలు" },
-  "hero.avgOrderValue": { en: "Avg. Order Value", fr: "Valeur Moyenne Commande", hi: "సగటు ఆర్డర్ విలువ", bn: "গড় অর্ডার মূল্য", ta: "சராசரி ஆணை மதிப்பு", te: "సగటు ఆర్డర్ విలువ" },
   // Explore Section
   "explore.discoverSavor": { en: "Discover & Savor", fr: "Découvrir et Savourer", hi: "खोजें और आनंद लें", bn: "আবিষ্কার করুন এবং উপভোগ করুন", ta: "கண்டுபிடித்து சுவைக்கவும்", te: "కనుగొని ఆస్వాదించండి" },
   "explore.exploreNow": { en: "Explore Now", fr: "Explorer Maintenant", hi: "अभी एक्सप्लोर करें", bn: "এখনই এক্সপ্লোর করুন", ta: "இப்போது ஆராயவும்", te: "ఇప్పుడు అన్వేషించండి" },

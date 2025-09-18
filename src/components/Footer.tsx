@@ -24,7 +24,7 @@ const Footer = () => {
             <div className="grid md:grid-cols-4 gap-12 mb-16">
               {/* Logo & Description */}
               <div className="md:col-span-2">
-                <img src="/lovable-uploads/Logo.png" alt="Gustasi Logo" className="h-16 mb-6" />
+                <img src="./lovable-uploads/Logo.png" alt="Gustasi Logo" className="h-16 mb-6" />
                 <p className="text-amber-200/90 mb-8 max-w-md text-lg leading-relaxed">
                   {t("footer.description")}
                 </p>

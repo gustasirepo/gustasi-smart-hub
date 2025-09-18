@@ -83,7 +83,7 @@ const WhatsAppFlow = () => {
         <div className="p-6 text-center">
           <div className="bg-white p-4 rounded-lg shadow-sm inline-block mb-4">
             <img 
-              src="/lovable-uploads/qr.jpeg" 
+              src="./lovable-uploads/qr.jpeg" 
               alt="QR Code" 
               className="w-48 h-48 object-contain mx-auto"
               onError={(e) => {
